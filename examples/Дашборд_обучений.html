@@ -74,7 +74,7 @@ svg text{font-family:"Montserrat",Arial,sans-serif;font-size:11px;fill:var(--bi-
 <header>
   <div>
     <h1>Дашборд обучений GxP</h1>
-    <div class="sub">Перетащите реестр обучений — дашборд посчитает всё сам, файл остаётся у вас на компьютере</div>
+    <div class="sub">Перетащите реестр обучений - дашборд посчитает всё сам, файл остаётся у вас на компьютере</div>
   </div>
   <img class="logo" src="../assets/logo-bi-white.svg" alt="Логотип"
        onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>GxP<br>TRAINING</div>'">
@@ -85,17 +85,17 @@ svg text{font-family:"Montserrat",Arial,sans-serif;font-size:11px;fill:var(--bi-
 
   <section id="loader">
     <div class="note">
-      Файл никуда не отправляется — всё считается в вашем браузере. Сюда можно загружать реальные данные.
+      Файл никуда не отправляется - всё считается в вашем браузере. Сюда можно загружать реальные данные.
     </div>
     <div id="drop">
       <b>Перетащите сюда файл CSV</b>
       <p class="hint">или <button class="btn" id="pick">выберите файл</button>
       &nbsp;&nbsp;<button class="btn ghost" id="demo">Загрузить демо</button><br>
-      Подойдёт «Реестр_обучений_GxP.csv» из папки data. Разделитель — точка с запятой или запятая.</p>
+      Подойдёт «Реестр_обучений_GxP.csv» из папки data. Разделитель - точка с запятой или запятая.</p>
       <input type="file" id="file" accept=".csv,.txt" hidden>
     </div>
     <p class="hint" style="text-align:center;margin-top:14px">
-      Страница работает без интернета. Ничего никуда не отправляется — все расчёты идут в вашем браузере.
+      Страница работает без интернета. Ничего никуда не отправляется - все расчёты идут в вашем браузере.
     </p>
   </section>
 
@@ -202,7 +202,7 @@ function err(m){var e=document.getElementById('err');e.textContent=m;e.style.dis
 
 function read(file){
   if(!/\.(csv|txt)$/i.test(file.name)){
-    err('Нужен файл CSV. Если у вас Excel, сохраните его как «CSV (разделители — точка с запятой)».');return}
+    err('Нужен файл CSV. Если у вас Excel, сохраните его как «CSV (разделители - точка с запятой)».');return}
   var fr=new FileReader();
   fr.onload=function(){
     try{ parse(fr.result); document.getElementById('fname').textContent=file.name;
@@ -307,12 +307,12 @@ function insights(){
   if(byDept.length){
     var worst=byDept[0];
     out.push('Хуже всего дисциплина в подразделении «<b>'+worst[0]+'</b>»: просрочено '+worst[3]+
-      '% назначений ('+worst[2]+' из '+worst[1]+'). Стоит разобраться, что мешает — загрузка смен или неудобный формат обучения.');
+      '% назначений ('+worst[2]+' из '+worst[1]+'). Стоит разобраться, что мешает - загрузка смен или неудобный формат обучения.');
   }
   var byCourse=groupOverdueCount(COL.kurs);
   if(byCourse.length){
     var wc=byCourse[0];
-    out.push('Чаще всего срывают срок по курсу «<b>'+wc[0]+'</b>» — '+wc[1]+
+    out.push('Чаще всего срывают срок по курсу «<b>'+wc[0]+'</b>» - '+wc[1]+
       ' просроченных прохождений. Возможно, курс стоит сократить или разбить на модули.');
   }
   var mo={};
@@ -320,9 +320,9 @@ function insights(){
   var ms=Object.keys(mo).map(function(m){return [+m,mo[m]]}).sort(function(a,b){return b[1]-a[1]});
   if(ms.length){
     out.push('Пик просрочек приходится на <b>'+MN[ms[0][0]]+'</b>: '+ms[0][1]+
-      ' случаев с этим сроком прохождения. Похоже, на этот месяц назначено слишком много обучений сразу — стоит равномернее распределить график.');
+      ' случаев с этим сроком прохождения. Похоже, на этот месяц назначено слишком много обучений сразу - стоит равномернее распределить график.');
   }
-  if(!out.length) out.push('Явных закономерностей в этом файле не нашлось — просрочки распределены равномерно.');
+  if(!out.length) out.push('Явных закономерностей в этом файле не нашлось - просрочки распределены равномерно.');
   document.getElementById('insights').innerHTML=out.map(function(t){return '<li>'+t+'</li>'}).join('');
 }
 

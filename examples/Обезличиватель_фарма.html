@@ -140,7 +140,7 @@ footer{text-align:center;font-size:12.5px;color:var(--bi-muted);padding:24px 16p
     </div>
 
     <div class="card" id="mapcard" hidden>
-      <h2>Расшифровка — только для вас</h2>
+      <h2>Расшифровка - только для вас</h2>
       <p class="hint" style="margin:0 0 4px">Нейросеть вернёт ответ с этими же обозначениями. Таблица живёт только на
       этой странице и исчезнет, когда вы закроете вкладку.</p>
       <table id="map"><thead><tr><th>Обозначение</th><th>Что скрыто</th><th>Тип</th></tr></thead><tbody></tbody></table>
@@ -150,7 +150,7 @@ footer{text-align:center;font-size:12.5px;color:var(--bi-muted);padding:24px 16p
       <h3>Что инструмент не заменит</h3>
       <p style="font-size:14px;margin:0">Обезличивание снимает риск по 152-ФЗ и врачебной тайне, но не отменяет
       здравого смысла. Даже под видом «Пациент 1» не отправляйте в публичную нейросеть редкий диагноз в сочетании
-      с городом и возрастом — по совокупности деталей человека всё равно можно узнать. Если не готовы увидеть
+      с городом и возрастом - по совокупности деталей человека всё равно можно узнать. Если не готовы увидеть
       этот текст в открытом доступе, не отправляйте его вовсе.</p>
     </div>
   </section>
@@ -162,7 +162,7 @@ footer{text-align:center;font-size:12.5px;color:var(--bi-muted);padding:24px 16p
         <b>Перетащите сюда CSV</b>
         <p class="hint">или <button class="btn" id="pickCsv">выберите файл</button>
         &nbsp;&nbsp;<button class="btn ghost" id="demoCsv">Пример таблицы</button><br>
-        Разделитель определяется автоматически — подойдёт «;» или «,».</p>
+        Разделитель определяется автоматически - подойдёт «;» или «,».</p>
         <input type="file" id="fileCsv" accept=".csv,.txt" hidden>
       </div>
       <p class="hint" style="margin-top:8px">Можно и вставить текст CSV прямо сюда:</p>
@@ -172,7 +172,7 @@ footer{text-align:center;font-size:12.5px;color:var(--bi-muted);padding:24px 16p
 
     <div class="card" id="csvCard" hidden>
       <h2>Что делать с колонками</h2>
-      <p class="hint">Правило подобрано автоматически по названию колонки — при желании поменяйте.</p>
+      <p class="hint">Правило подобрано автоматически по названию колонки - при желании поменяйте.</p>
       <div class="tw"><table id="colcfg"><thead><tr><th>Колонка</th><th>Пример значения</th><th>Действие</th></tr></thead>
       <tbody></tbody></table></div>
 
@@ -198,7 +198,7 @@ var DEMO='Добрый день! Сообщаю о нежелательном я
 'После приёма препарата серия AB1234 в рамках протокола BI-2025-0123 отмечена сыпь. '+
 'Контакт врача: +7 (916) 234-56-78, ivanova@gkb4.ru. Прошу зарегистрировать случай.';
 
-/* Символы-разделители для меток — не встречаются в обычном тексте,
+/* Символы-разделители для меток - не встречаются в обычном тексте,
    поэтому последующие правила их не трогают, а на экране мы превращаем
    их в подсвеченные <mark>. */
 var T1='', T2='', T3='';
@@ -322,7 +322,7 @@ document.getElementById('copy').onclick=function(){
   try{done=document.execCommand('copy')}catch(e){}
   document.body.removeChild(ta);
   if(navigator.clipboard&&!done){navigator.clipboard.writeText(t);done=true}
-  this.textContent=done?'Скопировано':'Не получилось — выделите вручную';
+  this.textContent=done?'Скопировано':'Не получилось - выделите вручную';
   var b=this; setTimeout(function(){b.textContent='Скопировать'},1800);
 };
 [].forEach.call(document.querySelectorAll('.rule'),function(c){c.onchange=function(){
