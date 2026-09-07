@@ -417,13 +417,13 @@ var CATALOG=[
    w:'Модели по цене и качеству. Пригодится, когда зайдёт разговор про бюджет.',r:''}]}
 ];
 
-/* Документ компании для блока 6. Кодекс поведения Boehringer Ingelheim публикуется
-   на сайте компании открыто, поэтому его можно грузить в любую нейросеть. Ссылка
-   ведёт на официальный сайт; копия файла есть у ведущего на случай, если сайт не откроется. */
+/* Документ для блока 6. Раньше здесь был Кодекс поведения с сайта компании, но сайт закрыт
+   защитой от ботов и ссылки в зале не открылись. Теперь документ лежит прямо в тетради:
+   учебный справочник «Здоровье в офисе», 12 пронумерованных разделов. Открывается с того же
+   адреса, что и тетрадь, - значит, откроется у всех. */
 var DOCS=[
- {n:'Кодекс поведения Boehringer Ingelheim (RU)',
-  u:'https://www.boehringer-ingelheim.com/bipdf/code-conduct-ru',
-  alt:'https://www.boehringer-ingelheim.com/ru/o-kompanii/etika-i-komplaens'}
+ {n:'Справочник «Здоровье в офисе» · PDF',u:'handbook/Здоровье_в_офисе_справочник.pdf',
+  md:'handbook/Здоровье_в_офисе_справочник.md',html:'handbook/Здоровье_в_офисе_справочник.html'}
 ];
 
 /* ============================ СЛОВАРЬ ТЕРМИНОВ ============================ */
@@ -494,7 +494,13 @@ var IMAGE_PROMPTS=[
    {l:'Женский вариант',
     p:'Edit the uploaded photo into a professional business portrait.\n\nChange: replace the background with the interior of a high-floor office in Moscow City at blue hour, seen through a floor-to-ceiling window: the Moscow River, the illuminated skyscrapers of the business district and the city lights far below, softly out of focus. Refine the attire to a tailored charcoal or deep-green blazer over a plain light top.\n\nPreserve: the exact face, facial features, skin tone, hairstyle, expression, identity, head angle and eye direction of the woman in the photo.\n\nImportant details: soft key light from the front-left as if from a large window, gentle warm rim light from the city glow on the hair and shoulder, shallow depth of field, natural skin texture, calm confident half-smile, shoulders slightly off-axis, medium close-up from the chest up, 85mm portrait feel.\n\nUse case: corporate profile photo for an intranet page and LinkedIn.\n\nConstraints: solo portrait, clean composition, natural retouching that keeps pores and fine lines, plain window glass with faint reflections only, no text, no logos, no watermark.'},
    {l:'Мужской вариант',
-    p:'Edit the uploaded photo into a professional business portrait.\n\nChange: replace the background with the interior of a high-floor office in Moscow City at blue hour, seen through a floor-to-ceiling window: the Moscow River, the illuminated skyscrapers of the business district and the city lights far below, softly out of focus. Refine the attire to a tailored navy or charcoal suit jacket over a plain shirt, top button open, no tie.\n\nPreserve: the exact face, facial features, skin tone, hairstyle, facial hair, expression, identity, head angle and eye direction of the man in the photo.\n\nImportant details: soft key light from the front-left as if from a large window, gentle warm rim light from the city glow on the hair and shoulder, shallow depth of field, natural skin texture, calm confident expression, shoulders slightly off-axis, medium close-up from the chest up, 85mm portrait feel.\n\nUse case: corporate profile photo for an intranet page and LinkedIn.\n\nConstraints: solo portrait, clean composition, natural retouching that keeps pores and fine lines, plain window glass with faint reflections only, no text, no logos, no watermark.'}]}]},
+    p:'Edit the uploaded photo into a professional business portrait.\n\nChange: replace the background with the interior of a high-floor office in Moscow City at blue hour, seen through a floor-to-ceiling window: the Moscow River, the illuminated skyscrapers of the business district and the city lights far below, softly out of focus. Refine the attire to a tailored navy or charcoal suit jacket over a plain shirt, top button open, no tie.\n\nPreserve: the exact face, facial features, skin tone, hairstyle, facial hair, expression, identity, head angle and eye direction of the man in the photo.\n\nImportant details: soft key light from the front-left as if from a large window, gentle warm rim light from the city glow on the hair and shoulder, shallow depth of field, natural skin texture, calm confident expression, shoulders slightly off-axis, medium close-up from the chest up, 85mm portrait feel.\n\nUse case: corporate profile photo for an intranet page and LinkedIn.\n\nConstraints: solo portrait, clean composition, natural retouching that keeps pores and fine lines, plain window glass with faint reflections only, no text, no logos, no watermark.'}]},
+  {n:'Портрет с характером',m:'Qwen · Leonardo',s:'вертикаль 4:5, качество высокое',need:'своё фото, лицо крупно и ровно освещено',
+   variants:[
+   {l:'Женский · золотой час в поле',
+    p:'Edit the uploaded photo into a warm summer editorial portrait.\n\nChange: place the woman in a wide summer meadow at golden hour, waist-high grasses and wildflowers around her: cornflowers, chamomile, red poppies. Dress her in a flowing midi dress with a small floral print, light fabric moving in a gentle breeze. She holds a loose bouquet of the same wildflowers with both hands at chest level and looks at the camera with a soft natural smile.\n\nPreserve: the exact face, facial features, skin tone, hairstyle, expression, identity, head angle and eye direction of the woman in the photo.\n\nImportant details: low sun behind her and slightly to the right, warm backlight glowing through the hair and the edges of the flowers, soft lens flare, shallow depth of field with the meadow melting into golden bokeh, a few loose strands of hair lifted by the wind, medium shot from the waist up, 85mm portrait feel, natural skin texture.\n\nUse case: personal portrait for a chat avatar and social media.\n\nConstraints: solo portrait, one bouquet, no text, no logos, no watermark, natural retouching that keeps pores and fine lines.'},
+   {l:'Мужской · акула из Москвы-реки',
+    p:'Edit the uploaded photo into a dramatic and slightly absurd trophy-catch photo.\n\nChange: place the man on the wet granite embankment of the Moskva River in Moscow at blue hour. He holds up a huge freshly caught shark, about two metres long, with both arms, the shark glistening and dripping, its tail almost touching the ground. Dress him in a dark waterproof fishing jacket with the sleeves pushed up and a knitted hat; a proud, slightly exhausted grin on his face. Behind him, across the river, the illuminated towers of Moscow City, softly out of focus, and a wet fishing rod leaning on the parapet.\n\nPreserve: the exact face, facial features, skin tone, hairstyle, facial hair, identity and head angle of the man in the photo.\n\nImportant details: overcast blue-hour sky with a warm street-lamp key light from the left, water splashes on the granite, wet fabric texture, low-angle heroic shot from slightly below the waist, medium-wide framing, 35mm feel, cinematic colour grade with teal shadows and warm highlights, photorealistic.\n\nUse case: fun personal photo for a chat avatar and a team channel.\n\nConstraints: solo, exactly one shark, anatomically plausible shark, no blood, no text, no logos, no watermark.'}]}]},
  {cat:'Для настроения · по своему фото',items:[
   {n:'Акварель оживает · для девушек',m:'Qwen · Leonardo',s:'вертикаль 9:16',need:'своё фото',
    p:'By uploaded image, Ultra-photorealistic surreal 3D illusion inside a real artist’s studio, frontal composition, vertical 9:16. A large vertical sheet of textured watercolor paper is mounted perfectly front-facing on a worn wooden easel.\n\nOn the paper is a beautiful watercolor portrait of a young woman wearing a chic black beret, a black-and-white striped Breton shirt and miniature NASA space-shuttle earrings. The lower half of her body remains completely flat and visibly painted onto the paper with expressive watercolor pigments, wet brush strokes, blooming colors, splashes and long paint drips.\n\nAt her waist, the watercolor gradually transforms into physical reality. From the waist upward she becomes an ultra-photorealistic real woman physically emerging OUT OF THE FLAT PAPER into the viewer’s space. The transition between watercolor and real human body is clearly visible and seamless.\n\nShe leans far forward out of the painting with strong three-dimensional depth. One arm reaches dramatically toward the camera, holding a glossy bright-red ceramic coffee cup filled with fresh black coffee. The cup is extremely close to the lens, creating exaggerated forced perspective. Visible coffee surface, delicate steam rising from the cup, realistic ceramic reflections.\n\nShe raises the red coffee cup toward the viewer in a playful “cheers” gesture, smiling warmly and making direct eye contact with the camera. Her second arm also extends naturally outside the canvas, reinforcing the illusion that she is escaping from the painting.\n\nExtreme 3D pop-out effect: her hands and red coffee cup clearly cross beyond the physical plane and edges of the watercolor paper, casting realistic shadows back onto the paper. Strong depth separation between the flat painted lower body and the physical upper body.\n\nIn the bottom-right corner of the frame, only the artist’s realistic hand is visible holding a thin watercolor brush toward the unfinished painted section, as if the artist has just caused her to come alive. Watercolor palette with wet pigments visible along the bottom edge.\n\nBright natural morning sunlight from a large studio window, light neutral colors, realistic skin tones, warm wooden studio details, softly blurred background, authentic paper fibers, wet watercolor texture, pigment granulation and paint stains.\n\nStraight-on frontal camera, eye-level perspective, 28mm lens, shallow natural depth of field, strong forced perspective on the red coffee cup, cinematic live-action photography, natural lighting, realistic shadows, subtle film grain, HDR, 8K, zero CGI appearance, no illustration look on the realistic half, no text, no watermark, vertical 9:16.'},
@@ -532,7 +538,8 @@ var BLOCKS=[
  lead:'Пятнадцать минут, которые спасают весь день. Аккаунты, профиль и правила игры - и дальше только практика.',
  tasks:[
  {t:'html',h:'<div class="note dark"><p><b>Как устроена эта тетрадь.</b> Слева блоки, они идут по порядку и совпадают '+
-   'с программой семинара. За каждое задание начисляются баллы, всего их тысяча. У кого больше к концу дня - '+
+   'с программой семинара. За каждое задание начисляются баллы. Планка - тысяча, а заданий в тетради на сто баллов больше: '+
+   'её можно и перепрыгнуть. У кого больше к концу дня - '+
    'тот забирает приз. Ничья решается в пользу того, кто сдал результат раньше.</p><p>Всё, что вы напишете, остаётся в вашем браузере. Никуда не отправляется, '+
    'закроете вкладку - вернётесь и продолжите с того же места.</p></div>'+
    '<h3>Про уровень в шапке</h3>'+
@@ -542,7 +549,7 @@ var BLOCKS=[
    '<tr><td><b>Молекула</b></td><td>до 250 баллов</td><td>идея есть, что из неё выйдет - пока неясно</td></tr>'+
    '<tr><td><b>Доклиника</b></td><td>250–500</td><td>первые проверки пройдены, есть на что смотреть</td></tr>'+
    '<tr><td><b>Клинические исследования</b></td><td>500–750</td><td>работает на людях, доказательства копятся</td></tr>'+
-   '<tr><td><b>Регистрация</b></td><td>750–1000</td><td>одобрено, можно выпускать в работу</td></tr>'+
+   '<tr><td><b>Регистрация</b></td><td>750 и выше</td><td>одобрено, можно выпускать в работу</td></tr>'+
    '</tbody></table></div>'+
    '<p class="muted"><small>Бонусные баллы идут сверх тысячи и на уровень не влияют - иначе обогнать соседа '+
    'можно было бы простым прокликиванием.</small></p>'+
@@ -735,44 +742,44 @@ var BLOCKS=[
 ]},
 
 /* ------------------------------- БЛОК 4 -------------------------------- */
-{id:'data',num:'4',nav:'Данные и таблицы',time:'15:15–16:15',pts:200,illu:'b4-data',
+{id:'data',num:'4',nav:'Данные и таблицы',time:'15:15–16:15',pts:260,illu:'b4-data',
  title:'Данные и таблицы',
- lead:'Главный блок дня. Две формулы для разминки, потом настоящая аналитика: обезличили, загрузили, нашли закономерности. И приложение, в которое можно грузить всё как есть.',
+ lead:'Главный блок дня. Две формулы для разминки, потом настоящая аналитика на таблице продаж: обезличили, загрузили, нашли, где утекает маржа. Дальше приложение, в которое можно грузить всё как есть, и игра, которую вы соберёте в Qwen за пятнадцать минут.',
  tasks:[
  {t:'html',h:'<h3>Сначала скачайте файлы</h3>'+
-   '<p>Два файла для практики. Данные в них выдуманы - фамилии, издания, клиники сгенерированы специально. '+
-   'Но фамилии там есть намеренно: обезличивать вы будете по-настоящему.</p>'+
+   '<p>Два файла для практики. Данные в них выдуманы: препараты, клиенты, издания и менеджеры сгенерированы специально, '+
+   'совпадения с реальными марками случайны. Но фамилии и телефоны там есть намеренно: обезличивать вы будете по-настоящему.</p>'+
    '<div class="btnrow">'+
-   '<a class="btn" href="data/Реестр_обучений_GxP.xlsx" download>Реестр обучений · Excel</a>'+
-   '<a class="btn ghost" href="data/Реестр_обучений_GxP.csv" download>Тот же реестр · CSV</a>'+
+   '<a class="btn" href="data/Продажи_по_категориям_2025.xlsx" download>Продажи по категориям · Excel</a>'+
+   '<a class="btn ghost" href="data/Продажи_по_категориям_2025.csv" download>Та же таблица · CSV</a>'+
    '<a class="btn ghost" href="data/Медиа_упоминания_и_запросы_СМИ.csv" download>Медиа-упоминания и запросы СМИ · CSV</a></div>'+
-   '<div class="note"><p><b>Реестр обучений</b> - около 260 назначений: кто, какой курс, срок, статус, просрочка, результат теста. '+
-   'На втором листе - справочник курсов. <b>Медиа-файл</b> - публикации о компании за год: издание, тема, тональность, запросы журналистов и время ответа. '+
+   '<div class="note"><p><b>Продажи</b> - 371 отгрузка за 2025 год: регион, канал, клиент, категория, препарат, упаковки, цена, скидка, сумма, возвраты, менеджер. '+
+   'На втором листе - справочник препаратов. <b>Медиа-файл</b> - публикации о компании за год: издание, тема, тональность, запросы журналистов и время ответа. '+
    'В каждом файле спрятаны по три закономерности. Найдёте - получите баллы.</p></div>'+
-   '<div class="note red"><p><b>Правило блока.</b> В реестре есть колонки «ФИО» и «E-mail», в медиа-файле - имена журналистов и телефоны. '+
+   '<div class="note red"><p><b>Правило блока.</b> В таблице продаж есть колонки «Менеджер», «Телефон менеджера» и «E-mail менеджера», в медиа-файле - имена журналистов и телефоны. '+
    'Перед тем как загрузить файл в Qwen, эти колонки надо удалить или заменить - обезличивателем из блока 2 или руками в Excel. '+
-   'Для дашборда в конце блока обезличивать не нужно: он работает у вас на компьютере.</p></div>'},
+   'Для дашборда и игры обезличивать не нужно: они работают у вас на компьютере.</p></div>'},
  {t:'formula',id:'formulas',pts:40,
   intro:'Excel умеет всё это давно. Проблема была в том, чтобы вспомнить синтаксис. Теперь достаточно описать задачу словами - и это одинаково работает в Qwen и в Copilot внутри Excel.',
   items:[
-  {q:'Сколько назначений в реестре просрочено?',
-   p:'Ты - эксперт по Excel. У меня таблица «Реестр обучений»: заголовки в первой строке, данные в строках со 2 по 265.\n\nКолонка M называется «Статус», в ней четыре значения: пройден, просрочен, в процессе, назначен.\n\nФормулу я поставлю в свободную ячейку под таблицей, например в M267. Дай формулу, которая посчитает, в скольких строках значение в M равно «просрочен».\n\nВажно: адреса бери только те, что я назвал, не придумывай своих колонок. Объясни формулу по частям - одна строка на часть. Если в Google Таблицах формула другая, покажи и её.',
-   keys:['счётесли','счетесли','countif'],hint:'Ищите функцию, которая считает ячейки по условию.'},
-  {q:'Сколько в среднем дней просрочки у каждого подразделения?',
-   p:'Ты - эксперт по Excel. Таблица «Реестр обучений»: заголовки в первой строке, данные в строках со 2 по 265.\n\nКолонка D называется «Подразделение», в ней 13 разных значений. Колонка N называется «Дней просрочки», там целые числа, 0 - если просрочки нет.\n\nЯ сделаю маленькую сводку сбоку от таблицы, на том же листе:\n— в ячейку S1 напишу заголовок «Подразделение», в T1 - «Средняя просрочка, дней»;\n— в ячейки S2, S3 и далее впишу названия подразделений.\n\nДай формулу для ячейки T2, которая считает среднюю просрочку по подразделению, названному в S2, и которую можно протянуть вниз.\n\nВажно: условие бери из той же колонки, в которой ищешь, то есть название подразделения сравнивай с колонкой D. Диапазоны закрепи знаком доллара, ссылку на S2 - нет, и объясни почему.\n\nОтдельно покажи, как получить ту же сводку сводной таблицей - пронумерованными шагами для русского интерфейса Excel.',
+  {q:'Сколько выручки принесла категория «Респираторные»?',
+   p:'Ты - эксперт по Excel. У меня таблица «Продажи»: заголовки в первой строке, данные в строках со 2 по 372.\n\nКолонка G называется «Категория», в ней шесть значений: Респираторные, Кардиология, Диабет, Онкология, Ветеринария, Безрецептурные. Колонка L называется «Сумма, ₽», там целые числа.\n\nФормулу я поставлю в свободную ячейку под таблицей, например в L374. Дай формулу, которая сложит суммы по всем строкам, где в колонке G стоит «Респираторные».\n\nВажно: адреса бери только те, что я назвал, не придумывай своих колонок. Объясни формулу по частям - одна строка на часть. Если в Google Таблицах формула другая, покажи и её.',
+   keys:['суммесли','sumif'],hint:'Ищите функцию, которая складывает ячейки по условию.'},
+  {q:'Какая средняя скидка у каждого канала продаж?',
+   p:'Ты - эксперт по Excel. Таблица «Продажи»: заголовки в первой строке, данные в строках со 2 по 372.\n\nКолонка E называется «Канал», в ней пять разных значений. Колонка K называется «Скидка, %», там числа с одним знаком после запятой.\n\nЯ сделаю маленькую сводку сбоку от таблицы, на том же листе:\n— в ячейку S1 напишу заголовок «Канал», в T1 - «Средняя скидка, %»;\n— в ячейки S2, S3 и далее впишу названия каналов.\n\nДай формулу для ячейки T2, которая считает среднюю скидку по каналу, названному в S2, и которую можно протянуть вниз.\n\nВажно: условие сравнивай с колонкой E, среднее бери из колонки K. Диапазоны закрепи знаком доллара, ссылку на S2 - нет, и объясни почему.\n\nОтдельно покажи, как получить ту же сводку сводной таблицей - пронумерованными шагами для русского интерфейса Excel.',
    keys:['срзначесли','срзначеслимн','averageif','сводн'],hint:'Нужна функция среднего с условием - или сводная таблица.'}
  ]},
- {t:'keycheck',id:'find_reg',pts:60,anon:1,
-  title:'Найдите три закономерности в реестре обучений',
-  what:'Шаг первый: удалите из файла колонки «ФИО» и «E-mail» - или прогоните его через обезличиватель, вкладка «Таблица». Шаг второй: загрузите чистый файл в Qwen (скрепка рядом с полем ввода) и отправьте промпт. Шаг третий: впишите сюда, что нашла нейросеть - своими словами, коротко.',
-  text:'Ты - аналитик отдела обучения фармацевтической компании. Во вложении реестр назначенных обучений за полгода: подразделение, курс, срок прохождения, статус, дни просрочки, результат теста. Персональные данные из файла удалены, работай с тем, что есть.\n\nЗадача: найди систематические проблемы, а не единичные случаи. Меня интересуют закономерности, которые повторяются.\n\nПроверь как минимум:\n— какое подразделение даёт больше всего просрочек и насколько оно отличается от остальных;\n— есть ли курс, который просрочен во всех подразделениях сразу, и в чём может быть причина;\n— менялась ли ситуация от месяца к месяцу и когда был худший период.\n\nПо каждой находке дай: что именно нашёл, какими цифрами это подтверждается, насколько велик разрыв и что стоит сделать в первую очередь.\n\nФормат: таблица «находка / цифры / что делать». После таблицы - три предложения о том, с чего начать. Не придумывай данных, которых нет в файле. Если чего-то не хватает для вывода - так и напиши.',
+ {t:'keycheck',id:'find_sales',pts:60,anon:1,
+  title:'Найдите три закономерности в продажах',
+  what:'Шаг первый: удалите из файла колонки «Менеджер», «Телефон менеджера» и «E-mail менеджера» - или прогоните файл через обезличиватель, вкладка «Таблица». Шаг второй: загрузите чистый файл в Qwen (скрепка рядом с полем ввода) и отправьте промпт. Шаг третий: впишите сюда, что нашла нейросеть - своими словами, коротко.',
+  text:'Ты - коммерческий аналитик фармацевтической компании. Во вложении отгрузки за 2025 год: дата, регион, канал, клиент, категория, препарат, упаковки, цена, скидка, сумма, возвраты. Персональные данные из файла удалены, работай с тем, что есть.\n\nЗадача: найди закономерности, которые повторяются, а не единичные случаи.\n\nПроверь как минимум:\n— есть ли категория с выраженной сезонностью: в какие месяцы она продаёт заметно больше упаковок и во сколько раз;\n— есть ли клиент, который получает скидку заметно выше остальных, и насколько выше средней;\n— есть ли препарат и месяц, где доля возвратов резко выбивается из нормы.\n\nПо каждой находке дай: что именно нашёл, какими цифрами это подтверждается, насколько велик разрыв и что стоит сделать в первую очередь.\n\nФормат: таблица «находка / цифры / что делать». После таблицы - три предложения о том, с чего начать. Не придумывай данных, которых нет в файле. Если чего-то не хватает для вывода - так и напиши.',
   ask:'Что нашла нейросеть? Опишите каждую находку с новой строки.',
   keys:[
-   {n:'подразделение с наибольшей просрочкой',any:['медицинские представители','медпредстав','мед. представ','медицинских представителей','полев'],pts:20},
-   {n:'курс, просроченный везде',any:['информационн','инфобез','информ. безопас'],pts:20},
-   {n:'худший месяц',any:['декабр'],pts:20}
+   {n:'сезонная категория и её пиковые месяцы',any:['респиратор','сезон','осен','зим','октябр','ноябр','декабр','январ'],pts:20},
+   {n:'клиент со скидкой выше всех',any:['фарма-логистик','фарма логистик','логистик'],pts:20},
+   {n:'препарат и месяц всплеска возвратов',any:['кардистан','кардист'],pts:20}
   ],
-  hint:'Подсказка, если нейросеть отвечает общими словами: попросите её «назови конкретные подразделения, курсы и месяцы с цифрами».'},
+  hint:'Подсказка, если нейросеть отвечает общими словами: попросите её «назови конкретные категории, клиентов, препараты и месяцы с цифрами».'},
  {t:'keycheck',id:'find_media',pts:30,anon:1,
   title:'Найдите три закономерности в медиа-файле',
   what:'То же самое со вторым файлом. Сначала убрать колонки «Журналист», «Телефон журналиста» и «Ответственный», потом загрузить в Qwen. Здесь вопросы другие - про тональность, издания и скорость ответа.',
@@ -785,18 +792,19 @@ var BLOCKS=[
   ],
   hint:'Если нейросеть не считает дни недели - попросите: «определи день недели по дате запроса и сравни среднее время ответа для будней и выходных».'},
  {t:'miniapp',id:'miniapp',pts:70},
+ {t:'game',id:'game',pts:60},
  {t:'appideas',id:'appideas'},
- {t:'html',h:'<div class="note dark"><p><b>Почему это важнее, чем кажется.</b> Дашборд живёт файлом '+
-   'на вашем компьютере. Вы открываете его двойным кликом, перетаскиваете туда рабочую таблицу с реальными '+
+ {t:'html',h:'<div class="note dark"><p><b>Почему это важнее, чем кажется.</b> Дашборд и игра живут файлами '+
+   'на вашем компьютере. Вы открываете их двойным кликом, перетаскиваете в дашборд рабочую таблицу с реальными '+
    'фамилиями и цифрами - и она никуда не уходит. Все расчёты идут в браузере.</p>'+
    '<p>Получается обходной путь для всего, что нельзя загружать в чат: нейросеть пишет инструмент, '+
    'а с данными вы работаете сами. Зарплатная выгрузка из светофора - ровно этот случай.</p></div>'}
 ]},
 
 /* ------------------------------- БЛОК 5 -------------------------------- */
-{id:'images',num:'5',nav:'Картинки и музыка',time:'16:15–16:55',pts:120,illu:'b5-media',
+{id:'images',num:'5',nav:'Картинки и видео',time:'16:15–16:55',pts:160,illu:'b5-media',
  title:'Картинки, музыка и видео',
- lead:'По опросу это ваша самая сильная зона: картинки пробовали почти все. Значит, здесь будет быстро, весело и с песней.',
+ lead:'По опросу это ваша самая сильная зона: картинки пробовали почти все. Значит, здесь будет быстро, весело и с песней. Собираем кадр, оживляем его в видео, делаем четыре портрета по своему фото и отправляем Антошку в оперу.',
  tasks:[
  {t:'html',h:'<h3>Кадр собирается как конструктор</h3>'+
    '<p>Шесть частей, и сеть перестаёт промахиваться: <b>субъект</b> - кто или что, <b>действие</b> - что делает, '+
@@ -805,11 +813,12 @@ var BLOCKS=[
    '<div class="note"><p><b>Про формат.</b> 16:9 - слайды и обложки. 9:16 - сторис и вертикальные ролики. '+
    '1:1 - аватар и иконка. 4:5 - пост в ленте. Обрезать готовую картинку - потерять композицию и качество.</p></div>'},
  {t:'frame',id:'frame',pts:30},
- {t:'imagelib',id:'imagelib',pts:30,need:2},
+ {t:'animate',id:'animate',pts:30},
+ {t:'imagelib',id:'imagelib',pts:40,need:2},
  {t:'music',id:'antoshka',pts:30},
  {t:'prompt',id:'video',pts:30,
   title:'Оживить портрет',
-  what:'Сначала доведите картинку, потом оживляйте - так у вас максимум контроля. Одно действие на клип, 4-10 секунд. В Qwen загрузите готовое изображение и переключитесь в режим видео.',
+  what:'Второй клип - из делового портрета, который вы сделали выше. Правила те же: одно действие, 4-10 секунд, лицо и фон не трогать. В Qwen загрузите портрет и переключитесь в режим видео.',
   text:'Оживи это изображение.\n\nДвижение субъекта: медленное, естественное, одно действие - лёгкий поворот головы и моргание.\nДвижение камеры: очень медленный наезд (slow dolly in), без рывков.\nАтмосфера: свет не меняется, огни города за окном едва мерцают, фон остаётся стабильным.\nТемп: реальное время.\nДлительность: 5 секунд.\n\nНичего не дорисовывай, лицо и фон не меняй.',
   ask:'Что получилось и что бы вы поменяли в промпте на второй попытке?',min:30},
  {t:'html',h:'<div class="note red"><p><b>Про чужие лица.</b> Свой образ делайте по своему фото-референсу. '+
@@ -823,7 +832,7 @@ var BLOCKS=[
 /* ------------------------------- БЛОК 6 -------------------------------- */
 {id:'assistant',num:'6',nav:'Ассистент',time:'17:05–17:35',pts:60,illu:'b6-assistant',
  title:'Свой ассистент в проекте Qwen',
- lead:'Настроили один раз - дальше не объясняете заново, кто вы, где работаете и по каким правилам живёте. Те, кто делал агентов в Copilot, узнают знакомое.',
+ lead:'Настроили один раз - дальше не объясняете заново, кто вы и по каким правилам живёте. Сегодня собираем ассистента, который пригодится каждому в зале: про здоровье за рабочим столом. Те, кто делал агентов в Copilot, узнают знакомое.',
  tasks:[
  {t:'html',h:'<h3>Что такое проект и зачем он</h3>'+
    '<p>Обычный чат забывает вводные, как только разговор становится длинным. <dfn>Проект</dfn> - '+
@@ -831,29 +840,28 @@ var BLOCKS=[
    'и правила, и каждый новый разговор стартует уже с полным контекстом.</p>'+
    '<div class="note"><p><b>Перевод.</b> Проект в Qwen, Project в ChatGPT и агент в Copilot - одно и то же устройство из трёх частей: '+
    'системный промпт, папка с файлами, история. Научились здесь - умеете везде.</p></div>'+
-   '<p>Сегодня соберём ассистента на одном документе - Кодексе поведения компании. Выбор не случайный: '+
-   'это единственный документ, который есть у каждого в зале, независимо от отдела, '+
-   'и который компания публикует у себя на сайте открыто. Значит, его можно спокойно грузить в любую нейросеть. '+
+   '<p>Документ для проекта лежит прямо в тетради: справочник «Здоровье в офисе», двенадцать коротких разделов про рабочее место, '+
+   'глаза, спину, сон и про то, когда звонить в скорую. Он учебный и открытый, его можно грузить в любую нейросеть. '+
    'Со своим регламентом так делать нельзя, и к этому мы вернёмся в конце блока.</p>'+
    '<div class="tw"><table class="t"><tbody>'+
-   '<tr><td><b>1</b></td><td><b>Скачайте Кодекс поведения.</b> Кнопка ниже ведёт на сайт компании.</td></tr>'+
+   '<tr><td><b>1</b></td><td><b>Скачайте справочник.</b> Кнопка ниже. Открывается с того же адреса, что и тетрадь.</td></tr>'+
    '<tr><td><b>2</b></td><td><b>Создайте проект.</b> В Qwen слева есть раздел проектов. Назовите его, '+
-   'например, «Кодекс» и вложите файл.</td></tr>'+
-   '<tr><td><b>3</b></td><td><b>Вставьте системный промпт.</b> Он ниже, уже собран под вашу должность.</td></tr>'+
+   'например, «Здоровье» и вложите файл.</td></tr>'+
+   '<tr><td><b>3</b></td><td><b>Вставьте системный промпт.</b> Он ниже, уже собран под вашу должность и укладывается '+
+   'в лимит Qwen - тысячу знаков.</td></tr>'+
    '<tr><td><b>4</b></td><td><b>Проверьте вопросом.</b> Спросите то, ответ на что можно свериться с документом. '+
    'Сослался на раздел - работает. Ответил общими словами - переделайте промпт.</td></tr>'+
    '</tbody></table></div>'},
  {t:'html',h:'<h3>Шаги 1 и 2. Документ для проекта</h3>'+
-   '<p>Кодекс поведения Boehringer Ingelheim на русском. Открывается в новой вкладке, оттуда сохраняйте на компьютер.</p>'+
+   '<p>Справочник «Здоровье в офисе». PDF откроется в новой вкладке, оттуда сохраняйте на компьютер. '+
+   'Если Qwen капризничает с PDF - берите версию в тексте, она грузится всегда.</p>'+
    '<div class="btnrow">'+
-   DOCS.map(function(d,i){
-     return '<a class="btn'+(i?' ghost':'')+'" href="'+d.u+'" target="_blank" rel="noopener">'+d.n+'</a>' }).join('')+
-   '<a class="btn ghost" href="'+DOCS[0].alt+'" target="_blank" rel="noopener">Раздел «Этика и комплаенс» на сайте</a>'+
+   '<a class="btn" href="'+DOCS[0].u+'" target="_blank" rel="noopener">'+DOCS[0].n+'</a>'+
+   '<a class="btn ghost" href="'+DOCS[0].md+'" download>Тот же справочник · текст (.md)</a>'+
+   '<a class="btn ghost" href="'+DOCS[0].html+'" target="_blank" rel="noopener">Почитать в браузере</a>'+
    '</div>'+
-   '<p class="muted"><small>Если сайт не открылся или интернет лёг - файл есть у ведущего, попросите скинуть.</small></p>'+
-   '<div class="note"><p>Если Qwen откажется читать PDF или он загрузится криво - '+
-   'откройте файл, выделите текст, скопируйте и вставьте в проект обычным текстом. '+
-   'Заодно это снимет любые скрытые слои, о которых мы говорили в блоке про безопасность.</p></div>'},
+   '<div class="note"><p>Если файл не загружается ни в каком виде - откройте версию «в браузере», выделите всё, '+
+   'скопируйте и вставьте в проект обычным текстом. Заодно это снимет любые скрытые слои, о которых мы говорили в блоке про безопасность.</p></div>'},
  {t:'assistant',id:'assistant',pts:40},
  {t:'deptasst',id:'deptasst',pts:20}
 ]},
@@ -899,7 +907,10 @@ var BLOCKS=[
 ];
 /* ================================ ЯДРО ================================= */
 var KEY='bi_pharma_wb_v1';
-var MAX=BLOCKS.reduce(function(a,b){return a+(b.pts||0)},0);
+/* Планка для уровней и шкалы - ровно 1000. Заданий в тетради больше, чем на тысячу, поэтому
+   набрать можно и больше: уровни от этого не сдвигаются, а бонусы идут сверху. */
+var MAX=1000;
+var SUM=BLOCKS.reduce(function(a,b){return a+(b.pts||0)},0);
 var LEVELS=[
  {n:'Молекула',from:0},{n:'Доклиника',from:.25},{n:'Клинические исследования',short:'Клиника',from:.5},{n:'Регистрация',from:.75}];
 /* Коды ведущего. Иван называет слово вслух - кто успел ввести, получает бонус.
@@ -989,6 +1000,7 @@ function paint(){
   var LO=levelObj(); document.getElementById('lvlname').textContent=(window.innerWidth<640&&LO.short)?LO.short:LO.n;
   lz.title='Уровень «'+level()+'». Считается по баллам за задания, бонусы на него не влияют. Нажмите, чтобы посмотреть шкалу целиком.';
   document.getElementById('barfill').style.width=Math.min(100,base()/MAX*100)+'%';
+  if(base()>MAX)document.getElementById('ptsmax').textContent='планка 1000 взята'+(bonus()?', бонусом '+bonus():'');
   BLOCKS.forEach(function(b,i){
     var got=b.tasks.reduce(function(a,t){return a+(t.id?(S.done[t.id]||0):0)},0);
     var el=document.getElementById('nv'+i);
@@ -1722,7 +1734,7 @@ RENDER.keycheck=function(el,task){
 
 /* ----------------------------- мини-приложение ----------------------------- */
 var PALETTE='#08312A (основной тёмно-зелёный), #2F594F, #6B8375, #B6CDBF, #00E47C (только для акцентов и выделений, не для текста на белом), #CCFAE5, #FBF9AA, #D2F2F7, #F5CDB9, #E0E1F6, #F6F5F3 (фон), #191919 (текст), #FFFFFF';
-var SAMPLE_HEAD='Табельный №;ФИО;E-mail;Подразделение;Должность;Курс;Код курса;Тип;Формат;Дата назначения;Срок прохождения;Дата прохождения;Статус;Дней просрочки;Результат теста, %;Попыток\n10139;Сотрудник 1;сотрудник1@example.ru;Охрана труда;Инженер по охране труда;Фармаконадзор для всех сотрудников;GXP-102;обязательный;e-learning;12.08.2025;11.10.2025;16.08.2025;пройден;0;66;1';
+var SAMPLE_HEAD='Дата;Месяц;Регион;Город;Канал;Клиент;Категория;Препарат;Упаковок;Цена за упаковку, ₽;Скидка, %;Сумма, ₽;Возвраты, упак.;Менеджер;Телефон менеджера;E-mail менеджера\n01.01.2025;01.2025;Москва;Москва;Дистрибьютор;Фарма-Логистик;Респираторные;Респиролан;1327;1890;21,6;1966296;0;Менеджер 1;+7 900 000-00-01;менеджер1@example.ru';
 function appPrompt(mode,head){
   head=(head||'').trim();
   var data=head?('МОИ ДАННЫЕ\nВот шапка моей таблицы и первая строка с примером значений. '+
@@ -1734,11 +1746,11 @@ function appPrompt(mode,head){
     'Кодировка UTF-8, возможен BOM. Числа могут быть записаны через запятую. Не привязывайся к конкретным '+
     'названиям колонок: определяй их типы автоматически - числовые, текстовые, даты.\n\n');
   if(mode===1) return 'Ты - фронтенд-разработчик и дата-аналитик. Напиши код одностраничного приложения в ОДНОМ файле index.html.\n\n'+
-   'НАЗНАЧЕНИЕ\nДашборд принимает таблицу Excel (.xlsx) или CSV - реестр обучений сотрудников или любую похожую рабочую таблицу, - строит графики '+
-   'и помогает находить проблемы: просрочки, отстающие подразделения, худшие месяцы. Пользователь просто перетаскивает файл в окно - дашборд сам всё разбирает '+
+   'НАЗНАЧЕНИЕ\nДашборд принимает таблицу Excel (.xlsx) или CSV - отгрузки и продажи по категориям или любую похожую рабочую таблицу, - строит графики '+
+   'и помогает находить, где теряются деньги: сезонность, клиенты со скидкой выше нормы, препараты с всплеском возвратов, лидеры и отстающие регионы. Пользователь просто перетаскивает файл в окно - дашборд сам всё разбирает '+
    'и визуализирует. Серверной части нет, всё считается в браузере.\n\n'+
    'ВАЖНО ПРО ДАННЫЕ\nВ приложение будут загружаться реальные, НЕобезличенные данные с фамилиями. Поэтому: никаких запросов в сеть кроме загрузки библиотек, '+
-   'никакой аналитики и телеметрии, никакой отправки данных куда-либо. Колонки с ФИО и e-mail в графиках не показывать, в таблице показывать только по нажатию галочки «показывать ФИО».\n\n'+data+
+   'никакой аналитики и телеметрии, никакой отправки данных куда-либо. Колонки с менеджерами, их телефонами и e-mail в графиках не показывать, в таблице показывать только по нажатию галочки «показывать менеджеров».\n\n'+data+
    'ТЕХНИЧЕСКАЯ ОСНОВА\nВесь код в одном файле index.html. Внешние библиотеки только через CDN: SheetJS (xlsx) '+
    'для чтения Excel и Chart.js для графиков. С этими библиотеками приложению нужен интернет при открытии - '+
    'предупреди об этом на экране загрузки.\n\n'+
@@ -1757,10 +1769,10 @@ function appPrompt(mode,head){
    'Приложение не должно падать с белым экраном ни при каких данных.\n\n'+
    'Выведи готовый код целиком, одним файлом, без сокращений и без заглушек вида «здесь ваш код».';
   return 'Ты - фронтенд-разработчик и дата-аналитик. Напиши код одностраничного приложения в ОДНОМ файле index.html.\n\n'+
-   'НАЗНАЧЕНИЕ\nПриложение принимает таблицу CSV - реестр обучений сотрудников или любую похожую рабочую таблицу, - само разбирает её и показывает аналитику: '+
-   'просрочки, отстающие подразделения, худшие месяцы. Пользователь перетаскивает файл в окно - дальше всё считается на месте.\n\n'+
+   'НАЗНАЧЕНИЕ\nПриложение принимает таблицу CSV - отгрузки и продажи по категориям или любую похожую рабочую таблицу, - само разбирает её и показывает аналитику: '+
+   'сезонность по категориям, средняя скидка по клиентам, доля возвратов по препаратам и месяцам, выручка по регионам. Пользователь перетаскивает файл в окно - дальше всё считается на месте.\n\n'+
    'ВАЖНО ПРО ДАННЫЕ\nВ приложение будут загружаться реальные, НЕобезличенные данные с фамилиями. Поэтому: никаких запросов в сеть, '+
-   'никакой аналитики и телеметрии, никакой отправки данных куда-либо. Колонки с ФИО и e-mail в графиках не показывать, в таблице показывать только по нажатию галочки «показывать ФИО».\n\n'+
+   'никакой аналитики и телеметрии, никакой отправки данных куда-либо. Колонки с менеджерами, их телефонами и e-mail в графиках не показывать, в таблице показывать только по нажатию галочки «показывать менеджеров».\n\n'+
    'ГЛАВНОЕ ТРЕБОВАНИЕ\nПриложение должно работать БЕЗ ИНТЕРНЕТА, открытым с диска двойным кликом. '+
    'Поэтому: никаких внешних библиотек и CDN, никакого React, Vue, Tailwind, Chart.js и SheetJS. '+
    'Только чистые HTML, CSS и JavaScript. Графики рисуй самостоятельно через SVG.\n\n'+data+
@@ -1785,18 +1797,18 @@ RENDER.miniapp=function(el,task){
   el.innerHTML='<h3>Соберите инструмент под свои данные</h3>'+
    '<p>Сейчас вы попросите нейросеть написать приложение. Не программу для магазина - страничку, '+
    'которая открывается двойным кликом и считает то, что вам нужно. Это и есть <dfn>вайб-кодинг</dfn>, '+
-   'и он занимает пятнадцать минут. Главное отличие от чата: в это приложение можно грузить реестр с настоящими фамилиями - '+
+   'и он занимает пятнадцать минут. Главное отличие от чата: в это приложение можно грузить таблицу продаж с настоящими фамилиями менеджеров - '+
    'файл остаётся у вас на компьютере.</p>'+
    '<h4 style="margin-top:22px">Шаг первый: покажите нейросети, какие данные она получит</h4>'+
    '<p>Откройте таблицу, скопируйте строку заголовков и первую строку с данными, вставьте сюда. '+
    'Дальше эти строки сами уедут в промпт - и приложение получится под ваши колонки, '+
    'а не под выдуманные.</p>'+
-   '<div class="note"><p>В первую строку реестра попадает настоящая фамилия и e-mail. '+
-   'Замените их на «Сотрудник 1» и «сотрудник1@example.ru» прямо здесь - кнопка «Подставить шапку» уже делает это за вас. Нейросети нужен формат данных, '+
+   '<div class="note"><p>В первую строку таблицы попадает настоящая фамилия менеджера, телефон и e-mail. '+
+   'Замените их на «Менеджер 1», условный телефон и «менеджер1@example.ru» прямо здесь - кнопка «Подставить шапку» уже делает это за вас. Нейросети нужен формат данных, '+
    'а не их содержимое.</p></div>'+
    '<textarea data-a="mini_head" style="min-height:110px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px" '+
-   'placeholder="Табельный №;ФИО;E-mail;Подразделение;..."></textarea>'+
-   '<div class="btnrow"><button class="btn ghost sm" id="mhfill">Подставить шапку реестра обучений</button>'+
+   'placeholder="Дата;Месяц;Регион;Город;Канал;Клиент;Категория;Препарат;..."></textarea>'+
+   '<div class="btnrow"><button class="btn ghost sm" id="mhfill">Подставить шапку таблицы продаж</button>'+
    '<button class="btn ghost sm" id="mhclr">Очистить</button>'+
    '<span class="doneflag" id="mhok"></span></div>'+
    '<h4 style="margin-top:24px">Шаг второй: выберите вариант и заберите промпт</h4>'+
@@ -1813,12 +1825,12 @@ RENDER.miniapp=function(el,task){
    '<tr><td><b>3</b></td><td>Сохраните как <b>index.html</b>. В окне сохранения выберите тип «Все файлы» '+
    'и кодировку UTF-8, иначе русский текст превратится в кракозябры.</td></tr>'+
    '<tr><td><b>4</b></td><td>Двойной клик по файлу. Он откроется в браузере.</td></tr>'+
-   '<tr><td><b>5</b></td><td>Перетащите в окно скачанный реестр обучений - тот, что с фамилиями. Он никуда не уйдёт.</td></tr>'+
+   '<tr><td><b>5</b></td><td>Перетащите в окно скачанную таблицу продаж - ту, что с менеджерами и телефонами. Она никуда не уйдёт.</td></tr>'+
    '<tr><td><b>6</b></td><td>Что-то не так? Скопируйте текст ошибки, отправьте нейросети и напишите: '+
    '«исправь и верни файл целиком». Так делают все, включая программистов.</td></tr>'+
    '</tbody></table></div>'+
-   '<div class="btnrow"><a class="btn ghost" href="examples/Дашборд_обучений.html" target="_blank">Открыть эталон для сравнения</a>'+
-   '<a class="btn ghost" href="data/Реестр_обучений_GxP.csv" download>Скачать реестр ещё раз · CSV</a></div>'+
+   '<div class="btnrow"><a class="btn ghost" href="examples/Дашборд_продаж.html" target="_blank">Открыть эталон для сравнения</a>'+
+   '<a class="btn ghost" href="data/Продажи_по_категориям_2025.csv" download>Скачать таблицу продаж ещё раз · CSV</a></div>'+
    '<div style="margin-top:20px">'+
    '<label class="fl">Ваше приложение открылось и что-то показало? Опишите, что получилось и что доработали бы.</label>'+
    '<textarea data-a="mini_txt" style="min-height:100px"></textarea>'+
@@ -1993,6 +2005,90 @@ RENDER.appideas=function(el,task){
   drawIdeas(); drawBuild(); drawQC(); flags(); bindDfn();
   if(blkOf(task)!==null)onShowOnce(el,blkOf(task),function(){ drawIdeas(); drawBuild(); drawQC() });
 };
+/* ------------------------------ игра в Qwen ------------------------------ */
+/* Артефакт в Qwen: один файл, всё рисуется кодом, звук синтезируется. Тема выбирается
+   чипом и подставляется в промпт. Баллы - за три галочки: запустилась, звучит, второй уровень. */
+var GAME_THEMES=[
+ {k:'molecule',n:'Путь молекулы',emo:'🧬',
+  d:'Игрок ведёт молекулу от лаборатории до аптеки через три этапа: доклиника, клинические исследования, регистрация. '+
+    'Собирает «данные» (зелёные точки), уворачивается от «побочных эффектов» (красные) и «дефицита бюджета» (серые). '+
+    'Каждый этап - свой фон и свой набор помех. Факты между уровнями - о том, сколько лет и сколько кандидатов уходит на один новый препарат, '+
+    'без конкретных названий и цифр по компаниям.'},
+ {k:'coldchain',n:'Холодовая цепь',emo:'🧊',
+  d:'Игрок - курьер, который везёт термочувствительный препарат через город и должен удержать температуру в коридоре от 2 до 8 градусов. '+
+    'Солнце, пробки и открытая дверь склада греют контейнер, хладоэлементы и тень охлаждают. Шкала температуры всегда на экране. '+
+    'Уровни: утренний двор, дневной проспект, вечерняя трасса. Факты - о том, зачем нужна холодовая цепь и что бывает с вакциной вне коридора, без выдуманных процентов.'},
+ {k:'newspaper',n:'Тест газеты',emo:'📰',
+  d:'Сверху падают карточки с документами: «шаблон письма врачу», «список пациентов с диагнозами», «цены для тендера», «повестка встречи», «зарплатная выгрузка». '+
+    'Игрок сортирует их в две корзины: «можно в нейросеть» и «нельзя». Ошибка - минус жизнь и короткое пояснение почему. '+
+    'С уровнем карточки падают быстрее и появляются хитрые: «пациентка, 57 лет, без имени» - можно. Факты - о персональных данных и коммерческой тайне простыми словами.'},
+ {k:'pv',n:'Фармаконадзор спешит на помощь',emo:'📋',
+  d:'По экрану летят сообщения о нежелательных явлениях - от звонка пациента до поста в соцсети. Игрок ловит их до того, как они улетят за край, '+
+    'и раскладывает по срочности: «серьёзное - сообщить сегодня», «несерьёзное - в срок», «не нежелательное явление - вопрос о цене». '+
+    'Уровни - день, неделя, отчётный период. Факты - о том, почему компания обязана собирать такие сообщения и что делает любой сотрудник, узнав о побочном эффекте, без сроков в сутках: их задаёт процедура компании.'}
+];
+function gamePrompt(theme){
+  return 'Ты - разработчик браузерных игр на HTML5. Напиши небольшую игру в ОДНОМ файле index.html: HTML, CSS и JavaScript внутри, '+
+   'без внешних библиотек, без файлов картинок и звуков. Вся графика рисуется кодом на canvas - простые фигуры, градиенты и эмодзи разрешены. '+
+   'Звуки синтезируются через Web Audio API прямо в коде.\n\n'+
+   'ТЕМА И МЕХАНИКА\n'+theme.n+'. '+theme.d+'\n\n'+
+   'ЧТО ДОЛЖНО БЫТЬ\n'+
+   '1. Стартовый экран: название, инструкция в три строки, кнопка «Играть». Звук включается только после первого клика - так требует браузер.\n'+
+   '2. Три уровня с нарастающей сложностью. Между уровнями - карточка с одним познавательным фактом по теме, два-три предложения, '+
+   'без выдуманных цифр, названий препаратов и компаний. Кнопка «Дальше».\n'+
+   '3. Управление стрелками и мышью или пальцем, чтобы работало и на ноутбуке, и на телефоне.\n'+
+   '4. Очки, три жизни, таймер уровня. Звуки: сбор или правильное действие, ошибка, переход уровня, финальные фанфары.\n'+
+   '5. Финальный экран: результат, лучший результат из localStorage, кнопка «Ещё раз».\n'+
+   '6. Палитра: '+PALETTE+'. Крупные читаемые подписи по-русски, без опечаток.\n\n'+
+   'ПРАВИЛА\nНикаких запросов в сеть. Не падать при любом размере окна: canvas подстраивается под экран. '+
+   'Никакого текста, унижающего пациентов, врачей или коллег; юмор добрый. '+
+   'Выведи готовый код целиком, одним файлом, без сокращений и без заглушек вида «здесь ваш код».';
+}
+RENDER.game=function(el,task){
+  var cur=get('game_theme','molecule');
+  el.innerHTML='<h3>Соберите игру в Qwen</h3>'+
+   '<p>Дашборд был про пользу. Теперь про удовольствие: за пятнадцать минут нейросеть напишет вам браузерную игру '+
+   'с уровнями, звуком и фактами по теме. Это тот же <dfn>артефакт</dfn>, что и дашборд, только вместо графиков - canvas и Web Audio. '+
+   'Выберите тему, скопируйте промпт, отправьте в Qwen и играйте прямо в окне предпросмотра.</p>'+
+   '<div class="note"><p><b>Где делать.</b> В Qwen внизу поля ввода есть режим <b>Web Dev</b> (иногда подписан как «Код» или «Artifacts»). '+
+   'Включите его перед отправкой - справа откроется предпросмотр, игра запустится там же, без сохранения файла. '+
+   'Понравилось - кнопка «скачать» в предпросмотре, и игра живёт у вас на компьютере как обычный index.html.</p></div>'+
+   '<div class="chips" id="gtch">'+GAME_THEMES.map(function(g){
+     return '<button class="chip'+(g.k===cur?' on g':'')+'" data-g="'+g.k+'">'+g.emo+' '+esc(g.n)+'</button>' }).join('')+'</div>'+
+   '<div id="gtbox"></div>'+
+   '<h4 style="margin-top:22px">Что получилось</h4>'+
+   '<div class="fgrid">'+
+   '<label class="chk"><input type="checkbox" data-gc="run"><span>игра открылась и запускается</span></label>'+
+   '<label class="chk"><input type="checkbox" data-gc="sound"><span>звук есть: хотя бы один эффект слышно</span></label>'+
+   '<label class="chk"><input type="checkbox" data-gc="lvl2"><span>дошёл до второго уровня и прочитал факт</span></label>'+
+   '</div><div class="doneflag" id="gcflag" style="margin-top:10px"></div>'+
+   '<div style="margin-top:14px"><label class="fl">Пара слов: что за игра вышла, что сломалось и что бы вы попросили доделать</label>'+
+   '<textarea data-a="game_txt" style="min-height:80px" placeholder="Молекула уворачивается от побочных эффектов, но на телефоне не ловит палец. Попросил бы добавить кнопки..."></textarea></div>'+
+   '<p class="muted" style="margin-top:10px"><small>Каждая галочка - 20 баллов. Не запустилось с первого раза - это нормально: скопируйте ошибку из предпросмотра, '+
+   'отправьте нейросети и напишите «исправь и верни файл целиком». Чаще всего второй заход и есть рабочий.</small></p>';
+  bindAns(el);
+  function drawT(){
+    var g=GAME_THEMES.filter(function(x){return x.k===cur})[0]||GAME_THEMES[0];
+    el.querySelector('#gtbox').innerHTML='<div class="qcard" style="margin-top:12px"><div class="q"><b>'+g.emo+' '+esc(g.n)+'</b><br>'+
+      '<small class="muted">'+esc(g.d)+'</small></div>'+promptBox(gamePrompt(g),'промпт для Qwen в режиме Web Dev')+'</div>';
+    bindCopy(el.querySelector('#gtbox'));
+  }
+  el.querySelectorAll('#gtch .chip').forEach(function(c){
+    c.onclick=function(){ cur=c.dataset.g; stash('game_theme',cur);
+      el.querySelectorAll('#gtch .chip').forEach(function(x){ x.classList.toggle('on',x===c); x.classList.toggle('g',x===c) }); drawT() };
+  });
+  function count(){
+    var n=['run','sound','lvl2'].filter(function(k){return get('game_'+k,0)}).length;
+    el.querySelector('#gcflag').textContent=n?('отмечено '+n+' из 3'):'';
+    if(n)award(task.id,Math.round(task.pts*n/3));
+    if(n===3&&!S.data.game_party){ stash('game_party',1); confetti({n:80,dur:1800}) }
+  }
+  el.querySelectorAll('input[data-gc]').forEach(function(c){
+    c.checked=!!get('game_'+c.dataset.gc,0);
+    c.onchange=function(){ stash('game_'+c.dataset.gc,c.checked?1:0); count() };
+  });
+  drawT(); count(); bindDfn();
+};
 /* промпты здесь зависят от профиля, поэтому пересобираем их при входе в блок */
 function blkOf(task){ for(var i=0;i<BLOCKS.length;i++) if(BLOCKS[i].tasks.indexOf(task)>=0)return i; return null }
 function onShowOnce(el,bi,fn){ if(el.dataset.hooked2)return; el.dataset.hooked2='1'; onShow(bi,fn) }
@@ -2060,6 +2156,73 @@ RENDER.frame=function(el,task){
   marks(); build();
 };
 
+/* ----------------------------- оживить кадр ----------------------------- */
+/* Видео - тот же кадр плюс движение и время. Три слоя из презентации: субъект, камера, атмосфера,
+   плюс темп и длительность. Субъект подтягивается из конструктора кадра выше. */
+var MOTION=[
+ {k:'subj',l:'Движение субъекта',o:[['Дыхание и моргание','subtle breathing and natural blinking'],['Поворот головы к камере','slowly turns the head toward the camera'],
+   ['Медленная улыбка','a slow natural smile'],['Ветер в волосах и одежде','hair and clothes moving gently in the wind'],
+   ['Шаг навстречу','takes one slow step toward the camera'],['Жест рукой','a small natural hand gesture'],['Почти неподвижно','almost still, only micro-movements']]},
+ {k:'cam',l:'Движение камеры',o:[['Статика','static shot'],['Панорама','slow pan left to right'],['Наклон вверх','slow tilt up'],
+   ['Наезд','slow push-in (dolly in)'],['Отъезд','slow pull-out (dolly out)'],['Проезд за субъектом','tracking shot following the subject'],
+   ['Облёт по дуге','slow orbit around the subject'],['Кран вверх','slow crane up'],['С рук','subtle handheld movement']]},
+ {k:'atm',l:'Атмосфера',o:[['Свет не меняется','lighting stays constant'],['Огни мерцают','city lights flicker softly in the background'],
+   ['Пыль в луче света','dust particles drifting in the light'],['Дождь за окном','rain streaks on the window'],
+   ['Золотой свет гаснет','golden light slowly fading'],['Лёгкий туман','thin mist drifting through the scene']]},
+ {k:'tempo',l:'Темп',o:[['Реальное время','real time'],['Замедленно','slow motion'],['Таймлапс','timelapse']]},
+ {k:'dur',l:'Длительность',o:[['5 секунд','5 seconds'],['8 секунд','8 seconds'],['10 секунд','10 seconds']]}
+];
+RENDER.animate=function(el,task){
+  el.innerHTML='<h3>Оживите кадр</h3>'+
+   '<p>Картинка из конструктора выше - это первый кадр. Видео - тот же кадр, к которому добавили движение и время. '+
+   'Всё, что вы знаете про план, ракурс и свет, продолжает работать; появляются два новых слоя - как движется субъект '+
+   'и как движется камера. Идём самым надёжным путём: сначала кадр, потом движение.</p>'+
+   '<div class="note"><p><b>Пять правил видео-промпта.</b> Сначала кадр, потом движение. Одно действие на клип, 4-10 секунд. '+
+   'Три слоя отдельно: субъект, камера, атмосфера. Темп - часть промпта: реальное время, замедленно или таймлапс. '+
+   'И генерация видео - это перебор дублей: меняйте по одному параметру и сравнивайте.</p></div>'+
+   '<div id="ansub" class="muted" style="font-size:14px;margin-bottom:8px"></div>'+
+   MOTION.map(function(f){
+     return '<div style="margin-bottom:10px"><label class="fl">'+f.l+'</label><div class="chips">'+
+       f.o.map(function(o,i){return '<button class="chip" data-mk="'+f.k+'" data-i="'+i+'">'+o[0]+'</button>'}).join('')+
+       '</div></div>' }).join('')+
+   '<div class="prompt" id="anprev" style="min-height:70px"></div>'+
+   '<div class="btnrow"><button class="copy" id="ancopy">Скопировать промпт</button>'+
+   '<span class="doneflag" id="anok"></span></div>'+
+   '<div id="anru" style="font-size:14.5px;color:var(--muted);margin-top:8px"></div>'+
+   '<div class="note" style="margin-top:14px"><p><b>Где делать.</b> В Qwen: прикрепите картинку из прошлого задания, переключитесь в режим «Видео», вставьте промпт. '+
+   'Kling, Runway, Luma и Veo работают так же: загрузить кадр, описать движение. '+
+   'Лицо «поплыло» - уменьшите движение субъекта до «дыхание и моргание» и оставьте камеру статичной.</p></div>';
+  function sel(k){ return get('an_'+k,-1) }
+  function build(){
+    var sub=(get('fr_sub','')||'').trim();
+    var parts=[],ru=[];
+    var m={}; MOTION.forEach(function(f){ var i=sel(f.k); if(i>=0){ m[f.k]=f.o[i]; ru.push(f.l+': '+f.o[i][0]) } });
+    var txt='';
+    if(sub||Object.keys(m).length){
+      txt='Animate this image. Subject: '+(sub?sub+', ':'the subject ')+(m.subj?m.subj[1]:'natural micro-movements')+'. '+
+        'Camera: '+(m.cam?m.cam[1]:'static shot')+'. Atmosphere: '+(m.atm?m.atm[1]:'lighting stays constant')+'. '+
+        'Tempo: '+(m.tempo?m.tempo[1]:'real time')+'. Duration: '+(m.dur?m.dur[1]:'5 seconds')+'. '+
+        'Keep the face, framing and background consistent. No new objects, no text, no camera cuts.';
+    }
+    document.getElementById('ansub').innerHTML=sub?('Субъект из конструктора: <b>'+esc(sub)+'</b>'):
+      'Субъект возьмётся из конструктора кадра выше - впишите его там.';
+    document.getElementById('anprev').innerHTML=txt?esc(txt):'<span style="color:#7B8DA6">Выберите движение субъекта и камеры</span>';
+    document.getElementById('anru').textContent=ru.join(' · ');
+    var chosen=Object.keys(m).length;
+    document.getElementById('anok').textContent='параметров выбрано '+chosen+' из 5';
+    if(chosen>=4)award(task.id,task.pts);
+    else if(chosen>=2)award(task.id,Math.round(task.pts*0.5));
+    return txt;
+  }
+  function marks(){ MOTION.forEach(function(f){
+    el.querySelectorAll('.chip[data-mk="'+f.k+'"]').forEach(function(c){ c.classList.toggle('on',+c.dataset.i===sel(f.k)) }) }) }
+  el.querySelectorAll('.chip[data-mk]').forEach(function(c){
+    c.onclick=function(){ var k=c.dataset.mk,i=+c.dataset.i; stash('an_'+k,sel(k)===i?-1:i); marks(); build() } });
+  el.querySelector('#ancopy').onclick=function(){ var t=build(); if(!t){toast('Сначала выберите движение');return} copyText(t,this) };
+  marks(); build();
+  if(blkOf(task)!==null)onShowOnce(el,blkOf(task),function(){ marks(); build() });
+};
+
 /* --------------------------- библиотека промптов --------------------------- */
 RENDER.imagelib=function(el,task){
   var n=0, need=task.need||2;
@@ -2076,9 +2239,10 @@ RENDER.imagelib=function(el,task){
       '<small class="muted">'+esc(p.m)+' · '+esc(p.s)+(p.need?' · нужно '+esc(p.need):'')+'</small></div>'+body+
       '<div class="btnrow"><label class="chk"><input type="checkbox" data-ip="'+id+'"><span>попробовал</span></label></div></div>';
   }
-  el.innerHTML='<h3>Три промпта - забирайте себе</h3>'+
+  el.innerHTML='<h3>Четыре промпта - забирайте себе</h3>'+
    '<p>Первый - деловой портрет для профиля: загрузите своё фото анфас, скопируйте промпт, получите себя на фоне вечерней Москвы. '+
-   'Второй и третий - для настроения, тоже по своему фото. Отметьте любые '+need+' из трёх, которые попробовали, - это и есть баллы за задание.</p>'+
+   'Второй - с характером: поле в золотой час с букетом или двухметровая акула из Москвы-реки, выбирайте по настроению. '+
+   'Третий и четвёртый - акварельные, тоже по своему фото. Отметьте любые '+need+' из четырёх, которые попробовали, - это и есть баллы за задание.</p>'+
    '<div class="note"><p><b>Где делать.</b> В Qwen: прикрепите фото скрепкой, вставьте промпт, переключитесь в режим картинок. '+
    'В Leonardo: режим Image Guidance, загрузите фото как референс, промпт - в поле описания. '+
    'Если в первый раз лицо «уплыло» - повторите с фразой «preserve the exact face from the uploaded photo» в начале.</p></div>'+
@@ -2158,62 +2322,34 @@ RENDER.music=function(el,task){
 };
 
 /* -------------------------------- ассистент -------------------------------- */
-/* Кодекс поведения опубликован на сайте компании - его можно грузить куда угодно.
-   Внутренние SOP и регламенты - нельзя, об этом текст блока говорит прямо. */
-var SYS_BASE='Ты - ассистент по Кодексу поведения компании Boehringer Ingelheim для сотрудника российского представительства. '+
-'Твоя база знаний - один документ, загруженный в этот проект: «Наш Кодекс поведения» Boehringer Ingelheim на русском языке.\n\n'+
-'Я работаю здесь: должность - {{должность}}, подразделение - {{подразделение}}.\nЧем занимаюсь: {{о себе}}\n\n'+
-'Как ты работаешь:\n'+
-'— Любой ответ обосновываешь ссылкой на конкретный раздел Кодекса. '+
-'Формат: «Согласно Кодексу поведения, раздел [название] - …».\n'+
-'— При этической ситуации - подарок, гостеприимство, приглашение от врача или партнёра, конфликт интересов, '+
-'намёк на вознаграждение, просьба «поправить» данные или запись - даёшь однозначную оценку по Кодексу '+
-'и готовишь корректную формулировку ответа собеседнику со ссылкой на раздел.\n'+
-'— Когда речь о взаимодействии с медицинскими работниками, пациентами или организациями здравоохранения, '+
-'отдельно напоминаешь про правила взаимодействия с ними из Кодекса и про то, что сведения о нежелательных явлениях '+
-'передаются в фармаконадзор в срок, установленный процедурами компании.\n'+
-'— Отвечаешь структурой: (а) что это за ситуация по Кодексу; (б) какой раздел применим; '+
-'(в) что делать прямо сейчас; (г) кого поставить в известность; (д) готовая формулировка, '+
-'которую можно отправить или сказать вслух.\n\n'+
-'Жёсткие правила:\n'+
-'— Если ситуация подпадает под запрет или несёт признаки коррупции - говоришь это прямо и рекомендуешь '+
-'обратиться в Legal & Compliance или по каналам сообщения о нарушениях, которые описаны в Кодексе. Обходных трактовок не ищешь.\n'+
-'— Не выдумываешь положений, которых нет в загруженном документе. Если вопрос Кодексом не покрыт - '+
-'отвечаешь ровно фразой «В Кодексе поведения этого нет» и предлагаешь обратиться к руководителю или в Legal & Compliance.\n'+
-'— Не даёшь медицинской информации о препаратах, не сравниваешь препараты и не готовишь промоционные тексты. '+
-'Такие вопросы направляешь в отдел медицинской информации.\n'+
-'— Не заменяешь решение комплаенс-офицера, юриста и руководителя. Твой результат - подготовка '+
-'и подсветка, финальное решение за человеком.\n'+
-'— Цитируешь кратко и по делу, документ целиком не пересказываешь.\n'+
-'— Отвечаешь по-русски, без вводных абзацев.';
-var CTRL_MAIN='После научной конференции врач, с которым мы давно работаем, прислал мне в офис подарочную корзину с вином '+
-'и запиской «спасибо за сотрудничество». Как мне поступить? Сошлись на раздел Кодекса и дай готовую формулировку ответа врачу.';
+/* Справочник лежит в тетради, он учебный и открытый - его можно грузить куда угодно.
+   Системный промпт держим короче тысячи знаков: столько Qwen принимает в настройках проекта. */
+var SYS_BASE='Ты - ассистент по здоровью на рабочем месте для сотрудника офиса. Должность: {{должность}}, подразделение: {{подразделение}}.\n'+
+'База знаний - один файл в проекте: справочник «Здоровье в офисе», 12 пронумерованных разделов.\n'+
+'Правила:\n'+
+'1. Отвечай только по справочнику и называй раздел: «Справочник, раздел N».\n'+
+'2. Если ответа в файле нет - скажи «В справочнике этого нет» и предложи спросить врача.\n'+
+'3. Не ставь диагнозы, не называй лекарства и дозы. Про таблетки отвечай одно: это к врачу или к провизору в аптеке.\n'+
+'4. Если в вопросе есть признаки из раздела 11 (боль в груди, слабость половины тела, невнятная речь, удушье) - первой строкой «Звоните 112 или 103», потом всё остальное.\n'+
+'5. Формат: что сделать сейчас (2-3 пункта), что поменять на неделе, номер раздела. Коротко, по-русски, без вводных фраз.';
+var CTRL_MAIN='Я работаю за ноутбуком по девять часов, к вечеру болит шея и режет глаза. Что поменять уже сегодня и на какие разделы справочника ты опираешься?';
+var CTRL_TRAP='У меня уже час болит голова, какую таблетку выпить?';
 /* Второй вопрос подбирается по должности - смотрим ключевые слова в профиле. Первый совпавший - тот и берём. */
 var CTRL_ROLE=[
- {re:/\bhr\b|кадр|персонал|hrbp|rewards|компенсац|вознагражд|оплат|бонус|льгот|подбор|рекрут/i,
-  q:'Руководитель отдела просит меня взять на стажировку сына своего давнего знакомого - врача, который сотрудничает с компанией. '+
-    'Как это квалифицируется по Кодексу, что я обязан сделать до ответа и как сформулировать ответ руководителю?'},
+ {re:/\bhr\b|кадр|персонал|hrbp|rewards|компенсац|вознагражд|льгот|подбор|рекрут|обучени/i,
+  q:'Собери памятку на одну страницу для новичков «Первая неделя в офисе без боли в спине и глазах» - по справочнику, с номерами разделов, десять пунктов.'},
  {re:/финанс|бухгалт|accounting|казна|платеж|платёж|контроллинг|бюджет|налог/i,
-  q:'Ко мне пришёл на оплату акт за «консультационные услуги» врача на сумму, которая выглядит выше рыночной, '+
-    'а описание услуг - одна строка. Что по Кодексу я должен проверить до платежа и кому задать вопросы? Дай формулировку письма инициатору.'},
- {re:/медиц|medical|фармаконадзор|pharmacovig|\bpv\b|\bmsl\b|нежелательн|безопасност[а-я]* препарат|клинич/i,
-  q:'Знакомая на дне рождения рассказала, что после приёма нашего препарата у неё была сильная головная боль. Это не рабочая встреча. '+
-    'Обязан ли я что-то сделать по Кодексу, что именно и в какой срок? Дай формулировку, что мне сказать знакомой.'},
- {re:/регулятор|regulatory|качеств|quality|\bqa\b|gxp|валидац|регистрац/i,
-  q:'Коллега просит меня «поправить дату» в записи о проведённом обучении, чтобы закрыть аудит без замечаний. '+
-    'Что говорит Кодекс о достоверности записей и как мне ответить коллеге? Дай формулировку отказа, которая не поссорит нас.'},
+  q:'Впереди квартальное закрытие: две недели по одиннадцать часов за экраном. Составь режим на этот период - перерывы, глаза, сон, еда - с номерами разделов.'},
+ {re:/медиц|medical|фармаконадзор|pharmacovig|\bpv\b|\bmsl\b|регулятор|regulatory|качеств|quality|\bqa\b|gxp/i,
+  q:'Коллега в опенспейсе кашляет третий день и говорит, что «переносит на ногах». Что говорит справочник и как сформулировать ему предложение уйти домой так, чтобы не обидеть?'},
  {re:/юри|legal|compliance|комплаенс|договор|контракт/i,
-  q:'Мы собираемся заключить договор с агентством, у которого, по слухам, были проблемы с налоговой и с репутацией. '+
-    'Что по Кодексу нужно проверить до подписания, кто отвечает за проверку и что делать, если проверка вызывает сомнения?'},
- {re:/\bpr\b|коммуникац|маркетинг|market access|доступ|пресс|сми|media/i,
-  q:'Журналист написал мне лично в мессенджер и просит «неофициальный комментарий» о ценах на препарат. '+
-    'Что говорит Кодекс о взаимодействии со СМИ, что мне делать и что ответить журналисту? Дай формулировку.'},
+  q:'Напиши для руководителей короткий регламент «Когда в офисе звонить в скорую» по разделу 11: пунктами, без медицинских терминов, на полстраницы.'},
+ {re:/\bpr\b|коммуникац|маркетинг|market access|пресс|сми|media/i,
+  q:'Сделай три коротких поста для внутреннего канала компании о здоровье в офисе: по одному факту из справочника на пост, с номером раздела и без нравоучений.'},
  {re:/админ|admin|охран|safety|закуп|тендер|снабжен|хозяйств|офис/i,
-  q:'Подрядчик, который участвует в нашем тендере на офисные услуги, предложил мне «в знак благодарности» сертификат в ресторан. '+
-    'Как это квалифицируется по Кодексу, что я обязан сделать и как отказаться, не испортив рабочие отношения? Дай формулировку.'},
+  q:'Мы закупаем тридцать новых рабочих мест. Составь чек-лист требований к столу, стулу, монитору и свету по разделу 2, чтобы приложить к заявке.'},
  {re:/./,
-  q:'Опиши, в каких трёх ситуациях на моей работе мне стоит первым делом заглянуть в Кодекс. '+
-    'По каждой - какой раздел смотреть и почему. Опирайся только на загруженный документ.'}
+  q:'Составь мне план на неделю по справочнику: что менять в понедельник, среду и пятницу. С номерами разделов и без общих слов.'}
 ];
 function ctrlRole(){
   var r=((S.profile&&S.profile.role)||'')+' '+((S.profile&&S.profile.area)||'')+' '+((S.profile&&S.profile.about)||'');
@@ -2221,90 +2357,117 @@ function ctrlRole(){
   return CTRL_ROLE[CTRL_ROLE.length-1].q;
 }
 RENDER.assistant=function(el,task,blk){
+  var n=fill(SYS_BASE).length;
   el.innerHTML='<h3>Шаг 3. Системный промпт проекта</h3>'+
    '<p>Это инструкция на весь разговор: кто ассистент, откуда берёт ответы и чего не делает. '+
-   'Вставляется один раз в настройки проекта. Ваша должность и подразделение уже подставлены - '+
-   'ассистент будет отвечать про вашу работу, а не про абстрактного сотрудника.</p>'+
+   'Вставляется один раз в настройки проекта. Ваша должность и подразделение уже подставлены. '+
+   'Qwen принимает в это поле не больше тысячи знаков, поэтому промпт короткий и без вежливостей - '+
+   'каждое слово в нём работает.</p>'+
    '<div id="sysbox"></div>'+
+   '<p class="muted" style="margin-top:6px"><small>Длина с вашими данными: <b>'+n+'</b> из 1000 знаков'+
+   (n>1000?' - многовато, сократите должность или подразделение в профиле':'')+'.</small></p>'+
    '<h4 style="margin-top:26px">Шаг 4. Проверьте ассистента</h4>'+
-   '<p>Два вопроса. Первый - классика, на ней спотыкаются все. Второй подобран под вашу должность. '+
-   'Смотрите не на вежливость ответа, а на одно: сослался ли он на конкретный раздел Кодекса. '+
-   'Сослался - работает. Ответил общими словами про этику - системный промпт надо ужесточить.</p>'+
+   '<p>Три вопроса. Первый - про шею и глаза, на него ответ в справочнике есть, и ассистент должен назвать разделы. '+
+   'Второй подобран под вашу должность. Третий - ловушка: про таблетку. Правильный ответ на него - отказ и «к врачу или провизору». '+
+   'Если ассистент назвал лекарство, системный промпт надо ужесточить.</p>'+
    '<div id="ctrlbox"></div>'+
    '<div id="ctrlbox2" style="margin-top:16px"></div>'+
-   '<div style="margin-top:20px"><label class="fl">Что ответил ассистент? На какой раздел Кодекса он сослался?</label>'+
-   '<textarea data-a="asst_txt" style="min-height:120px"></textarea>'+
+   '<div id="ctrlbox3" style="margin-top:16px"></div>'+
+   '<div style="margin-top:20px"><label class="fl">Что ответил ассистент на первый вопрос и на какие разделы сослался?</label>'+
+   '<textarea data-a="asst_txt" style="min-height:110px"></textarea>'+
+   '<label class="chk" style="margin:10px 0"><input type="checkbox" data-a="asst_trap"><span>На вопрос про таблетку ассистент отказался советовать лекарство и отправил к врачу или провизору</span></label>'+
    '<div class="btnrow"><button class="btn" id="ago">Засчитать</button>'+
    '<span class="doneflag" id="aflag"></span></div></div>'+
    '<div class="note"><p><b>Если ассистент выдумывает.</b> Проверьте, что в системном промпте осталась строка про '+
-   '«В Кодексе поведения этого нет». Жёсткая формулировка работает лучше вежливой просьбы. И задайте вопрос, ответа на который '+
-   'в Кодексе точно нет, - например, про размер премии. Правильный ответ - отказ.</p></div>';
-  el.querySelector('#sysbox').innerHTML=promptBox(SYS_BASE,'системный промпт проекта');
-  el.querySelector('#ctrlbox').innerHTML=promptBox(CTRL_MAIN,'контрольный вопрос · корзина от врача');
+   '«В справочнике этого нет». Жёсткая формулировка работает лучше вежливой просьбы. И задайте вопрос, ответа на который '+
+   'в справочнике точно нет, - например, про размер премии за здоровый образ жизни. Правильный ответ - отказ.</p></div>';
+  el.querySelector('#sysbox').innerHTML=promptBox(SYS_BASE,'системный промпт проекта · до 1000 знаков');
+  el.querySelector('#ctrlbox').innerHTML=promptBox(CTRL_MAIN,'первый вопрос · шея и глаза');
   el.querySelector('#ctrlbox2').innerHTML=promptBox(ctrlRole(),'второй вопрос · под вашу должность');
+  el.querySelector('#ctrlbox3').innerHTML=promptBox(CTRL_TRAP,'третий вопрос · ловушка');
   bindCopy(el); bindAns(el);
+  var tb=el.querySelector('input[data-a="asst_trap"]');
+  tb.checked=!!get('asst_trap',0); tb.onchange=function(){ stash('asst_trap',tb.checked?1:0) };
   if(S.done[task.id])el.querySelector('#aflag').textContent='засчитано';
   el.querySelector('#ago').onclick=function(){
     var v=(get('asst_txt','')||'').trim();
     if(v.length<40){ toast('Вставьте ответ ассистента'); return }
-    award(task.id,task.pts); el.querySelector('#aflag').textContent='засчитано';
+    var full=!!get('asst_trap',0);
+    award(task.id,full?task.pts:Math.round(task.pts*0.7));
+    el.querySelector('#aflag').textContent=full?'засчитано':'засчитано частично: ловушка с таблеткой не отмечена';
   };
   if(blk&&!el.dataset.hooked){ el.dataset.hooked='1';
     onShow(BLOCKS.indexOf(blk),function(){ RENDER.assistant(el,task,blk); bindDfn() }) }
 };
 
-/* ---------------------- персональный ассистент отдела ---------------------- */
-var SYS_DEPT='Ты - рабочий ассистент сотрудника подразделения «{{подразделение}}» фармацевтической компании. '+
-'Должность сотрудника: {{должность}}. Чем занимается: {{о себе}}\n\n'+
-'Твоя база знаний - файлы, загруженные в этот проект: шаблоны документов, регламенты, чек-листы, примеры хороших писем '+
-'и отчётов подразделения. Все файлы обезличены: имена и цифры в них условные.\n\n'+
-'Что ты делаешь:\n'+
-'— Готовишь черновики документов по шаблонам из проекта: письма, служебные записки, отчёты, повестки, протоколы. '+
-'Структуру и тон берёшь из загруженных примеров, а не придумываешь.\n'+
-'— Отвечаешь на вопросы по регламентам только по загруженным файлам, с указанием файла и раздела. '+
-'Если ответа в файлах нет - говоришь «в загруженных документах этого нет» и предлагаешь, у кого спросить.\n'+
-'— Разбираешь присланные таблицы и тексты: находишь ошибки, несостыковки, пропуски, предлагаешь правки.\n'+
-'— Перед большой задачей задаёшь до трёх уточняющих вопросов, если без них ответ получится общим.\n\n'+
-'Жёсткие правила:\n'+
-'— Напоминаешь мне, если в моём сообщении появились персональные данные людей или коммерческие цифры, '+
-'и предлагаешь заменить их обозначениями до того, как продолжить.\n'+
-'— Не даёшь медицинской информации о препаратах и не готовишь промоционные материалы.\n'+
-'— Не ссылаешься на документы, которых нет в проекте. Не придумываешь нормы, сроки и суммы.\n'+
-'— Отвечаешь по-русски, коротко, без вводных абзацев. Готовый текст даёшь так, чтобы его можно было сразу скопировать.';
+/* ---------------------- ассистенты под вашу работу ---------------------- */
+/* Файлов под рукой у людей сегодня нет, поэтому здесь не сборка, а выбор: пять готовых сценариев с
+   системными промптами до тысячи знаков. Участник выбирает свой и пишет, что положит в проект. */
+var ASST_IDEAS=[
+ {k:'vacancy',n:'Генератор вакансий',who:'HR, подбор, руководители',emo:'📝',
+  files:['5-7 наших вакансий, которые сработали, - как шаблоны структуры','гайд по тону компании и список льгот','список слов, которые мы не используем в вакансиях'],
+  first:'Нужна вакансия: специалист по регуляторным вопросам, грейд средний.',
+  sys:'Ты - помощник HR по подготовке вакансий. В проекте лежат шаблоны наших вакансий и гайд по тону. Когда я прошу новую вакансию, сначала задай по одному шесть вопросов и жди ответа на каждый: название и грейд; 5-7 задач; обязательные и желательные требования; локация, формат, график; вилка или «по договорённости»; срок публикации. Потом собери вакансию строго по структуре шаблона из проекта, в нашем тоне, без штампов вроде «динамично развивающаяся компания». В конце - чек-лист из пяти пунктов, что проверить перед публикацией: дискриминационные формулировки, персональные данные, соответствие грейду, длина, контакты. Отвечай по-русски, кратко.'},
+ {k:'safety',n:'Инструкции по охране труда',who:'охрана труда, административный блок',emo:'🦺',
+  files:['3-4 действующие инструкции как образец структуры и формулировок','требования к структуре инструкции: разделы и порядок','перечень СИЗ и оборудования, которое есть в офисе'],
+  first:'Нужна инструкция для сотрудника, который работает на складе образцов с холодильным оборудованием.',
+  sys:'Ты - помощник специалиста по охране труда. В проекте: действующие инструкции компании и требования к их структуре. Когда я прошу новую инструкцию, задай по одному вопросы и жди ответа: для какой должности или работы; какое оборудование и вещества; какие опасности и риски; какие СИЗ; что делать при аварии; кто утверждает. Затем собери черновик строго по структуре из проекта: общие требования, перед началом работы, во время работы, в аварийных ситуациях, по окончании. Формулировки бери из наших инструкций. Нормативы не выдумывай: если нужен номер документа - оставь пометку [уточнить]. Первой строкой всегда: «Черновик. Проверяет и утверждает специалист по охране труда». По-русски, без воды.'},
+ {k:'interview',n:'Подготовка к интервью',who:'все, кто нанимает',emo:'🎯',
+  files:['описания открытых вакансий','модель компетенций компании','наши правила интервью: что нельзя спрашивать'],
+  first:'Вот описание вакансии менеджера по работе с ключевыми клиентами - подготовь вопросы.',
+  sys:'Ты - помощник нанимающего руководителя. В проекте: описания вакансий и наша модель компетенций. Когда я присылаю вакансию, подготовь: 1) десять вопросов кандидату - четыре по компетенциям из модели, три по опыту, два ситуационных кейса из задач вакансии, один про мотивацию; 2) к каждому - что считать сильным ответом и что настораживает; 3) шкалу оценки от 1 до 4 и таблицу для заметок. Не задавай вопросов о возрасте, семье, здоровье, религии и национальности - это запрещено. По-русски, кратко, чтобы уместилось на одной странице.'},
+ {k:'sop',n:'Навигатор по регламентам',who:'QA, Regulatory, финансы, любой отдел с SOP',emo:'🧭',
+  files:['обезличенные SOP и инструкции подразделения','таблица «кто владелец какого процесса»','список типовых вопросов, которые задают новички'],
+  first:'Через сколько дней после подписания акта мы обязаны провести оплату по договору с агентством?',
+  sys:'Ты - навигатор по регламентам подразделения. База знаний - только файлы в проекте: обезличенные SOP и инструкции. На любой вопрос отвечай цитатой пункта с указанием документа и номера раздела. Если ответа в файлах нет - ровно «В загруженных документах этого нет» и предложи, кому написать по таблице владельцев процессов. Не додумывай сроки, суммы и ответственных. Если вопрос про то, как обойти требование, - откажи и напомни, кто владелец процесса. По-русски, коротко, без вводных фраз.'},
+ {k:'faq',n:'База типовых ответов',who:'админ, HR, финансы, ИТ - все, кому пишут коллеги',emo:'💬',
+  files:['список частых вопросов коллег с нашими ответами','3-5 писем, за которые не стыдно, - как образец тона','регламент подразделения без фамилий и сумм'],
+  first:'Коллега спрашивает: как оформить командировку, если билеты покупал сам?',
+  sys:'Ты - помощник по типовым вопросам сотрудников для подразделения «{{подразделение}}». В проекте: список частых вопросов с нашими ответами, образцы писем и регламент подразделения. Когда я вставляю вопрос коллеги, найди ближайший из списка и напиши готовый ответ в нашем тоне: три-шесть предложений, дружелюбно, без канцелярита, со ссылкой на пункт регламента, если он есть в проекте. Если вопроса нет в списке - напиши «нет в базе», предложи черновик и пометь, что его надо проверить. Если в вопросе есть чужие персональные данные - сначала попроси их убрать. По-русски.'}
+];
 RENDER.deptasst=function(el,task,blk){
-  el.innerHTML='<h3>Персональный ассистент отдела</h3>'+
-   '<p>Кодекс - разминка. Настоящая польза начинается, когда в проекте лежат <b>ваши</b> шаблоны и регламенты: '+
-   'тогда каждое письмо, отчёт и служебная записка начинаются не с чистого листа, а с вашего же лучшего образца.</p>'+
+  var cur=get('asst_idea','vacancy');
+  el.innerHTML='<h3>Какого ассистента собрать после практикума</h3>'+
+   '<p>Справочник - разминка. Настоящая польза начинается, когда в проекте лежат <b>ваши</b> шаблоны и регламенты. '+
+   'Сегодня файлов под рукой нет, поэтому не собираем, а выбираем: пять сценариев, у каждого готовый системный промпт '+
+   'до тысячи знаков и список того, что положить в проект. Выберите свой - или подглядите у соседнего отдела.</p>'+
    '<div class="note"><p><b>Перевод.</b> Если у вас есть доступ к агентам в Copilot или к Projects в корпоративном ChatGPT - '+
-   'собирайте ассистента там: внутри контура можно класть документы как есть. В Qwen - только после обезличивания. '+
+   'собирайте там: внутри контура можно класть документы как есть. В Qwen - только после обезличивания. '+
    'Системный промпт при этом один и тот же.</p></div>'+
-   '<h4>Что положить в проект</h4>'+
-   '<div class="tw"><table class="t"><tbody>'+
-   '<tr><td><b>1</b></td><td>Два-три ваших лучших письма или отчёта - те, за которые не стыдно. Имена и цифры заменить.</td></tr>'+
-   '<tr><td><b>2</b></td><td>Шаблоны документов, которые вы заполняете чаще всего.</td></tr>'+
-   '<tr><td><b>3</b></td><td>Регламент или чек-лист, по которому вы работаете, - без внутренних цен, сроков контрактов и фамилий.</td></tr>'+
-   '<tr><td><b>4</b></td><td>Список типовых вопросов, которые вам задают коллеги, с вашими ответами.</td></tr>'+
-   '</tbody></table></div>'+
-   '<h4 style="margin-top:22px">Системный промпт</h4>'+
-   '<div id="deptbox"></div>'+
-   '<div style="margin-top:20px"><label class="fl">Какие три файла вы положите в свой проект и какой вопрос зададите ассистенту первым?</label>'+
-   '<textarea data-a="dept_txt" style="min-height:100px" placeholder="1. Шаблон служебной записки. 2. Регламент согласования. 3. Пять лучших писем партнёрам. Первый вопрос: составь письмо…"></textarea>'+
+   '<div class="chips" id="aich">'+ASST_IDEAS.map(function(a){
+     return '<button class="chip'+(a.k===cur?' on g':'')+'" data-a2="'+a.k+'">'+a.emo+' '+esc(a.n)+'</button>' }).join('')+'</div>'+
+   '<div id="aibox"></div>'+
+   '<div style="margin-top:20px"><label class="fl">Какого ассистента соберёте вы и какие три файла положите в проект? Можно свой вариант, не из списка.</label>'+
+   '<textarea data-a="dept_txt" style="min-height:96px" placeholder="Генератор вакансий. Положу: пять вакансий за прошлый год, гайд по тону, список льгот. Первый вопрос: нужна вакансия..."></textarea>'+
    '<div class="btnrow"><button class="btn" id="dgo">Засчитать</button>'+
    '<span class="doneflag" id="dflag"></span></div></div>'+
-   '<div class="note dark"><p><b>А теперь главное.</b> Сегодня мы взяли документ, который компания публикует '+
-   'сама - его можно грузить куда угодно. Механика от этого не меняется: точно так же собирается ассистент '+
-   'на ваших регламентах, инструкциях и шаблонах.</p>'+
+   '<div class="note dark"><p><b>А теперь главное.</b> Сегодня мы взяли открытый учебный документ - его можно грузить куда угодно. '+
+   'Механика от этого не меняется: точно так же собирается ассистент на ваших регламентах, инструкциях и шаблонах.</p>'+
    '<p>Разница одна. Свои документы перед загрузкой в Qwen надо обезличить: убрать фамилии, цены, сроки контрактов '+
    'и всё, что подпадает под коммерческую тайну. Либо держать такой проект внутри корпоративного контура. '+
    'Обезличиватель из блока 2 никуда не делся - он для этого и написан.</p></div>';
-  el.querySelector('#deptbox').innerHTML=promptBox(SYS_DEPT,'системный промпт вашего проекта');
-  bindCopy(el); bindAns(el);
+  function drawA(){
+    var a=ASST_IDEAS.filter(function(x){return x.k===cur})[0]||ASST_IDEAS[0];
+    el.querySelector('#aibox').innerHTML='<div class="qcard" style="margin-top:12px"><div class="q"><b>'+a.emo+' '+esc(a.n)+'</b> '+
+      '<small class="muted">· кому: '+esc(a.who)+'</small></div>'+
+      '<h4 style="margin:12px 0 6px">Что положить в проект</h4><ol style="margin:0 0 12px 20px;padding:0">'+
+      a.files.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ol>'+
+      promptBox(a.sys,'системный промпт · '+fill(a.sys).length+' знаков')+
+      '<p style="margin:12px 0 0"><small><b>Первый вопрос ассистенту:</b> '+esc(a.first)+'</small></p></div>';
+    bindCopy(el.querySelector('#aibox'));
+  }
+  el.querySelectorAll('#aich .chip').forEach(function(c){
+    c.onclick=function(){ cur=c.dataset.a2; stash('asst_idea',cur);
+      el.querySelectorAll('#aich .chip').forEach(function(x){ x.classList.toggle('on',x===c); x.classList.toggle('g',x===c) }); drawA() };
+  });
+  bindAns(el);
   if(S.done[task.id])el.querySelector('#dflag').textContent='засчитано';
   el.querySelector('#dgo').onclick=function(){
     var v=(get('dept_txt','')||'').trim();
-    if(v.length<40){ toast('Опишите три файла и первый вопрос'); return }
+    if(v.length<30){ toast('Назовите ассистента и три файла'); return }
     award(task.id,task.pts); el.querySelector('#dflag').textContent='засчитано';
   };
+  drawA();
   if(blk&&!el.dataset.hooked){ el.dataset.hooked='1';
     onShow(BLOCKS.indexOf(blk),function(){ RENDER.deptasst(el,task,blk); bindDfn() }) }
 };
@@ -2449,7 +2612,7 @@ function drawCert(){
   } else {
     var FACTS=[['Безопасность данных','светофор, обезличивание, закладки'],
                ['Промпты и данные','формула из пяти частей, свой дашборд'],
-               ['Проекты и медиа','ассистент по Кодексу, портрет, Антошка']];
+               ['Проекты и медиа','ассистент, игра, портрет, Антошка']];
     var COLS=[BI.lav,BI.blue,BI.yellow];
     FACTS.forEach(function(f,i){
       var fy=TY+i*122;
@@ -2648,8 +2811,8 @@ function exportBook(){
   }
   out.push('<h2>Мои ответы</h2>');
   var LBL={'a_principles':'Пять принципов промптов','imp_txt':'Мой сильный промпт','redact_txt':'Безопасный вариант письма',
-   'kc_find_reg':'Находки в реестре обучений','kc_find_media':'Находки в медиа-файле','mini_txt':'Мой дашборд',
-   'music_note':'Антошка в Suno','a_video':'Видео','asst_txt':'Ответ ассистента по Кодексу','dept_txt':'Мой ассистент отдела',
+   'kc_find_sales':'Находки в таблице продаж','kc_find_media':'Находки в медиа-файле','mini_txt':'Мой дашборд','game_txt':'Моя игра в Qwen',
+   'music_note':'Антошка в Suno','a_video':'Видео из портрета','asst_txt':'Ответ ассистента по здоровью','dept_txt':'Ассистент, который я соберу',
    'a_reasoning':'Обычный режим против рассуждений',
    'mini_head':'Шапка моей таблицы','app_pick':'Приложение, которое я выбрал собрать',
    'app_txt':'Что получилось из моего приложения'};
@@ -2670,8 +2833,9 @@ function exportBook(){
   MUSIC_GENRES.forEach(function(g){ out.push('<h4>'+esc(g.n)+'</h4><p><small>Style of Music</small></p><pre>'+esc(g.style)+'</pre>'+
     '<p><small>Exclude: '+esc(g.exclude)+'</small></p>') });
   out.push('<p><small>Lyrics</small></p><pre>'+esc(ANTOSHKA_LYRICS)+'</pre>');
-  out.push('<h3>Системный промпт: ассистент по Кодексу</h3><pre>'+esc(fill(SYS_BASE))+'</pre>');
-  out.push('<h3>Системный промпт: ассистент отдела</h3><pre>'+esc(fill(SYS_DEPT))+'</pre>');
+  out.push('<h3>Системный промпт: ассистент по здоровью в офисе</h3><pre>'+esc(fill(SYS_BASE))+'</pre>');
+  ASST_IDEAS.forEach(function(a){ out.push('<h3>Системный промпт: '+esc(a.n)+'</h3><p><small>В проект: '+esc(a.files.join('; '))+'</small></p><pre>'+esc(fill(a.sys))+'</pre>') });
+  out.push('<h3>Промпт игры в Qwen</h3><pre>'+esc(gamePrompt(GAME_THEMES.filter(function(g){return g.k===get('game_theme','molecule')})[0]||GAME_THEMES[0]))+'</pre>');
   out.push('<h2>Куда идти за чем</h2>');
   CATALOG.forEach(function(g){
     out.push('<h3>'+esc(g.g)+'</h3>'+(g.note?'<p><small>'+esc(g.note)+'</small></p>':'')+
