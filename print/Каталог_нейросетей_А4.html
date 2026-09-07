@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Куда идти за чем · каталог нейросетей</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1D3A'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23D4AF37' font-family='Arial' font-weight='bold'%3EBP%3C/text%3E%3C/svg%3E">
+<style>
+@page{size:A4 portrait;margin:11mm}
+:root{--navy:#0B1D3A;--gold:#D4AF37;--red:#AB2735;--burg:#4C061A;--cream:#FFECCE;
+ --line:#E5E0D5;--muted:#5F6B79;--ok:#1E7A46;--warn:#B8860B}
+*{box-sizing:border-box}
+body{margin:0;padding:22px;background:#F2F1EC;color:#15202B;
+ font:13.5px/1.5 "Arial Nova",Arial,Helvetica,sans-serif}
+.sheet{max-width:820px;margin:0 auto;background:#fff;padding:26px 30px 30px;
+ border-radius:8px;box-shadow:0 6px 30px rgba(11,29,58,.1)}
+h1{font-size:26px;color:var(--navy);margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 18px}
+h2{font-size:14.5px;color:var(--red);margin:22px 0 6px;text-transform:uppercase;letter-spacing:.03em;
+ page-break-after:avoid;break-after:avoid}
+.gnote{font-size:12px;color:var(--muted);margin:0 0 8px;page-break-after:avoid;break-after:avoid}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:4px}
+th,td{border:1px solid var(--line);padding:6px 9px;vertical-align:top;text-align:left}
+tr{page-break-inside:avoid;break-inside:avoid}
+th{background:var(--cream);color:var(--burg);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+td.s{font-weight:bold;color:var(--navy)}
+td.u{font-size:12px;word-break:break-all}
+td.u a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--gold)}
+td.u a:hover{color:var(--red)}
+.note{color:var(--muted);font-size:11.5px}
+.tag{display:inline-block;font-size:9.5px;font-weight:bold;border-radius:4px;padding:2px 5px;
+ text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.t-must{background:var(--navy);color:var(--gold)}
+.t-free{background:#E7F3EC;color:var(--ok)}
+.t-vpn{background:#FCF3DC;color:var(--warn)}
+.rule{background:var(--navy);color:#fff;border-radius:8px;padding:13px 16px;margin:16px 0;
+ page-break-inside:avoid;break-inside:avoid}
+.rule b{color:var(--gold)}
+footer{margin-top:20px;padding-top:12px;border-top:2px solid var(--gold);font-size:11.5px;
+ color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;padding:0;max-width:none}.noprint{display:none}
+ td.u a{border:0;color:var(--muted)}}
+.noprint{text-align:center;margin-bottom:16px}
+button{font:inherit;font-size:14px;background:var(--navy);color:#fff;border:0;border-radius:9px;
+ padding:10px 20px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="noprint"><button onclick="window.print()">Распечатать или сохранить в PDF</button></div>
+<div class="sheet">
+
+<h1>Куда идти за чем</h1>
+<p class="sub">Нейросети со ссылками · практикум Best Practice для Boehringer Ingelheim</p>
+
+<div class="rule">
+<p style="margin:0 0 7px"><b>Прежде чем что-то туда отправить.</b> Публичный чат остаётся публичным
+в любой стране. ФИО, телефоны, цены, объёмы и рецептуры не уходят никуда - ни в китайский сервис,
+ни в российский. Обезличивайте: «Поставщик А», «мастер смены Х», «цена выше прошлогодней на шесть процентов».</p>
+<p style="margin:0"><b>Про 152-ФЗ.</b> У всех сервисов, кроме российских, серверы за границей. Файл с фамилией
+сотрудника, загруженный туда, - это трансграничная передача персональных данных, и отвечает за неё компания,
+а не нейросеть. Если данные обезличены, вопрос снимается.</p>
+</div>
+
+<h2>Регистрируемся сегодня</h2><p class="gnote">Три сервиса, на которых построен весь день. Открываются из России без VPN, вход по почте. Ещё два - по желанию, за каждый дают бонус.</p><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">Qwen <span class="tag t-must">обязательно</span></td><td class="u"><a href="https://chat.qwen.ai">chat.qwen.ai</a></td><td>Наш главный инструмент на весь день. Понимает русский, читает Excel, Word и PDF, рисует картинки, снимает короткое видео, пишет готовые HTML-страницы. И главное - у него есть проекты: место, где ассистент помнит ваши файлы и правила.<br><span class="note">Вход по почте. Работает из России без VPN.</span></td></tr>
+<tr><td class="s">Kimi <span class="tag t-must">обязательно</span></td><td class="u"><a href="https://www.kimi.com">www.kimi.com</a></td><td>Держит в памяти очень длинный текст. Регламент на восемьдесят страниц, годовой отчёт или переписка за квартал целиком - её задача. Когда Qwen скажет «слишком длинно», идите сюда.<br><span class="note">Вход по почте. Без VPN.</span></td></tr>
+<tr><td class="s">Arena <span class="tag t-must">обязательно</span></td><td class="u"><a href="https://arena.ai">arena.ai</a></td><td>Две модели отвечают на ваш вопрос анонимно, вы выбираете лучший ответ и только потом узнаёте, кто есть кто. Быстрый способ понять, чем Qwen отличается от ChatGPT на вашей задаче - без VPN.<br><span class="note">Можно и без регистрации, но с ней сохраняется история. Платите тем, что ваши запросы видят разработчики - рабочие данные сюда не носите.</span></td></tr>
+<tr><td class="s">Leonardo AI <span class="tag t-must">по желанию, +25 баллов</span></td><td class="u"><a href="https://leonardo.ai">leonardo.ai</a></td><td>Студия изображений с большим выбором стилей и коротким видео. Пригодится в блоке про картинки: акварельные портреты там получаются особенно хорошо.<br><span class="note">Вход по почте или через Google. Иногда просит VPN - если не открылось, все задания делаем в Qwen.</span></td></tr>
+<tr><td class="s">Suno <span class="tag t-must">по желанию, +25 баллов</span></td><td class="u"><a href="https://suno.com">suno.com</a></td><td>Песня по описанию: музыка, аранжировка и вокал за две минуты. Сегодня на нём будет самое весёлое задание дня.<br><span class="note">Вход через Google или по почте. Из России чаще всего нужен VPN - если не открылось, работайте в паре с соседом, у которого открылось.</span></td></tr>
+</tbody></table>
+
+<h2>Что у вас уже есть: корпоративный контур</h2><p class="gnote">Большинство в зале работает в Copilot и в корпоративном чате на ChatGPT каждый день. Мы их не отменяем. Мы добавляем к ним инструменты, которые открываются с любого компьютера и умеют то, чего в корпоративном контуре пока нет.</p><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">Microsoft 365 Copilot <span class="tag t-free">внутри компании</span></td><td class="u"><a href="https://copilot.microsoft.com">copilot.microsoft.com</a></td><td>Живёт внутри Word, Excel, Outlook и Teams. Видит ваши файлы и письма - это его сила и его ограничение: он знает только то, что лежит в вашем тенанте. Агенты Copilot - это то же, что проект в Qwen: роль, файлы, правила.<br><span class="note">Что меняется сегодня: всё, что вы умеете в Copilot, работает и в Qwen. Разница в скорости, в картинках, в видео и в том, что Qwen пишет приложения.</span></td></tr>
+<tr><td class="s">Корпоративный чат на ChatGPT <span class="tag t-free">внутри компании</span></td><td class="u"><a href="https://chatgpt.com">chatgpt.com</a></td><td>Текстовый помощник в корпоративной оболочке. Проекты в ChatGPT и проекты в Qwen устроены одинаково: системный промпт плюс папка с файлами. Научились одному - умеете оба.<br><span class="note">Что меняется сегодня: те же промпты, та же формула. Обезличивание нужно в обоих случаях - корпоративный контур защищает от внешних, но не от внутреннего «увидел не тот».</span></td></tr>
+</tbody></table>
+
+<h2>Российские - открываются всегда</h2><p class="gnote">Данные остаются в российском контуре. Это единственная группа, где 152-ФЗ не упирается в трансграничную передачу: у остальных сервисов серверы за границей, и любой файл с фамилией сотрудника формально уезжает за рубеж. Что не отменяет обезличивания - публичный чат остаётся публичным.</p><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">GigaChat <span class="tag t-free">без VPN</span></td><td class="u"><a href="https://giga.chat">giga.chat</a></td><td>Сеть Сбера. Пишет тексты, разбирает документы, рисует через Kandinsky. Умеет собрать презентацию сразу с картинками - попросите «сделай презентацию на 8 слайдов и сгенерируй иллюстрации», получите готовый файл.<br><span class="note">Вход по Сбер ID. Есть боты в Telegram и ВКонтакте.</span></td></tr>
+<tr><td class="s">Алиса и YandexGPT <span class="tag t-free">без VPN</span></td><td class="u"><a href="https://ya.ru">ya.ru</a></td><td>Сеть Яндекса с доступом к поиску, поэтому знает свежие факты. Работает и как агент: подобрать маршрут, найти ресторан и забронировать столик она может сама.<br><span class="note">Вход по Яндекс ID. Отдельно есть Нейро в поиске и Алиса в Яндекс Браузере.</span></td></tr>
+<tr><td class="s">Шедеврум <span class="tag t-free">без VPN</span></td><td class="u"><a href="https://shedevrum.ai">shedevrum.ai</a></td><td>Картинки и короткие видео от Яндекса, есть приложение на телефон. Самый быстрый способ показать результат коллеге.<br><span class="note">Вход по Яндекс ID.</span></td></tr>
+</tbody></table>
+
+<h2>Мировая тройка - с домашнего компьютера</h2><p class="gnote">Прямого доступа из России нет, нужен VPN и зарубежный номер или аккаунт. На рабочем компьютере с корпоративными данными мы их не используем. Дома, для своих задач - почему нет, поэтому ссылки здесь есть.</p><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">ChatGPT <span class="tag t-vpn">нужен VPN</span></td><td class="u"><a href="https://chatgpt.com">chatgpt.com</a></td><td>Универсальный помощник OpenAI. Текст, файлы, таблицы, картинки, поиск и код в одном окне. Личная версия отличается от корпоративной тем, что учится на ваших диалогах, пока вы это не выключили в настройках.<br><span class="note">Регистрация по почте или через Google, из России ограничена.</span></td></tr>
+<tr><td class="s">Claude <span class="tag t-vpn">нужен VPN</span></td><td class="u"><a href="https://claude.ai">claude.ai</a></td><td>Силён на длинных документах, редактуре текста и разборе кода. Спокойно держит в голове большую задачу целиком. Лучший из всех пишет HTML-приложения.<br><span class="note">Регистрация по почте, из России ограничена.</span></td></tr>
+<tr><td class="s">Gemini <span class="tag t-vpn">нужен Google-аккаунт</span></td><td class="u"><a href="https://gemini.google.com">gemini.google.com</a></td><td>Сеть Google, тесно связана с поиском и документами. Хорошо работает с картинками, видео и большими исследованиями.<br><span class="note">Нужен аккаунт Google, часто нужен и VPN.</span></td></tr>
+</tbody></table>
+
+<h2>Документы и источники</h2><p class="gnote">Фарма живёт в документах: SOP, регламенты, протоколы, статьи, досье. По опросу это самая слабая зона группы - и самая полезная. Начните с NotebookLM.</p><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">NotebookLM <span class="tag t-vpn">нужен Google-аккаунт</span></td><td class="u"><a href="https://notebooklm.google.com">notebooklm.google.com</a></td><td>Загружаете свои документы - отвечает строго по ним, с точной ссылкой на абзац, и делает аудио-обзор в формате подкаста. Регламент на 300 страниц превращается в собеседника за пять минут. Расшифровывает даже рукописи.<br><span class="note">Нужен аккаунт Google, иногда VPN. Публичные документы - можно, свои SOP - только после обезличивания.</span></td></tr>
+<tr><td class="s">Perplexity <span class="tag t-free">работает из России</span></td><td class="u"><a href="https://www.perplexity.ai">www.perplexity.ai</a></td><td>Поиск, который собирает ответ и показывает ссылки на источники. Хорош, чтобы быстро войти в незнакомую тему - и увидеть, откуда взята каждая цифра.<br><span class="note">Можно пользоваться без регистрации.</span></td></tr>
+<tr><td class="s">Google AI Studio <span class="tag t-vpn">нужен Google-аккаунт</span></td><td class="u"><a href="https://aistudio.google.com">aistudio.google.com</a></td><td>Площадка для экспериментов с моделями Gemini: длинный контекст, тонкие настройки, бесплатный доступ к свежим моделям.<br><span class="note">Нужен аккаунт Google.</span></td></tr>
+</tbody></table>
+
+<h2>Ещё китайские - без VPN</h2><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">DeepSeek <span class="tag t-free">без VPN</span></td><td class="u"><a href="https://chat.deepseek.com">chat.deepseek.com</a></td><td>Сильна в расчётах и логике. Когда нужно посчитать, сравнить варианты или разобрать формулу - идите сюда.<br><span class="note">Вход по почте. Бесплатно.</span></td></tr>
+<tr><td class="s">Z.ai <span class="tag t-free">без VPN</span></td><td class="u"><a href="https://chat.z.ai">chat.z.ai</a></td><td>Чат и агент на моделях GLM. Ещё одна сильная бесплатная альтернатива для рассуждений, документов и кода.<br><span class="note">Вход по почте.</span></td></tr>
+<tr><td class="s">Manus <span class="tag t-free">бесплатно ограниченно</span></td><td class="u"><a href="https://manus.im">manus.im</a></td><td>Агент: получает цель, сам разбивает её на шаги и приносит результат. Полезен для сравнений, подборок и небольших цифровых проектов.<br><span class="note">Вход по почте, бесплатных задач в сутки немного.</span></td></tr>
+</tbody></table>
+
+<h2>Картинки, видео и звук</h2><p class="gnote">Из этой группы без VPN уверенно работают Qwen, Kandinsky и Шедеврум. Leonardo и Suno - через раз, поэтому они в бонусах. Остальное показываю со сцены, ссылки оставляю, чтобы было куда вернуться дома.</p><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">Kandinsky <span class="tag t-free">без VPN</span></td><td class="u"><a href="https://fusionbrain.ai">fusionbrain.ai</a></td><td>Картинки от Сбера, понимает запрос по-русски. Удобно для иллюстраций к презентации и внутренним рассылкам.<br><span class="note">Регистрация на сайте FusionBrain. Если сайт не открылся - Kandinsky работает и внутри GigaChat.</span></td></tr>
+<tr><td class="s">Kling AI <span class="tag t-free">китайский, без VPN</span></td><td class="u"><a href="https://klingai.com">klingai.com</a></td><td>Оживляет изображение и снимает короткие сцены с реалистичным движением камеры.<br><span class="note">Вход по почте.</span></td></tr>
+<tr><td class="s">Midjourney <span class="tag t-vpn">нужен VPN, платно</span></td><td class="u"><a href="https://www.midjourney.com">www.midjourney.com</a></td><td>Самая выразительная картинка из всех. Слабое место - текст на изображении и точные схемы.</td></tr>
+<tr><td class="s">Ideogram <span class="tag t-vpn">нужен VPN</span></td><td class="u"><a href="https://ideogram.ai">ideogram.ai</a></td><td>Умеет читаемый текст на картинке: постеры, обложки, таблички. Редкое качество среди генераторов.</td></tr>
+<tr><td class="s">Google Flow и Veo <span class="tag t-vpn">нужен Google-аккаунт</span></td><td class="u"><a href="https://labs.google/fx/tools/flow/">labs.google/fx/tools/flow</a></td><td>Студия Google для видео и точечного редактирования картинок с сохранением персонажа между кадрами.</td></tr>
+<tr><td class="s">ElevenLabs <span class="tag t-vpn">нужен VPN</span></td><td class="u"><a href="https://elevenlabs.io">elevenlabs.io</a></td><td>Озвучка текста живым голосом и клонирование своего. Используют для обучающих роликов и инструктажей.</td></tr>
+<tr><td class="s">HeyGen <span class="tag t-vpn">нужен VPN</span></td><td class="u"><a href="https://www.heygen.com">www.heygen.com</a></td><td>Видео с цифровым ведущим: сняли себя один раз, дальше он говорит любой текст на любом языке.</td></tr>
+<tr><td class="s">Библиотека промптов GPT Image 2 <span class="tag t-free">без регистрации</span></td><td class="u"><a href="https://promptgather.io/prompts/gpt-image-2">promptgather.io/prompts/gpt-image-2</a></td><td>Тысячи готовых промптов для картинок с кнопкой «скопировать»: портреты, постеры, макеты, продуктовые фото. Берёте готовый, меняете два слова под себя.</td></tr>
+</tbody></table>
+
+<h2>Презентации, схемы и документы</h2><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">Gamma <span class="tag t-vpn">нужен Google-аккаунт</span></td><td class="u"><a href="https://gamma.app">gamma.app</a></td><td>Собирает презентацию, документ или страницу из текста за пару минут. Дальше правите руками.<br><span class="note">Регистрация через Google.</span></td></tr>
+<tr><td class="s">Napkin AI <span class="tag t-vpn">нужен VPN</span></td><td class="u"><a href="https://www.napkin.ai">www.napkin.ai</a></td><td>Превращает абзац или список в понятную схему. Полезно для инструкций и объяснения процессов.</td></tr>
+<tr><td class="s">Canva AI <span class="tag t-vpn">нужен VPN</span></td><td class="u"><a href="https://www.canva.com/ai-assistant/">www.canva.com/ai-assistant</a></td><td>ИИ внутри знакомого редактора: макеты, презентации, короткие видео по шаблонам.</td></tr>
+</tbody></table>
+
+<h2>Вайб-кодинг - когда программу пишут словами</h2><p class="gnote">Дашборд из блока 4 можно собрать прямо в Qwen. Эти сервисы - следующий шаг, если войдёте во вкус: они сами разворачивают приложение и дают на него ссылку.</p><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">Lovable <span class="tag t-vpn">нужен VPN</span></td><td class="u"><a href="https://lovable.dev">lovable.dev</a></td><td>Собирает веб-приложение в диалоге и сразу публикует. Быстрый путь от идеи до работающей страницы.</td></tr>
+<tr><td class="s">Bolt <span class="tag t-vpn">нужен VPN</span></td><td class="u"><a href="https://bolt.new">bolt.new</a></td><td>Пишет и запускает сайт прямо в браузере, код виден и правится.</td></tr>
+<tr><td class="s">Cursor <span class="tag t-vpn">для тех, кто пишет код</span></td><td class="u"><a href="https://cursor.com">cursor.com</a></td><td>Редактор, который видит проект целиком, меняет несколько файлов сразу и объясняет чужой код.</td></tr>
+</tbody></table>
+
+<h2>Где сравнивать и за чем следить</h2><table><thead><tr><th style="width:118px">Сервис</th><th style="width:158px">Адрес</th><th>Зачем он вам</th></tr></thead><tbody>
+<tr><td class="s">Arena · рейтинг моделей <span class="tag t-free">без VPN</span></td><td class="u"><a href="https://arena.ai/leaderboard">arena.ai/leaderboard</a></td><td>Живой рейтинг моделей по мнению живых людей, а не по обещаниям разработчиков.</td></tr>
+<tr><td class="s">OpenRouter · что сейчас в ходу <span class="tag t-free">без VPN</span></td><td class="u"><a href="https://openrouter.ai/rankings?view=trending#leaderboard-table">openrouter.ai/rankings?view=trending#leaderboard-table</a></td><td>Какие модели реально используют разработчики прямо сейчас и как быстро меняется расклад. Самый честный индикатор моды.</td></tr>
+<tr><td class="s">ZeroHub · сравнение цен <span class="tag t-free">без VPN</span></td><td class="u"><a href="https://web.zerohub.ru/llm_compare">web.zerohub.ru/llm_compare</a></td><td>Модели по цене и качеству. Пригодится, когда зайдёт разговор про бюджет.</td></tr>
+</tbody></table>
+
+<footer>
+<span>Best Practice · bestpracticeai.ru · Экспертиза. Инновации. Результат.</span>
+<span>Практикум «Нейросети для Boehringer Ingelheim» · 2026</span>
+</footer>
+</div>
+</body>
+</html>

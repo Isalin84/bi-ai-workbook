@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дашборд обучений GxP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --bi-dark:#08312A; --bi-mid:#2F594F; --bi-muted:#6B8375; --bi-light:#B6CDBF; --bi-accent:#00E47C;
+  --p-yellow:#FBF9AA; --p-blue:#D2F2F7; --p-peach:#F5CDB9; --p-violet:#E0E1F6;
+  --bg:#F6F5F3; --text:#191919; --shadow:0 2px 12px rgba(8,49,42,.09); --r:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:15px/1.55 "Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+h1,h2,h3{font-family:"Montserrat",sans-serif;color:var(--bi-dark);font-weight:600;letter-spacing:.1px;margin:0 0 8px}
+h1{font-size:26px} h2{font-size:19px} h3{font-size:15.5px}
+header{background:var(--bi-dark);color:#fff;padding:18px 26px;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;flex-wrap:wrap}
+header h1{color:#fff;margin:0}
+header .sub{font-size:13px;opacity:.82;margin-top:2px}
+.logo{height:38px}
+.logo-fallback{font-family:"Montserrat",sans-serif;font-weight:600;font-size:16px;color:var(--bi-dark);
+  background:#fff;padding:8px 14px;border-radius:6px;line-height:1.05;text-align:center}
+main{max-width:1260px;margin:0 auto;padding:22px 18px 60px}
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:18px}
+.note{background:var(--p-blue);border-left:5px solid var(--bi-mid);padding:13px 18px;border-radius:10px;
+  margin-bottom:16px;font-size:13.5px;color:var(--bi-dark)}
+#drop{border:2px dashed var(--bi-light);border-radius:var(--r);background:#fff;padding:40px 24px;
+  text-align:center;transition:.15s;cursor:pointer}
+#drop.drag{background:var(--p-blue);border-color:var(--bi-mid)}
+#drop b{font-size:18px;color:var(--bi-dark)}
+.btn{display:inline-block;background:var(--bi-dark);color:#fff;border:0;border-radius:9px;
+  padding:10px 18px;font-size:14px;cursor:pointer;font-family:inherit;font-weight:500}
+.btn:hover{background:var(--bi-mid)}
+.btn.ghost{background:transparent;color:var(--bi-dark);border:1.5px solid var(--bi-light)}
+.btn.ghost:hover{background:var(--p-blue)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:18px}
+.kpi{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);padding:16px 18px;border-left:5px solid var(--bi-mid)}
+.kpi .v{font-family:"Montserrat",sans-serif;font-weight:600;font-size:32px;line-height:1;color:var(--bi-dark)}
+.kpi .l{font-size:12.5px;color:var(--bi-muted);margin-top:6px}
+.kpi.warn{border-left-color:#D97757}
+.kpi.good{border-left-color:var(--bi-accent)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+th,td{padding:7px 9px;border-bottom:1px solid var(--bi-light);text-align:left;white-space:nowrap}
+th{background:var(--p-blue);color:var(--bi-dark);cursor:pointer;position:sticky;top:0;font-weight:600}
+th:hover{background:var(--bi-light)}
+tr.late td{background:#FBEDE6}
+.tw{overflow:auto;max-height:460px;border-radius:10px;border:1px solid var(--bi-light)}
+.tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11.5px}
+.tag.bad{background:var(--p-peach);color:#8A3A16} .tag.ok{background:var(--p-blue);color:var(--bi-dark)}
+.tag.mid{background:var(--p-yellow);color:#6B5E00}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+input[type=search],select{padding:8px 11px;border:1.5px solid var(--bi-light);border-radius:8px;
+  font:inherit;font-size:13.5px;background:#fff;color:var(--text)}
+label.sw{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--bi-dark)}
+.insight{background:var(--p-yellow);border-left:5px solid var(--bi-mid);padding:14px 18px;border-radius:10px}
+.insight li{margin-bottom:7px}
+.hint{font-size:13px;color:var(--bi-muted)}
+.err{background:var(--p-peach);color:#8A3A16;padding:12px 16px;border-radius:10px;margin-bottom:14px;display:none}
+footer{text-align:center;font-size:12.5px;color:var(--bi-muted);padding:26px 16px 40px}
+svg text{font-family:"Montserrat",Arial,sans-serif;font-size:11px;fill:var(--bi-muted)}
+.legend{font-size:12.5px;color:var(--bi-muted);margin-top:8px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Дашборд обучений GxP</h1>
+    <div class="sub">Перетащите реестр обучений — дашборд посчитает всё сам, файл остаётся у вас на компьютере</div>
+  </div>
+  <img class="logo" src="../assets/logo-bi-white.svg" alt="Логотип"
+       onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>GxP<br>TRAINING</div>'">
+</header>
+
+<main>
+  <div class="err" id="err"></div>
+
+  <section id="loader">
+    <div class="note">
+      Файл никуда не отправляется — всё считается в вашем браузере. Сюда можно загружать реальные данные.
+    </div>
+    <div id="drop">
+      <b>Перетащите сюда файл CSV</b>
+      <p class="hint">или <button class="btn" id="pick">выберите файл</button>
+      &nbsp;&nbsp;<button class="btn ghost" id="demo">Загрузить демо</button><br>
+      Подойдёт «Реестр_обучений_GxP.csv» из папки data. Разделитель — точка с запятой или запятая.</p>
+      <input type="file" id="file" accept=".csv,.txt" hidden>
+    </div>
+    <p class="hint" style="text-align:center;margin-top:14px">
+      Страница работает без интернета. Ничего никуда не отправляется — все расчёты идут в вашем браузере.
+    </p>
+  </section>
+
+  <section id="dash" hidden>
+    <div class="controls">
+      <b id="fname"></b>
+      <button class="btn ghost" id="reset">Загрузить другой файл</button>
+      <label class="sw" style="margin-left:auto"><input type="checkbox" id="showFio"> показывать ФИО</label>
+    </div>
+
+    <div class="kpis" id="kpis"></div>
+
+    <div class="card">
+      <h2>Инсайты</h2>
+      <div class="insight"><ul id="insights"></ul></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card"><h3>Доля просроченных по подразделениям</h3><div id="ch1"></div>
+        <div class="legend" id="lg1"></div></div>
+      <div class="card"><h3>Просрочки по курсам (топ-8)</h3><div id="ch2"></div></div>
+    </div>
+    <div class="card"><h3>Просрочки по месяцам срока прохождения</h3><div id="ch3" style="max-width:640px"></div></div>
+
+    <div class="card">
+      <h2>Таблица обучений</h2>
+      <div class="controls">
+        <input type="search" id="q" placeholder="Поиск по таблице…" style="min-width:220px">
+        <select id="f1"></select><select id="f2"></select><select id="f3"></select>
+        <span class="hint" id="cnt"></span>
+      </div>
+      <div class="tw"><table id="tbl"><thead></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+</main>
+
+<footer>Создано с Best Practice AI · bestpracticeai.ru</footer>
+
+<script>
+/* ---------- демо-данные: ~40 строк реестра обучений ---------- */
+var DEMO_CSV =
+'Табельный №;ФИО;E-mail;Подразделение;Должность;Курс;Код курса;Тип;Формат;Дата назначения;Срок прохождения;Дата прохождения;Статус;Дней просрочки;Результат теста, %;Попыток\n'+
+'1001;Кузнецов Алексей Петрович;akuznetsov@pharmex-demo.ru;Производство;Оператор производства;Надлежащая документационная практика (GDP);GDP-05;Периодическое;Онлайн;05.02.2026;10.03.2026;;просрочен;181;;0\n'+
+'1002;Морозова Елена Сергеевна;emorozova@pharmex-demo.ru;Производство;Оператор производства;Асептическое производство;ASEPT-04;Периодическое;Очно;10.03.2026;15.04.2026;;просрочен;145;;1\n'+
+'1003;Соколов Дмитрий Игоревич;dsokolov@pharmex-demo.ru;Производство;Аппаратчик;Основы GMP;GMP-01;Первичное;Очно;01.01.2026;15.01.2026;12.01.2026;пройден;0;92;1\n'+
+'1004;Волкова Наталья Юрьевна;nvolkova@pharmex-demo.ru;Производство;Мастер смены;Управление отклонениями и CAPA;CAPA-03;Периодическое;Смешанный;01.02.2026;20.02.2026;18.02.2026;пройден;0;88;1\n'+
+'1005;Никитин Роман Александрович;rnikitin@pharmex-demo.ru;Производство;Оператор производства;Охрана труда и промышленная безопасность;OT-08;Периодическое;Онлайн;01.03.2026;20.03.2026;19.03.2026;пройден;0;95;1\n'+
+'1006;Попова Ирина Владимировна;ipopova@pharmex-demo.ru;Производство;Аппаратчик;Основы GMP;GMP-01;Первичное;Очно;01.04.2026;20.04.2026;18.04.2026;пройден;0;90;1\n'+
+'1007;Лебедев Сергей Николаевич;slebedev@pharmex-demo.ru;Производство;Мастер смены;Информационная безопасность и защита данных;IS-07;Периодическое;Онлайн;01.08.2026;10.09.2026;;в процессе;0;;0\n'+
+'1008;Ковалёва Марина Олеговна;mkovaleva@pharmex-demo.ru;Производство;Оператор производства;Валидация процессов;VAL-02;Периодическое;Смешанный;01.09.2026;01.10.2026;;назначен;0;;0\n'+
+'1009;Егорова Светлана Викторовна;segorova@pharmex-demo.ru;Контроль качества;Специалист ОКК;Управление отклонениями и CAPA;CAPA-03;Периодическое;Очно;25.01.2026;22.02.2026;;просрочен;197;;0\n'+
+'1010;Фёдоров Максим Андреевич;mfedorov@pharmex-demo.ru;Контроль качества;Специалист ОКК;Основы GMP;GMP-01;Первичное;Очно;05.01.2026;20.01.2026;18.01.2026;пройден;0;96;1\n'+
+'1011;Григорьева Ольга Дмитриевна;ogrigoreva@pharmex-demo.ru;Контроль качества;Ведущий специалист ОКК;Надлежащая документационная практика (GDP);GDP-05;Периодическое;Смешанный;10.02.2026;28.02.2026;27.02.2026;пройден;0;89;1\n'+
+'1012;Тимофеев Артём Олегович;atimofeev@pharmex-demo.ru;Контроль качества;Специалист ОКК;Валидация процессов;VAL-02;Периодическое;Очно;01.03.2026;20.03.2026;19.03.2026;пройден;0;91;2\n'+
+'1013;Кириллова Анна Сергеевна;akirillova@pharmex-demo.ru;Контроль качества;Специалист ОКК;Основы GMP;GMP-01;Первичное;Очно;01.05.2026;20.05.2026;15.05.2026;пройден;0;93;1\n'+
+'1014;Дмитриев Павел Игоревич;pdmitriev@pharmex-demo.ru;Контроль качества;Ведущий специалист ОКК;Охрана труда и промышленная безопасность;OT-08;Периодическое;Онлайн;15.08.2026;15.09.2026;;в процессе;0;;0\n'+
+'1015;Семёнов Игорь Валерьевич;isemenov@pharmex-demo.ru;Валидация и квалификация;Инженер по валидации;Надлежащая документационная практика (GDP);GDP-05;Периодическое;Онлайн;05.03.2026;25.03.2026;;просрочен;166;;0\n'+
+'1016;Захарова Юлия Романовна;yzaharova@pharmex-demo.ru;Валидация и квалификация;Инженер по валидации;Управление отклонениями и CAPA;CAPA-03;Периодическое;Смешанный;20.02.2026;15.03.2026;;просрочен;176;;1\n'+
+'1017;Белов Виктор Николаевич;vbelov@pharmex-demo.ru;Валидация и квалификация;Ведущий инженер по валидации;Валидация процессов;VAL-02;Периодическое;Очно;01.01.2026;20.01.2026;;просрочен;230;;0\n'+
+'1018;Орлова Татьяна Михайловна;torlova@pharmex-demo.ru;Валидация и квалификация;Инженер по валидации;Основы GMP;GMP-01;Первичное;Очно;10.06.2026;01.07.2026;28.06.2026;пройден;0;87;1\n'+
+'1019;Козлов Денис Артёмович;dkozlov@pharmex-demo.ru;Валидация и квалификация;Инженер по валидации;Асептическое производство;ASEPT-04;Периодическое;Смешанный;01.08.2026;20.09.2026;;в процессе;0;;0\n'+
+'1020;Макарова Вера Павловна;vmakarova@pharmex-demo.ru;Склад и логистика;Кладовщик;Надлежащая документационная практика (GDP);GDP-05;Периодическое;Онлайн;10.02.2026;05.03.2026;;просрочен;186;;0\n'+
+'1021;Игнатьев Олег Сергеевич;oignatev@pharmex-demo.ru;Склад и логистика;Кладовщик;Надлежащая документационная практика (GDP);GDP-05;Периодическое;Онлайн;15.02.2026;12.03.2026;;просрочен;179;;0\n'+
+'1022;Кузьмина Анастасия Львовна;akuzmina@pharmex-demo.ru;Склад и логистика;Специалист по логистике;Асептическое производство;ASEPT-04;Периодическое;Очно;25.02.2026;18.03.2026;;просрочен;173;;1\n'+
+'1023;Панов Станислав Юрьевич;spanov@pharmex-demo.ru;Склад и логистика;Кладовщик;Асептическое производство;ASEPT-04;Периодическое;Онлайн;28.01.2026;20.02.2026;;просрочен;199;;0\n'+
+'1024;Романова Ксения Игоревна;kromanova@pharmex-demo.ru;Склад и логистика;Специалист по логистике;Валидация процессов;VAL-02;Периодическое;Смешанный;18.01.2026;10.02.2026;;просрочен;209;;0\n'+
+'1025;Гусев Владимир Анатольевич;vgusev@pharmex-demo.ru;Склад и логистика;Начальник склада;Основы GMP;GMP-01;Первичное;Очно;01.07.2026;20.07.2026;18.07.2026;пройден;0;85;1\n'+
+'1026;Сафонова Дарья Романовна;dsafonova@pharmex-demo.ru;Регуляторные вопросы;Специалист по регистрации;Охрана труда и промышленная безопасность;OT-08;Периодическое;Онлайн;20.12.2025;12.01.2026;;просрочен;238;;0\n'+
+'1027;Шевченко Николай Викторович;nshevchenko@pharmex-demo.ru;Регуляторные вопросы;Ведущий специалист по регистрации;Основы GMP;GMP-01;Первичное;Очно;01.02.2026;20.02.2026;19.02.2026;пройден;0;94;1\n'+
+'1028;Мельникова Оксана Витальевна;omelnikova@pharmex-demo.ru;Регуляторные вопросы;Специалист по регистрации;Надлежащая документационная практика (GDP);GDP-05;Периодическое;Смешанный;01.05.2026;20.05.2026;17.05.2026;пройден;0;90;1\n'+
+'1029;Титов Григорий Павлович;gtitov@pharmex-demo.ru;Регуляторные вопросы;Специалист по регистрации;Информационная безопасность и защита данных;IS-07;Периодическое;Онлайн;20.09.2026;20.10.2026;;назначен;0;;0\n'+
+'1030;Воронова Марина Александровна;mvoronova@pharmex-demo.ru;Фармаконадзор;Специалист по фармаконадзору;Фармаконадзор: выявление и учёт НЯ;PV-06;Периодическое;Онлайн;10.03.2026;08.04.2026;;просрочен;152;;0\n'+
+'1031;Крылов Антон Дмитриевич;akrylov@pharmex-demo.ru;Фармаконадзор;Ведущий специалист по фармаконадзору;Основы GMP;GMP-01;Первичное;Очно;01.02.2026;20.02.2026;16.02.2026;пройден;0;97;1\n'+
+'1032;Афанасьева Людмила Ивановна;lafanaseva@pharmex-demo.ru;Фармаконадзор;Специалист по фармаконадзору;Управление отклонениями и CAPA;CAPA-03;Периодическое;Смешанный;01.06.2026;20.06.2026;19.06.2026;пройден;0;91;1\n'+
+'1033;Симонов Евгений Борисович;esimonov@pharmex-demo.ru;Фармаконадзор;Специалист по фармаконадзору;Фармаконадзор: выявление и учёт НЯ;PV-06;Периодическое;Онлайн;10.08.2026;10.09.2026;;в процессе;0;;0\n'+
+'1034;Фомина Валентина Сергеевна;vfomina@pharmex-demo.ru;Клинические исследования;Координатор исследований;Информационная безопасность и защита данных;IS-07;Периодическое;Онлайн;10.04.2026;05.05.2026;;просрочен;125;;1\n'+
+'1035;Гаврилов Станислав Олегович;sgavrilov@pharmex-demo.ru;Клинические исследования;Специалист по КИ;Основы GMP;GMP-01;Первичное;Очно;01.03.2026;20.03.2026;18.03.2026;пройден;0;93;1\n'+
+'1036;Ефимова Анжела Руслановна;aefimova@pharmex-demo.ru;Клинические исследования;Специалист по КИ;Надлежащая документационная практика (GDP);GDP-05;Периодическое;Смешанный;01.07.2026;20.07.2026;15.07.2026;пройден;0;88;1\n'+
+'1037;Прохоров Виталий Андреевич;vprohorov@pharmex-demo.ru;Клинические исследования;Координатор исследований;Валидация процессов;VAL-02;Периодическое;Онлайн;25.09.2026;25.10.2026;;назначен;0;;0\n'+
+'1038;Рябова Инна Сергеевна;iryabova@pharmex-demo.ru;Отдел кадров;HR-специалист;Надлежащая документационная практика (GDP);GDP-05;Периодическое;Онлайн;25.04.2026;20.05.2026;;просрочен;110;;0\n'+
+'1039;Абрамов Юрий Николаевич;yabramov@pharmex-demo.ru;Отдел кадров;Ведущий HR-специалист;Основы GMP;GMP-01;Первичное;Очно;01.02.2026;20.02.2026;17.02.2026;пройден;0;99;1\n'+
+'1040;Долгова Кристина Максимовна;kdolgova@pharmex-demo.ru;Отдел кадров;HR-специалист;Охрана труда и промышленная безопасность;OT-08;Периодическое;Смешанный;01.06.2026;20.06.2026;19.06.2026;пройден;0;94;1';
+
+/* ---------- чтение файла ---------- */
+var ROWS=[], HEAD=[], COL={};
+var drop=document.getElementById('drop'), fi=document.getElementById('file');
+document.getElementById('pick').onclick=function(e){e.stopPropagation();fi.click()};
+drop.onclick=function(){fi.click()};
+fi.onchange=function(e){if(e.target.files[0])read(e.target.files[0])};
+['dragenter','dragover'].forEach(function(ev){drop.addEventListener(ev,function(e){
+  e.preventDefault();drop.classList.add('drag')})});
+['dragleave','drop'].forEach(function(ev){drop.addEventListener(ev,function(e){
+  e.preventDefault();drop.classList.remove('drag')})});
+drop.addEventListener('drop',function(e){var f=e.dataTransfer.files[0];if(f)read(f)});
+document.getElementById('reset').onclick=function(){location.reload()};
+document.getElementById('demo').onclick=function(e){
+  e.stopPropagation();
+  try{ parse(DEMO_CSV); document.getElementById('fname').textContent='демо-реестр (40 записей)';
+       document.getElementById('loader').hidden=true; document.getElementById('dash').hidden=false; build(); }
+  catch(ex){ err('Не получилось загрузить демо: '+ex.message) }
+};
+
+function err(m){var e=document.getElementById('err');e.textContent=m;e.style.display='block'}
+
+function read(file){
+  if(!/\.(csv|txt)$/i.test(file.name)){
+    err('Нужен файл CSV. Если у вас Excel, сохраните его как «CSV (разделители — точка с запятой)».');return}
+  var fr=new FileReader();
+  fr.onload=function(){
+    try{ parse(fr.result); document.getElementById('fname').textContent=file.name;
+         document.getElementById('loader').hidden=true;
+         document.getElementById('dash').hidden=false; build(); }
+    catch(ex){ err('Не получилось разобрать файл: '+ex.message) }
+  };
+  fr.readAsText(file,'utf-8');
+}
+
+/* разбор CSV с учётом кавычек, запятой/точки с запятой, BOM */
+function parse(txt){
+  txt=txt.replace(/^﻿/,'').replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+  var first=txt.split('\n')[0];
+  var d=(first.split(';').length>first.split(',').length)?';':',';
+  var lines=[],cur=[],val='',q=false;
+  for(var i=0;i<txt.length;i++){
+    var c=txt[i];
+    if(q){ if(c==='"'){ if(txt[i+1]==='"'){val+='"';i++} else q=false } else val+=c }
+    else if(c==='"') q=true;
+    else if(c===d){cur.push(val);val=''}
+    else if(c==='\n'){cur.push(val);lines.push(cur);cur=[];val=''}
+    else val+=c;
+  }
+  if(val!==''||cur.length){cur.push(val);lines.push(cur)}
+  lines=lines.filter(function(l){return l.some(function(x){return String(x).trim()!==''})});
+  if(lines.length<2) throw new Error('в файле нет данных');
+  HEAD=lines[0].map(function(h){return h.trim()});
+  ROWS=lines.slice(1).map(function(l){
+    var o={};HEAD.forEach(function(h,i){o[h]=(l[i]||'').trim()});return o});
+  mapCols();
+}
+
+function norm(s){return String(s||'').toLowerCase().replace(/ё/g,'е')}
+function findKw(){var kw=[].slice.call(arguments);
+  return HEAD.find(function(h){return kw.some(function(k){return norm(h).indexOf(k)>=0})})}
+function mapCols(){
+  COL.podr=findKw('подразделен');
+  COL.status=findKw('статус');
+  COL.srok=findKw('срок');
+  COL.prosr=findKw('просроч');
+  COL.rezultat=findKw('результат');
+  COL.fio=findKw('фио');
+  COL.email=findKw('e-mail','email','почта');
+  COL.tab=findKw('табельный','табельн');
+  COL.doljn=findKw('должност');
+  COL.tip=findKw('тип');
+  COL.format=findKw('формат');
+  COL.dataNaz=HEAD.find(function(h){var n=norm(h);return n.indexOf('дата')>=0&&n.indexOf('назначен')>=0});
+  COL.dataProh=HEAD.find(function(h){var n=norm(h);return n.indexOf('дата')>=0&&n.indexOf('прохожд')>=0});
+  COL.popyt=findKw('попыт');
+  COL.kurs=HEAD.find(function(h){var n=norm(h);return n.indexOf('курс')>=0&&n.indexOf('код')<0});
+}
+function num(v){ if(v==null||v==='')return null;
+  var n=parseFloat(String(v).replace(/\s/g,'').replace(/[^\d.,\-]/g,'').replace(',','.'));
+  return isNaN(n)?null:n }
+function fmt(n,d){ return (n==null||isNaN(n))?'—':n.toLocaleString('ru-RU',
+  {minimumFractionDigits:d||0,maximumFractionDigits:d||0}) }
+function mean(a){a=a.filter(function(x){return x!=null});return a.length?a.reduce(function(x,y){return x+y},0)/a.length:null}
+function isOverdue(r){return norm(r[COL.status]).indexOf('просроч')>=0}
+function isPassed(r){return norm(r[COL.status]).indexOf('пройден')>=0}
+function monthOf(r){ var s=r[COL.srok]||''; var m=s.match(/^\d{1,2}[.\/](\d{1,2})/); return m?+m[1]:null }
+var MN=['','январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+var MS=['','янв','фев','март','апр','май','июнь','июль','авг','сент','окт','нояб','дек'];
+
+/* ---------- сборка ---------- */
+function build(){ kpis(); insights(); charts(); filters(); table() }
+
+function groupPercent(gcol){
+  if(!gcol) return [];
+  var g={};
+  ROWS.forEach(function(r){ var k=r[gcol]||'—'; (g[k]=g[k]||{t:0,o:0}); g[k].t++; if(isOverdue(r))g[k].o++ });
+  return Object.keys(g).map(function(k){return [k,g[k].t,g[k].o,Math.round(g[k].o/g[k].t*100)]})
+    .sort(function(a,b){return b[3]-a[3]});
+}
+function groupOverdueCount(gcol){
+  if(!gcol) return [];
+  var g={};
+  ROWS.forEach(function(r){ if(!isOverdue(r))return; var k=r[gcol]||'—'; g[k]=(g[k]||0)+1 });
+  return Object.keys(g).map(function(k){return [k,g[k]]}).sort(function(a,b){return b[1]-a[1]});
+}
+
+function kpis(){
+  var total=ROWS.length;
+  var overdue=ROWS.filter(isOverdue).length;
+  var overduePct=total?Math.round(overdue/total*100):0;
+  var onTimePct=100-overduePct;
+  var avgRes=mean(ROWS.map(function(r){return num(r[COL.rezultat])}));
+  var html=[
+    kpi(total,'всего назначений',''),
+    kpi(overdue+' ('+overduePct+'%)','просрочено',overduePct>20?'warn':''),
+    kpi(onTimePct+' %','в срок или в процессе',onTimePct<70?'warn':'good'),
+    kpi(fmt(avgRes,1)+' %','средний результат теста','')
+  ].join('');
+  document.getElementById('kpis').innerHTML=html;
+}
+function kpi(v,l,cls){return '<div class="kpi '+(cls||'')+'"><div class="v">'+v+'</div><div class="l">'+l+'</div></div>'}
+
+function insights(){
+  var out=[];
+  var byDept=groupPercent(COL.podr);
+  if(byDept.length){
+    var worst=byDept[0];
+    out.push('Хуже всего дисциплина в подразделении «<b>'+worst[0]+'</b>»: просрочено '+worst[3]+
+      '% назначений ('+worst[2]+' из '+worst[1]+'). Стоит разобраться, что мешает — загрузка смен или неудобный формат обучения.');
+  }
+  var byCourse=groupOverdueCount(COL.kurs);
+  if(byCourse.length){
+    var wc=byCourse[0];
+    out.push('Чаще всего срывают срок по курсу «<b>'+wc[0]+'</b>» — '+wc[1]+
+      ' просроченных прохождений. Возможно, курс стоит сократить или разбить на модули.');
+  }
+  var mo={};
+  ROWS.forEach(function(r){ if(!isOverdue(r))return; var m=monthOf(r); if(m)mo[m]=(mo[m]||0)+1 });
+  var ms=Object.keys(mo).map(function(m){return [+m,mo[m]]}).sort(function(a,b){return b[1]-a[1]});
+  if(ms.length){
+    out.push('Пик просрочек приходится на <b>'+MN[ms[0][0]]+'</b>: '+ms[0][1]+
+      ' случаев с этим сроком прохождения. Похоже, на этот месяц назначено слишком много обучений сразу — стоит равномернее распределить график.');
+  }
+  if(!out.length) out.push('Явных закономерностей в этом файле не нашлось — просрочки распределены равномерно.');
+  document.getElementById('insights').innerHTML=out.map(function(t){return '<li>'+t+'</li>'}).join('');
+}
+
+/* ---------- графики на SVG, без библиотек ---------- */
+function svg(w,h,inner){return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'">'+inner+'</svg>'}
+function bars(el,data,color,suffix){
+  var W=520,H=250,P=44,bw=(W-P-14)/Math.max(data.length,1);
+  var max=Math.max.apply(null,data.map(function(d){return d[1]}))*1.15||1;
+  var s='';
+  for(var i=0;i<=4;i++){ var y=H-58-(H-88)*i/4, v=max*i/4;
+    s+='<line x1="'+P+'" y1="'+y+'" x2="'+(W-8)+'" y2="'+y+'" stroke="#B6CDBF"/>'+
+       '<text x="'+(P-7)+'" y="'+(y+4)+'" text-anchor="end">'+v.toFixed(0)+'</text>' }
+  data.forEach(function(d,i){
+    var h=(H-88)*d[1]/max, x=P+6+i*bw, y=H-58-h, cx=x+(bw-14)/2;
+    var c=(typeof color==='function')?color(d,i):color;
+    var label=String(d[0]).length>16?String(d[0]).slice(0,15)+'…':d[0];
+    s+='<rect x="'+x+'" y="'+y+'" width="'+Math.max(bw-14,6)+'" height="'+h+'" rx="4" fill="'+c+'"><title>'+d[0]+'</title></rect>'+
+       '<text x="'+cx+'" y="'+(y-6)+'" text-anchor="middle" font-weight="700">'+d[1]+(suffix||'')+'</text>'+
+       '<text x="'+cx+'" y="'+(H-42)+'" text-anchor="end" transform="rotate(-32 '+cx+' '+(H-42)+')">'+label+'</text>';
+  });
+  document.getElementById(el).innerHTML=svg(W,H,s);
+}
+function lineChart(el,data){
+  var W=520,H=230,P=44;
+  var max=Math.max.apply(null,data.map(function(d){return d[1]}))*1.15||1;
+  var s='',pts=[];
+  for(var i=0;i<=4;i++){ var y=H-30-(H-60)*i/4, v=max*i/4;
+    s+='<line x1="'+P+'" y1="'+y+'" x2="'+(W-8)+'" y2="'+y+'" stroke="#B6CDBF"/>'+
+       '<text x="'+(P-7)+'" y="'+(y+4)+'" text-anchor="end">'+v.toFixed(0)+'</text>' }
+  data.forEach(function(d,i){
+    var x=P+10+(W-P-24)*(data.length<2?0.5:i/(data.length-1));
+    var y=H-30-(H-60)*d[1]/max;
+    pts.push([x,y]);
+    s+='<text x="'+x+'" y="'+(H-11)+'" text-anchor="middle">'+d[0]+'</text>';
+  });
+  s+='<polyline fill="none" stroke="#2F594F" stroke-width="2.5" points="'+
+     pts.map(function(p){return p[0]+','+p[1]}).join(' ')+'"/>';
+  pts.forEach(function(p,i){ s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4.5" fill="#00E47C" stroke="#08312A" stroke-width="1"/>'+
+    '<text x="'+p[0]+'" y="'+(p[1]-10)+'" text-anchor="middle" font-weight="700">'+data[i][1]+'</text>' });
+  document.getElementById(el).innerHTML=svg(W,H,s);
+}
+
+function charts(){
+  var byDept=groupPercent(COL.podr);
+  var worstKey=byDept[0]&&byDept[0][0];
+  bars('ch1',byDept.map(function(d){return [d[0],d[3]]}),
+    function(d){return d[0]===worstKey?'#00E47C':'#2F594F'},'%');
+  document.getElementById('lg1').innerHTML='<i style="background:#00E47C"></i>худший результат&nbsp;&nbsp;<i style="background:#2F594F"></i>остальные';
+
+  var byCourse=groupOverdueCount(COL.kurs).slice(0,8);
+  bars('ch2',byCourse,'#2F594F','');
+
+  var mo={};
+  ROWS.forEach(function(r){ if(!isOverdue(r))return; var m=monthOf(r); if(m)mo[m]=(mo[m]||0)+1 });
+  var months=Object.keys(mo).map(Number).sort(function(a,b){return a-b});
+  lineChart('ch3',months.map(function(m){return [MS[m],mo[m]]}));
+}
+
+/* ---------- таблица ---------- */
+var sortKey=null,sortAsc=true;
+function tableCols(){
+  var showFio=document.getElementById('showFio').checked;
+  var base=[COL.tab,COL.podr,COL.doljn,COL.kurs,COL.tip,COL.format,COL.dataNaz,COL.srok,
+            COL.dataProh,COL.status,COL.prosr,COL.rezultat,COL.popyt].filter(Boolean);
+  if(showFio){ var extra=[COL.fio,COL.email].filter(Boolean); base=extra.concat(base) }
+  return base;
+}
+function filters(){
+  [[COL.podr,'f1','Все подразделения'],[COL.kurs,'f2','Все курсы'],[COL.status,'f3','Все статусы']]
+  .forEach(function(f){
+    var sel=document.getElementById(f[1]);
+    if(!f[0]){sel.hidden=true;return}
+    var vals=[].concat.apply([],ROWS.map(function(r){return r[f[0]]}))
+      .filter(function(v,i,a){return v&&a.indexOf(v)===i}).sort();
+    sel.innerHTML='<option value="">'+f[2]+'</option>'+
+      vals.map(function(v){return '<option>'+v+'</option>'}).join('');
+    sel.onchange=table; sel.dataset.col=f[0];
+  });
+  document.getElementById('q').oninput=table;
+  document.getElementById('showFio').onchange=table;
+}
+function visible(){
+  var q=norm(document.getElementById('q').value);
+  var fs=['f1','f2','f3'].map(function(id){var s=document.getElementById(id);
+    return s.hidden?null:[s.dataset.col,s.value]}).filter(function(x){return x&&x[1]});
+  var cols=tableCols();
+  return ROWS.filter(function(r){
+    if(q&&cols.every(function(h){return norm(r[h]).indexOf(q)<0}))return false;
+    return fs.every(function(f){return r[f[0]]===f[1]});
+  });
+}
+function table(){
+  var cols=tableCols();
+  var rows=visible();
+  if(sortKey&&cols.indexOf(sortKey)>=0){ rows=rows.slice().sort(function(a,b){
+    var x=num(a[sortKey]),y=num(b[sortKey]);
+    if(x==null||y==null){x=norm(a[sortKey]);y=norm(b[sortKey])}
+    return (x>y?1:x<y?-1:0)*(sortAsc?1:-1) }) }
+  var th=cols.map(function(h){return '<th data-k="'+h+'">'+h+
+    (sortKey===h?(sortAsc?' ↑':' ↓'):'')+'</th>'}).join('');
+  document.querySelector('#tbl thead').innerHTML='<tr>'+th+'</tr>';
+  document.querySelector('#tbl tbody').innerHTML=rows.map(function(r){
+    return '<tr class="'+(isOverdue(r)?'late':'')+'">'+cols.map(function(h){
+      var v=r[h];
+      if(h===COL.status){
+        var cls=isOverdue(r)?'bad':(isPassed(r)?'ok':'mid');
+        v='<span class="tag '+cls+'">'+v+'</span>';
+      }
+      return '<td>'+v+'</td>'}).join('')+'</tr>' }).join('');
+  document.getElementById('cnt').textContent='показано '+rows.length+' из '+ROWS.length;
+  [].forEach.call(document.querySelectorAll('#tbl th'),function(t){
+    t.onclick=function(){ var k=t.dataset.k;
+      if(sortKey===k)sortAsc=!sortAsc; else {sortKey=k;sortAsc=true} table() } });
+}
+</script>
+</body>
+</html>

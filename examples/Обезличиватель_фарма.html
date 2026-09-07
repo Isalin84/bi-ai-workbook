@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Обезличиватель фарма-текстов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --bi-dark:#08312A; --bi-mid:#2F594F; --bi-muted:#6B8375; --bi-light:#B6CDBF; --bi-accent:#00E47C;
+  --p-yellow:#FBF9AA; --p-blue:#D2F2F7; --p-peach:#F5CDB9; --p-violet:#E0E1F6;
+  --bg:#F6F5F3; --text:#191919; --shadow:0 2px 12px rgba(8,49,42,.09); --r:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:15px/1.55 "Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+h1,h2,h3{font-family:"Montserrat",sans-serif;color:var(--bi-dark);font-weight:600;letter-spacing:.1px;margin:0 0 8px}
+h1{font-size:24px;color:#fff} h2{font-size:19px} h3{font-size:15px}
+header{background:var(--bi-dark);color:#fff;padding:18px 26px;display:flex;justify-content:space-between;
+  align-items:center;gap:16px;flex-wrap:wrap}
+header .sub{font-size:13px;opacity:.82}
+.logo{height:36px}
+.logo-fallback{font-family:"Montserrat",sans-serif;font-weight:600;font-size:15px;color:var(--bi-dark);
+  background:#fff;padding:8px 14px;border-radius:6px;line-height:1.05;text-align:center}
+main{max-width:1200px;margin:0 auto;padding:22px 18px 60px}
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:18px}
+.note{background:var(--p-blue);border-left:5px solid var(--bi-mid);padding:13px 18px;border-radius:10px;
+  margin-bottom:18px;font-size:13.5px;color:var(--bi-dark)}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tabbtn{background:#fff;border:1.5px solid var(--bi-light);color:var(--bi-dark);border-radius:9px 9px 0 0;
+  padding:10px 20px;font:inherit;font-size:14.5px;font-weight:500;cursor:pointer}
+.tabbtn.active{background:var(--bi-dark);color:#fff;border-color:var(--bi-dark)}
+.panel{display:none} .panel.active{display:block}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:880px){.cols{grid-template-columns:1fr}}
+textarea{width:100%;min-height:280px;padding:13px;border:1.5px solid var(--bi-light);border-radius:10px;
+  font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;resize:vertical;background:#fff;color:var(--text)}
+textarea:focus{outline:2px solid var(--bi-light);border-color:var(--bi-mid)}
+.outbox{white-space:pre-wrap;min-height:280px;max-height:460px;overflow:auto;padding:13px;
+  border:1.5px solid var(--bi-light);border-radius:10px;background:#fff;
+  font:14px/1.6 ui-monospace,Menlo,Consolas,monospace}
+mark.mk{padding:0 3px;border-radius:4px;color:var(--bi-dark);font-weight:600;box-decoration-break:clone}
+mark.yellow{background:var(--p-yellow)} mark.blue{background:var(--p-blue)}
+mark.peach{background:var(--p-peach)} mark.violet{background:var(--p-violet)}
+.btn{background:var(--bi-dark);color:#fff;border:0;border-radius:9px;padding:11px 20px;
+  font:inherit;font-size:14.5px;cursor:pointer;font-weight:500}
+.btn:hover{background:var(--bi-mid)}
+.btn.ghost{background:transparent;color:var(--bi-dark);border:1.5px solid var(--bi-light)}
+.btn.ghost:hover{background:var(--p-blue)}
+.btn.big{font-size:15.5px;padding:13px 26px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px 16px;margin-top:2px}
+label.sw{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--bi-dark)}
+.found{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{background:var(--p-yellow);border:1px solid var(--bi-light);border-radius:20px;padding:4px 12px;font-size:13px}
+.chip b{color:var(--bi-dark)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--bi-light);text-align:left}
+th{background:var(--p-blue);color:var(--bi-dark);font-weight:600}
+.tw{overflow:auto;max-height:360px;border-radius:10px;border:1px solid var(--bi-light)}
+code{background:var(--bg);padding:1px 6px;border-radius:4px;font-size:13px;border:1px solid var(--bi-light)}
+.stat{font-family:"Montserrat",sans-serif;font-weight:600;font-size:26px;color:var(--bi-dark)}
+.ok{color:var(--bi-mid)}
+select.actsel{padding:6px 8px;border:1.5px solid var(--bi-light);border-radius:7px;font:inherit;font-size:13px}
+#drop{border:2px dashed var(--bi-light);border-radius:var(--r);background:#fff;padding:28px 20px;
+  text-align:center;transition:.15s;cursor:pointer}
+#drop.drag{background:var(--p-blue);border-color:var(--bi-mid)}
+footer{text-align:center;font-size:12.5px;color:var(--bi-muted);padding:24px 16px 40px}
+.hint{font-size:13px;color:var(--bi-muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Обезличиватель фарма-текстов</h1>
+    <div class="sub">Уберите пациентов, врачей, серии и номера протоколов до того, как текст уйдёт в нейросеть</div>
+  </div>
+  <img class="logo" src="../assets/logo-bi-white.svg" alt="Логотип"
+       onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>GxP<br>PRIVACY</div>'">
+</header>
+
+<main>
+  <div class="note">
+    <b>Страница работает у вас на компьютере.</b> Текст и файлы никуда не отправляются, интернет для работы не нужен.
+    Инструмент ловит частые случаи (пациентов, врачей, серии, протоколы, полисы), но результат всё равно перечитайте —
+    редкое написание фамилии или внутренний код исследования он может пропустить.
+  </div>
+
+  <div class="tabs">
+    <button class="tabbtn active" id="tabBtnText">Текст</button>
+    <button class="tabbtn" id="tabBtnCsv">Таблица (CSV)</button>
+  </div>
+
+  <!-- ===================== ВКЛАДКА «ТЕКСТ» ===================== -->
+  <section class="panel active" id="panelText">
+    <div class="card">
+      <h3 style="margin-bottom:10px">Что скрывать</h3>
+      <div class="rules">
+        <label class="sw"><input type="checkbox" class="rule" value="fio" checked> ФИО</label>
+        <label class="sw"><input type="checkbox" class="rule" value="patient" checked> инициалы пациента</label>
+        <label class="sw"><input type="checkbox" class="rule" value="dob" checked> дата рождения</label>
+        <label class="sw"><input type="checkbox" class="rule" value="doctor" checked> врачи</label>
+        <label class="sw"><input type="checkbox" class="rule" value="clinic" checked> клиники</label>
+        <label class="sw"><input type="checkbox" class="rule" value="lot" checked> серия / партия</label>
+        <label class="sw"><input type="checkbox" class="rule" value="protocol" checked> протокол / исследование</label>
+        <label class="sw"><input type="checkbox" class="rule" value="oms" checked> полис ОМС</label>
+        <label class="sw"><input type="checkbox" class="rule" value="medcard" checked> номер медкарты</label>
+        <label class="sw"><input type="checkbox" class="rule" value="phone" checked> телефоны</label>
+        <label class="sw"><input type="checkbox" class="rule" value="email" checked> почта</label>
+        <label class="sw"><input type="checkbox" class="rule" value="inn" checked> ИНН</label>
+        <label class="sw"><input type="checkbox" class="rule" value="money" checked> суммы</label>
+        <label class="sw"><input type="checkbox" class="rule" value="org" checked> организации</label>
+        <label class="sw"><input type="checkbox" class="rule" value="contract" checked> номера договоров</label>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="card">
+        <h2>Исходный текст</h2>
+        <textarea id="src" placeholder="Вставьте сюда письмо о нежелательном явлении, выписку или кусок протокола…"></textarea>
+        <div class="row">
+          <button class="btn big" id="go">Обезличить</button>
+          <button class="btn ghost" id="demo">Пример</button>
+          <button class="btn ghost" id="clr">Очистить</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Готово для нейросети</h2>
+        <div class="outbox" id="out">Здесь появится безопасный текст с подсветкой замен</div>
+        <div class="row">
+          <button class="btn" id="copy">Скопировать</button>
+          <span id="cnt" class="stat"></span>
+          <span id="cntl" class="hint"></span>
+        </div>
+        <div class="found" id="found"></div>
+      </div>
+    </div>
+
+    <div class="card" id="mapcard" hidden>
+      <h2>Расшифровка — только для вас</h2>
+      <p class="hint" style="margin:0 0 4px">Нейросеть вернёт ответ с этими же обозначениями. Таблица живёт только на
+      этой странице и исчезнет, когда вы закроете вкладку.</p>
+      <table id="map"><thead><tr><th>Обозначение</th><th>Что скрыто</th><th>Тип</th></tr></thead><tbody></tbody></table>
+    </div>
+
+    <div class="card">
+      <h3>Что инструмент не заменит</h3>
+      <p style="font-size:14px;margin:0">Обезличивание снимает риск по 152-ФЗ и врачебной тайне, но не отменяет
+      здравого смысла. Даже под видом «Пациент 1» не отправляйте в публичную нейросеть редкий диагноз в сочетании
+      с городом и возрастом — по совокупности деталей человека всё равно можно узнать. Если не готовы увидеть
+      этот текст в открытом доступе, не отправляйте его вовсе.</p>
+    </div>
+  </section>
+
+  <!-- ===================== ВКЛАДКА «ТАБЛИЦА (CSV)» ===================== -->
+  <section class="panel" id="panelCsv">
+    <div class="card">
+      <div id="drop">
+        <b>Перетащите сюда CSV</b>
+        <p class="hint">или <button class="btn" id="pickCsv">выберите файл</button>
+        &nbsp;&nbsp;<button class="btn ghost" id="demoCsv">Пример таблицы</button><br>
+        Разделитель определяется автоматически — подойдёт «;» или «,».</p>
+        <input type="file" id="fileCsv" accept=".csv,.txt" hidden>
+      </div>
+      <p class="hint" style="margin-top:8px">Можно и вставить текст CSV прямо сюда:</p>
+      <textarea id="pasteCsv" style="min-height:100px" placeholder="Табельный;ФИО;E-mail;…"></textarea>
+      <div class="row"><button class="btn ghost" id="parseCsvBtn">Разобрать вставленный текст</button></div>
+    </div>
+
+    <div class="card" id="csvCard" hidden>
+      <h2>Что делать с колонками</h2>
+      <p class="hint">Правило подобрано автоматически по названию колонки — при желании поменяйте.</p>
+      <div class="tw"><table id="colcfg"><thead><tr><th>Колонка</th><th>Пример значения</th><th>Действие</th></tr></thead>
+      <tbody></tbody></table></div>
+
+      <h2 style="margin-top:18px">Предпросмотр (первые 10 строк)</h2>
+      <div class="tw"><table id="preview"><thead></thead><tbody></tbody></table></div>
+
+      <div class="row">
+        <button class="btn big" id="downloadCsv">Скачать обезличенный CSV</button>
+        <span class="hint" id="csvcnt"></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Создано с Best Practice AI · bestpracticeai.ru</footer>
+
+<script>
+/* ============================================================
+   ВКЛАДКА «ТЕКСТ»
+   ============================================================ */
+var DEMO='Добрый день! Сообщаю о нежелательном явлении: пациентка И.П., 12.03.1968 г.р., '+
+'полис ОМС 4567 8901 2345 6789, наблюдается у д-ра Ивановой А.С. в ГБУЗ ГКБ № 4 (Москва). '+
+'После приёма препарата серия AB1234 в рамках протокола BI-2025-0123 отмечена сыпь. '+
+'Контакт врача: +7 (916) 234-56-78, ivanova@gkb4.ru. Прошу зарегистрировать случай.';
+
+/* Символы-разделители для меток — не встречаются в обычном тексте,
+   поэтому последующие правила их не трогают, а на экране мы превращаем
+   их в подсвеченные <mark>. */
+var T1='', T2='', T3='';
+
+var RULES=[
+  {k:'patient', grp:'yellow', label:'пациент',
+   re:/[Пп]ациент[а-яё]*\s+[А-ЯЁ]\.\s?[А-ЯЁ]\./g, numbered:'Пациент'},
+  {k:'dob', grp:'violet', label:'дата рождения',
+   re:/\d{1,2}\.\d{1,2}\.\d{4}\s*г\.р\.|(?:дата\s+рождения|родил[а-яё]*)\s*[:\-]?\s*\d{1,2}[.\/]\d{1,2}[.\/]\d{2,4}/gi,
+   tag:function(){return '[дата рождения скрыта]'}},
+  {k:'doctor', grp:'yellow', label:'врач',
+   re:/(?:[Дд]-р[а-яё]*|[Дд]октор[а-яё]*|[Вв]рач[а-яё]*|проф\.|[Пп]рофессор[а-яё]*)\s+[А-ЯЁ][а-яё]+(?:\s+[А-ЯЁ]\.\s?[А-ЯЁ]\.)?/g,
+   numbered:'Врач'},
+  {k:'clinic', grp:'violet', label:'клиника',
+   re:/(?:ГБУЗ|ГКБ|ЦРБ|[Кк]линик[аи]|[Бб]ольниц[аы]|[Пп]оликлиник[аи]|[Мм]едцентр)[^,.;\n]{0,45}/g,
+   numbered:'Клиника'},
+  {k:'oms', grp:'blue', label:'полис ОМС',
+   re:/полис[а-яё]*\s*(?:ОМС)?\s*\d{4}\s?\d{4}\s?\d{4}\s?\d{4}/gi,
+   tag:function(){return '[полис ОМС скрыт]'}},
+  {k:'medcard', grp:'blue', label:'медкарта',
+   re:/(?:медицинск(?:ой|ая|ую)?\s+карт[а-яё]+|истори[яи]\s+болезни|карт[а-яё]+\s+больного)\s*[№#]?\s*\d{2,}/gi,
+   tag:function(){return '[номер медкарты скрыт]'}},
+  {k:'lot', grp:'peach', label:'серия/партия',
+   re:/(?:[Сс]ери[яи]|[Лл]от|[Пп]артия|lot)\s*№?\s*[A-ZА-Я0-9\-]{4,}/g,
+   tag:function(){return 'Серия XXX'}},
+  {k:'protocol', grp:'peach', label:'протокол',
+   re:/[Пп]ротокол[а-яё]*\s*№?\s*[A-Z0-9\-\.\/]{4,}/g,
+   tag:function(){return '[номер протокола скрыт]'}},
+  {k:'phone', grp:'blue', label:'телефон',
+   re:/(\+7|\b8)[\s\-(]*\d{3}[\s\-)]*\d{3}[\s\-]*\d{2}[\s\-]*\d{2}\b/g,
+   tag:function(){return '[телефон скрыт]'}},
+  {k:'email', grp:'blue', label:'почта',
+   re:/[\wА-Яа-я.\-_]+@[\w\-]+\.[\w\-.]+/g, tag:function(){return '[почта скрыта]'}},
+  {k:'inn', grp:'blue', label:'ИНН',
+   re:/ИНН\s*[:№]?\s*\d{10,12}/g, tag:function(){return '[ИНН скрыт]'}},
+  {k:'contract', grp:'peach', label:'номер документа',
+   re:/(договор|контракт|счёт|счет|спецификаци|заявк|наряд|акт)[а-яё]*(?:[\sа-яёА-ЯЁ]{0,16})?№\s*[\dА-Яа-яA-Za-z\-\/]+/gi,
+   tag:function(m){return m.match(/^[А-Яа-яЁё]+/)[0]+' № [скрыт]'}},
+  {k:'money', grp:'peach', label:'сумма',
+   re:/\d[\d\s]{2,}(?:[.,]\d+)?\s*(?:млн\.?\s*)?(?:тыс\.?\s*)?(?:рублей|рубля|рублях|руб\.?|₽)/gi,
+   tag:function(){return '[сумма скрыта]'}},
+  {k:'org', grp:'violet', label:'организация',
+   re:/(ПАО|ЗАО|ОАО|ООО|АО|ИП|ГК)\s*[«"][^»"]{2,60}[»"]/g, lettered:'Организация'},
+  {k:'fio', grp:'yellow', label:'ФИО',
+   re:/[А-ЯЁ][а-яё]+\s+[А-ЯЁ][а-яё]*(?:ович|евич|ьевич|овна|евна|ична|инична)(?![а-яё])/g, numbered:'ФИО'},
+  {k:'fio', grp:'yellow', label:'ФИО',
+   re:/[А-ЯЁ][а-яё]{2,}\s+[А-ЯЁ]\.\s?[А-ЯЁ]\./g, numbered:'ФИО'},
+  {k:'fio', grp:'yellow', label:'ФИО',
+   re:/[А-ЯЁ]\.\s?[А-ЯЁ]\.\s?[А-ЯЁ][а-яё]{2,}(?![а-яё])/g, numbered:'ФИО'}
+];
+var LETTERS='АБВГДЕЖИКЛМНПРСТУФХЦЧШЭЮЯ';
+function letterFor(n){ return n<LETTERS.length?LETTERS[n]:'Я'+(n-LETTERS.length+1) }
+
+function active(){return [].slice.call(document.querySelectorAll('.rule:checked')).map(function(c){return c.value})}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function run(){
+  var srcTxt=document.getElementById('src').value;
+  if(!srcTxt.trim()){alert('Сначала вставьте текст в левое поле.');return}
+  var on=active(), counters={}, letterCounters={}, map=[], seen={}, found={};
+  var txt=srcTxt;
+  RULES.forEach(function(rule){
+    if(on.indexOf(rule.k)<0)return;
+    txt=txt.replace(rule.re,function(m){
+      found[rule.label]=(found[rule.label]||0)+1;
+      var label;
+      if(rule.numbered){
+        var key=rule.numbered+'|'+m.trim().toLowerCase().replace(/\s+/g,' ');
+        if(!seen[key]){
+          counters[rule.numbered]=(counters[rule.numbered]||0)+1;
+          seen[key]=rule.numbered+' '+counters[rule.numbered];
+          map.push([seen[key],m.trim(),rule.label]);
+        }
+        label=seen[key];
+      } else if(rule.lettered){
+        var key2=rule.lettered+'|'+m.trim().toLowerCase().replace(/\s+/g,' ');
+        if(!seen[key2]){
+          letterCounters[rule.lettered]=(letterCounters[rule.lettered]||0)+1;
+          seen[key2]=rule.lettered+' '+letterFor(letterCounters[rule.lettered]-1);
+          map.push([seen[key2],m.trim(),rule.label]);
+        }
+        label=seen[key2];
+      } else {
+        label=rule.tag(m);
+        map.push([label,m.trim(),rule.label]);
+      }
+      return T1+rule.grp+T2+label+T3;
+    });
+  });
+
+  var plain=txt.replace(new RegExp(T1+'[a-z]+'+T2+'([^'+T3+']*)'+T3,'g'),'$1');
+  var html=esc(txt).replace(new RegExp(T1+'([a-z]+)'+T2+'([^'+T3+']*)'+T3,'g'),
+    function(_,grp,label){return '<mark class="mk '+grp+'">'+label+'</mark>'});
+
+  document.getElementById('out').innerHTML=html||'<span class="hint">Ничего опасного не нашлось</span>';
+  window.__PLAIN=plain;
+  var total=Object.keys(found).reduce(function(a,k){return a+found[k]},0);
+  document.getElementById('cnt').textContent=total;
+  document.getElementById('cntl').textContent=total?'мест обезличено':'ничего опасного не нашлось';
+  document.getElementById('cnt').className='stat '+(total?'':'ok');
+  document.getElementById('found').innerHTML=Object.keys(found).map(function(k){
+    return '<span class="chip">'+k+' <b>'+found[k]+'</b></span>'}).join('');
+  var mc=document.getElementById('mapcard');
+  mc.hidden=!map.length;
+  document.querySelector('#map tbody').innerHTML=map.map(function(r){
+    return '<tr><td><code>'+r[0]+'</code></td><td>'+esc(r[1])+'</td><td>'+r[2]+'</td></tr>'}).join('');
+}
+
+document.getElementById('go').onclick=run;
+document.getElementById('demo').onclick=function(){document.getElementById('src').value=DEMO;run()};
+document.getElementById('clr').onclick=function(){
+  document.getElementById('src').value='';document.getElementById('out').innerHTML='Здесь появится безопасный текст с подсветкой замен';
+  document.getElementById('found').innerHTML='';document.getElementById('cnt').textContent='';
+  document.getElementById('cntl').textContent='';document.getElementById('mapcard').hidden=true;window.__PLAIN=''};
+document.getElementById('copy').onclick=function(){
+  var t=window.__PLAIN;
+  if(!t){alert('Сначала нажмите «Обезличить».');return}
+  var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,999999);
+  var done=false;
+  try{done=document.execCommand('copy')}catch(e){}
+  document.body.removeChild(ta);
+  if(navigator.clipboard&&!done){navigator.clipboard.writeText(t);done=true}
+  this.textContent=done?'Скопировано':'Не получилось — выделите вручную';
+  var b=this; setTimeout(function(){b.textContent='Скопировать'},1800);
+};
+[].forEach.call(document.querySelectorAll('.rule'),function(c){c.onchange=function(){
+  if(document.getElementById('src').value.trim()&&window.__PLAIN!==undefined)run()}});
+
+/* ============================================================
+   ВКЛАДКА «ТАБЛИЦА (CSV)»
+   ============================================================ */
+document.getElementById('tabBtnText').onclick=function(){switchTab('Text')};
+document.getElementById('tabBtnCsv').onclick=function(){switchTab('Csv')};
+function switchTab(name){
+  ['Text','Csv'].forEach(function(n){
+    document.getElementById('tabBtn'+n).classList.toggle('active',n===name);
+    document.getElementById('panel'+n).classList.toggle('active',n===name);
+  });
+}
+
+var CSV_HEAD=[], CSV_ROWS=[], COLCFG=[];
+var DEMO_CSV='Табельный;ФИО;E-mail;Телефон;Дата рождения;Диагноз;Врач\n'+
+'2001;Смирнова Ольга Викторовна;osmirnova@demo-clinic.ru;+7 916 111-22-33;14.05.1979;Гипертония;Иванов П.С.\n'+
+'2002;Кузнецов Артём Игоревич;akuznetsov@demo-clinic.ru;+7 916 222-33-44;03.11.1985;Астма;Петрова Н.В.\n'+
+'2003;Белова Мария Сергеевна;mbelova@demo-clinic.ru;+7 916 333-44-55;21.02.1990;Диабет 2 типа;Иванов П.С.\n'+
+'2004;Соколов Игорь Дмитриевич;isokolov@demo-clinic.ru;+7 916 444-55-66;09.08.1972;Гипертония;Сидорова А.А.\n'+
+'2005;Романова Дарья Олеговна;dromanova@demo-clinic.ru;+7 916 555-66-77;30.01.1995;Мигрень;Петрова Н.В.\n'+
+'2006;Волков Никита Андреевич;nvolkov@demo-clinic.ru;+7 916 666-77-88;17.06.1988;Астма;Сидорова А.А.\n'+
+'2007;Егорова Вера Павловна;vegorova@demo-clinic.ru;+7 916 777-88-99;25.12.1965;Диабет 1 типа;Иванов П.С.\n'+
+'2008;Тимофеев Максим Юрьевич;mtimofeev@demo-clinic.ru;+7 916 888-99-00;05.04.1998;Гипертония;Петрова Н.В.';
+
+function parseCSVText(text){
+  var t=text.replace(/^﻿/,'').replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+  var first=t.split('\n')[0];
+  var d=(first.split(';').length>first.split(',').length)?';':',';
+  var lines=[],cur=[],val='',q=false;
+  for(var i=0;i<t.length;i++){
+    var c=t[i];
+    if(q){ if(c==='"'){ if(t[i+1]==='"'){val+='"';i++} else q=false } else val+=c }
+    else if(c==='"') q=true;
+    else if(c===d){cur.push(val);val=''}
+    else if(c==='\n'){cur.push(val);lines.push(cur);cur=[];val=''}
+    else val+=c;
+  }
+  if(val!==''||cur.length){cur.push(val);lines.push(cur)}
+  lines=lines.filter(function(l){return l.some(function(x){return String(x).trim()!==''})});
+  if(lines.length<2) throw new Error('в файле нет данных');
+  var head=lines[0].map(function(h){return h.trim()});
+  var rows=lines.slice(1).map(function(l){
+    var o={};head.forEach(function(h,i){o[h]=(l[i]||'').trim()});return o});
+  return {head:head,rows:rows};
+}
+function normLc(s){return String(s||'').toLowerCase().replace(/ё/g,'е')}
+function suggestAction(h){
+  var n=normLc(h);
+  if(n.indexOf('фио')>=0||n.indexOf('имя')>=0||n.indexOf('фамили')>=0) return 'pseudo';
+  if(n.indexOf('mail')>=0||n.indexOf('почта')>=0||n.indexOf('телефон')>=0||n.indexOf('phone')>=0) return 'del';
+  return 'keep';
+}
+function loadCsv(text){
+  var r=parseCSVText(text);
+  CSV_HEAD=r.head; CSV_ROWS=r.rows;
+  COLCFG=CSV_HEAD.map(function(h){return {col:h,action:suggestAction(h)}});
+  document.getElementById('csvCard').hidden=false;
+  renderColCfg(); renderPreview();
+}
+
+var drop=document.getElementById('drop'), fiCsv=document.getElementById('fileCsv');
+document.getElementById('pickCsv').onclick=function(e){e.stopPropagation();fiCsv.click()};
+drop.onclick=function(){fiCsv.click()};
+fiCsv.onchange=function(e){var f=e.target.files[0]; if(!f)return;
+  var fr=new FileReader(); fr.onload=function(){try{loadCsv(fr.result)}catch(ex){alert('Не получилось разобрать файл: '+ex.message)}};
+  fr.readAsText(f,'utf-8')};
+['dragenter','dragover'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('drag')})});
+['dragleave','drop'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('drag')})});
+drop.addEventListener('drop',function(e){var f=e.dataTransfer.files[0]; if(!f)return;
+  var fr=new FileReader(); fr.onload=function(){try{loadCsv(fr.result)}catch(ex){alert('Не получилось разобрать файл: '+ex.message)}};
+  fr.readAsText(f,'utf-8')});
+document.getElementById('parseCsvBtn').onclick=function(){
+  var t=document.getElementById('pasteCsv').value;
+  if(!t.trim()){alert('Вставьте текст CSV в поле выше.');return}
+  try{loadCsv(t)}catch(ex){alert('Не получилось разобрать текст: '+ex.message)}
+};
+document.getElementById('demoCsv').onclick=function(e){e.stopPropagation();loadCsv(DEMO_CSV)};
+
+function renderColCfg(){
+  var opts=[['keep','оставить'],['del','удалить'],['pseudo','заменить на Сотрудник N'],['mask','маскировать']];
+  document.querySelector('#colcfg tbody').innerHTML=COLCFG.map(function(c,i){
+    var sample=(CSV_ROWS[0]&&CSV_ROWS[0][c.col])||'';
+    return '<tr><td><b>'+c.col+'</b></td><td class="hint">'+esc(sample)+'</td><td>'+
+      '<select class="actsel" data-i="'+i+'">'+opts.map(function(o){
+        return '<option value="'+o[0]+'"'+(o[0]===c.action?' selected':'')+'>'+o[1]+'</option>'}).join('')+
+      '</select></td></tr>';
+  }).join('');
+  [].forEach.call(document.querySelectorAll('.actsel'),function(s){
+    s.onchange=function(){COLCFG[+s.dataset.i].action=s.value; renderPreview()};
+  });
+}
+function maskVal(v){ v=String(v||''); return v?v.charAt(0)+'***':'' }
+function buildPseudo(){
+  var maps={};
+  COLCFG.forEach(function(c){ if(c.action==='pseudo') maps[c.col]={map:{},n:0} });
+  return maps;
+}
+function transformRows(rows,maps){
+  return rows.map(function(r){
+    var o={};
+    COLCFG.forEach(function(c){
+      if(c.action==='del')return;
+      var v=r[c.col];
+      if(c.action==='pseudo'){
+        var m=maps[c.col];
+        if(!m.map[v]){ m.n++; m.map[v]='Сотрудник '+m.n }
+        v=v?m.map[v]:v;
+      } else if(c.action==='mask'){
+        v=maskVal(v);
+      }
+      o[c.col]=v;
+    });
+    return o;
+  });
+}
+function outHead(){ return COLCFG.filter(function(c){return c.action!=='del'}).map(function(c){return c.col}) }
+function renderPreview(){
+  var maps=buildPseudo();
+  var rows=transformRows(CSV_ROWS.slice(0,10),maps);
+  var head=outHead();
+  document.querySelector('#preview thead').innerHTML='<tr>'+head.map(function(h){return '<th>'+esc(h)+'</th>'}).join('')+'</tr>';
+  document.querySelector('#preview tbody').innerHTML=rows.map(function(r){
+    return '<tr>'+head.map(function(h){return '<td>'+esc(r[h]||'')+'</td>'}).join('')+'</tr>'}).join('');
+  document.getElementById('csvcnt').textContent='строк в файле: '+CSV_ROWS.length+', показано: '+rows.length;
+}
+document.getElementById('downloadCsv').onclick=function(){
+  if(!CSV_ROWS.length){alert('Сначала загрузите таблицу.');return}
+  var maps=buildPseudo();
+  var rows=transformRows(CSV_ROWS,maps);
+  var head=outHead();
+  var lines=[head.join(';')];
+  rows.forEach(function(r){ lines.push(head.map(function(h){
+    var v=String(r[h]==null?'':r[h]);
+    if(v.indexOf(';')>=0||v.indexOf('"')>=0){ v='"'+v.replace(/"/g,'""')+'"' }
+    return v;
+  }).join(';')) });
+  var csv='﻿'+lines.join('\r\n');
+  var blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download='обезличенная_таблица.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+};
+</script>
+</body>
+</html>
