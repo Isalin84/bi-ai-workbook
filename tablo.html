@@ -99,6 +99,11 @@ tr.top1 td{background:#FDF6E0} tr.top2 td{background:#F7F5EF} tr.top3 td{backgro
 .acard .info{flex:1;min-width:0}
 .acard .info .nm{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .acard .pts{font-family:var(--cond);font-size:18px;color:#fff;flex:0 0 auto}
+.cw{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:12px}
+.cwi{border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:12px 14px;background:#FBFAF6}
+.cwi b{display:block;font-family:var(--cond);font-size:26px;letter-spacing:.06em;color:var(--navy);line-height:1.1}
+.cwi span{display:block;font-size:12px;font-weight:600;color:var(--gold-dk);text-transform:uppercase;letter-spacing:.05em;margin:4px 0 4px}
+.cwi small{display:block;font-size:13px;color:#555;line-height:1.35}
 @media(max-width:820px){
  .podium{grid-template-columns:1fr}
  .brand .div,.brand img.bi{display:none}
@@ -123,6 +128,19 @@ tr.top1 td{background:#FDF6E0} tr.top2 td{background:#F7F5EF} tr.top3 td{backgro
 </header>
 
 <main>
+  <div class="card codes">
+    <h2>Кодовые слова ведущего</h2>
+    <p class="hint">Пять слов, по 30 баллов каждое. Называете вслух в нужный момент - участники вводят в «Справочнике» тетради.
+    Проверка прощает регистр, Ё и раскладку.</p>
+    <div class="cw">
+      <div class="cwi"><b>ТОКЕН</b><span>блок 1 · Разминка</span><small>когда дошли до вопроса про русские токены</small></div>
+      <div class="cwi"><b>ГАЗЕТА</b><span>блок 2 · Безопасность</span><small>после «теста газеты»</small></div>
+      <div class="cwi"><b>ДАШБОРД</b><span>блок 4 · Данные</span><small>когда у первого участника открылся дашборд</small></div>
+      <div class="cwi"><b>ТЮТЧЕВ</b><span>блок 5 · Музыка</span><small>когда зазвучал первый трек в Suno</small></div>
+      <div class="cwi"><b>ИНГЕЛЬХАЙМ</b><span>блок 6 · Ассистент</span><small>когда ассистент первый раз сослался на раздел справочника</small></div>
+    </div>
+  </div>
+
   <div class="card">
     <h2>Коды участников</h2>
     <p class="hint">Участники нажимают «Сформировать код» в конце тетради и присылают строку в чат.

@@ -142,6 +142,9 @@ label.fl{display:block;font-family:var(--ui);font-size:12.5px;font-weight:600;co
 .prompt .var{color:var(--gold);font-weight:600}
 .prompt .ph{color:#FF9E7A}
 .pbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+.pal{margin-top:16px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.palsw{display:flex;flex-wrap:wrap;gap:6px}
+.pal .sw{font-family:var(--ui);font-size:11.5px;font-weight:600;letter-spacing:.03em;padding:14px 8px 6px;border-radius:8px;min-width:78px;text-align:center;border:1px solid rgba(0,0,0,.08)}
 .plabel{font-family:var(--ui);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .copy{font-family:var(--ui);font-size:13px;font-weight:600;background:var(--gold);color:var(--navy);
   border:0;border-radius:8px;padding:8px 16px;cursor:pointer}
@@ -238,7 +241,7 @@ footer.site{border-top:1px solid var(--line);padding:26px 20px 50px;text-align:c
     <img id="bplogo" alt="Best Practice">
     <div class="brand">
       <b>РАБОЧАЯ ТЕТРАДЬ</b>
-      <span>Best Practice · для Boehringer Ingelheim</span>
+      <span>Best Practice · для ИИ Реализаторов</span>
     </div>
     <div class="score">
       <div class="pts"><b id="ptsv">0</b><span id="ptsmax">из 1000</span></div>
@@ -287,20 +290,14 @@ document.getElementById('bplogo').src=LOGO_BP;
 /* ============================ КАТАЛОГ НЕЙРОСЕТЕЙ ============================ */
 var CATALOG=[
  {g:'Регистрируемся сегодня',
-  note:'Три сервиса, на которых построен весь день. Открываются из России без VPN, вход по почте. Ещё два - по желанию, за каждый дают бонус.',
+  note:'Два сервиса, на которых построен весь день. Открываются из России без VPN, вход по почте. Третий - по желанию, за него дают бонус.',
   items:[
   {n:'Qwen',u:'https://chat.qwen.ai',tag:'must',t:'обязательно',reg:1,
    w:'Наш главный инструмент на весь день. Понимает русский, читает Excel, Word и PDF, рисует картинки, снимает короткое видео, пишет готовые HTML-страницы. И главное - у него есть проекты: место, где ассистент помнит ваши файлы и правила.',
    r:'Вход по почте. Работает из России без VPN.'},
-  {n:'Kimi',u:'https://www.kimi.com',tag:'must',t:'обязательно',reg:1,
-   w:'Держит в памяти очень длинный текст. Регламент на восемьдесят страниц, годовой отчёт или переписка за квартал целиком - её задача. Когда Qwen скажет «слишком длинно», идите сюда.',
-   r:'Вход по почте. Без VPN.'},
   {n:'Arena',u:'https://arena.ai',tag:'must',t:'обязательно',reg:1,
    w:'Две модели отвечают на ваш вопрос анонимно, вы выбираете лучший ответ и только потом узнаёте, кто есть кто. Быстрый способ понять, чем Qwen отличается от ChatGPT на вашей задаче - без VPN.',
    r:'Можно и без регистрации, но с ней сохраняется история. Платите тем, что ваши запросы видят разработчики - рабочие данные сюда не носите.'},
-  {n:'Leonardo AI',u:'https://leonardo.ai',tag:'must',t:'по желанию, +25 баллов',reg:1,
-   w:'Студия изображений с большим выбором стилей и коротким видео. Пригодится в блоке про картинки: акварельные портреты там получаются особенно хорошо.',
-   r:'Вход по почте или через Google. Иногда просит VPN - если не открылось, все задания делаем в Qwen.'},
   {n:'Suno',u:'https://suno.com',tag:'must',t:'по желанию, +25 баллов',reg:1,
    w:'Песня по описанию: музыка, аранжировка и вокал за две минуты. Сегодня на нём будет самое весёлое задание дня.',
    r:'Вход через Google или по почте. Из России чаще всего нужен VPN - если не открылось, работайте в паре с соседом, у которого открылось.'}]},
@@ -344,11 +341,15 @@ var CATALOG=[
    w:'Площадка для экспериментов с моделями Gemini: длинный контекст, тонкие настройки, бесплатный доступ к свежим моделям.',
    r:'Нужен аккаунт Google.'}]},
 
- {g:'Ещё китайские - без VPN',
+ {g:'Ещё китайские',
+  note:'Kimi и DeepSeek из этого зала не открываются - проверено. Ссылки оставляю на дом: обе бесплатные и без VPN с домашнего компьютера работают.',
   items:[
-  {n:'DeepSeek',u:'https://chat.deepseek.com',tag:'free',t:'без VPN',
+  {n:'Kimi',u:'https://www.kimi.com',tag:'vpn',t:'из зала не открывается',
+   w:'Держит в памяти очень длинный текст. Регламент на восемьдесят страниц, годовой отчёт или переписка за квартал целиком - её задача. Когда Qwen скажет «слишком длинно», идите сюда.',
+   r:'Вход по почте. Дома открывается без VPN, сегодня с рабочей сети - нет.'},
+  {n:'DeepSeek',u:'https://chat.deepseek.com',tag:'vpn',t:'из зала не открывается',
    w:'Сильна в расчётах и логике. Когда нужно посчитать, сравнить варианты или разобрать формулу - идите сюда.',
-   r:'Вход по почте. Бесплатно.'},
+   r:'Вход по почте. Бесплатно, дома без VPN; с рабочей сети сегодня не откроется.'},
   {n:'Z.ai',u:'https://chat.z.ai',tag:'free',t:'без VPN',
    w:'Чат и агент на моделях GLM. Ещё одна сильная бесплатная альтернатива для рассуждений, документов и кода.',
    r:'Вход по почте.'},
@@ -357,8 +358,11 @@ var CATALOG=[
    r:'Вход по почте, бесплатных задач в сутки немного.'}]},
 
  {g:'Картинки, видео и звук',
-  note:'Из этой группы без VPN уверенно работают Qwen, Kandinsky и Шедеврум. Leonardo и Suno - через раз, поэтому они в бонусах. Остальное показываю со сцены, ссылки оставляю, чтобы было куда вернуться дома.',
+  note:'Из этой группы без VPN уверенно работают Qwen, Kandinsky и Шедеврум. Suno - через раз, поэтому он в бонусах. Leonardo из зала не открывается, оставляю на дом. Остальное показываю со сцены, ссылки оставляю, чтобы было куда вернуться.',
   items:[
+  {n:'Leonardo AI',u:'https://leonardo.ai',tag:'vpn',t:'из зала не открывается',
+   w:'Студия изображений с большим выбором стилей и коротким видео. Акварельные портреты там получаются особенно хорошо - все четыре промпта из блока 5 подходят и ей.',
+   r:'Вход по почте или через Google. С рабочей сети не открывается, дома - как повезёт с VPN.'},
   {n:'Kandinsky',u:'https://fusionbrain.ai',tag:'free',t:'без VPN',
    w:'Картинки от Сбера, понимает запрос по-русски. Удобно для иллюстраций к презентации и внутренним рассылкам.',
    r:'Регистрация на сайте FusionBrain. Если сайт не открылся - Kandinsky работает и внутри GigaChat.'},
@@ -427,7 +431,7 @@ var GLOSSARY=[
   ['Мультимодальность','Умение работать сразу с текстом, картинками, звуком и таблицами. Можно прислать скан таблицы из протокола и попросить перевести её в Excel.'],
   ['Copilot','Помощник Microsoft внутри Word, Excel, Outlook и Teams. Та же языковая модель, только с доступом к вашим файлам и письмам внутри корпоративного контура.']]},
  {g:'Как с ней разговаривать',items:[
-  ['Промпт','Ваш запрос к нейросети. Чем точнее написан, тем полезнее ответ. Половина результата зависит от промпта.'],
+  ['Промпт','Текст, который вы отправляете нейросети: задача, вводные, формат ответа. Чем точнее он написан, тем полезнее ответ и тем реже приходится переспрашивать.'],
   ['Системный промпт','Общая инструкция на весь разговор: кто ты, как отвечай, чего не делай. Пишется один раз в настройках проекта и действует дальше сама.'],
   ['Роль','Первая часть промпта: кем должна себя считать нейросеть. «Ты - специалист по фармаконадзору» сразу меняет словарь и глубину ответа.'],
   ['Контекст','Вводные, которые вы даёте: сколько человек, какие сроки, какие ограничения. Без контекста получите общий ответ из учебника.'],
@@ -479,44 +483,53 @@ var GLOSSARY_EXTRA=[
    Английский - потому что модели понимают его точнее; подписи по-русски. */
 var IMAGE_PROMPTS=[
  {cat:'Деловой портрет · вечерняя Москва из окна Москва-Сити',items:[
-  {n:'Деловой портрет',m:'Qwen · Leonardo',s:'вертикаль 2:3, 1024×1536, качество высокое',need:'своё фото анфас, плечи в кадре',
+  {n:'Деловой портрет',m:'Qwen',s:'вертикаль 2:3, 1024×1536, качество высокое',need:'своё фото анфас, плечи в кадре',
    variants:[
    {l:'Женский вариант',
     p:'Edit the uploaded photo into a professional business portrait.\n\nChange: replace the background with the interior of a high-floor office in Moscow City at blue hour, seen through a floor-to-ceiling window: the Moscow River, the illuminated skyscrapers of the business district and the city lights far below, softly out of focus. Refine the attire to a tailored charcoal or deep-green blazer over a plain light top.\n\nPreserve: the exact face, facial features, skin tone, hairstyle, expression, identity, head angle and eye direction of the woman in the photo.\n\nImportant details: soft key light from the front-left as if from a large window, gentle warm rim light from the city glow on the hair and shoulder, shallow depth of field, natural skin texture, calm confident half-smile, shoulders slightly off-axis, medium close-up from the chest up, 85mm portrait feel.\n\nUse case: corporate profile photo for an intranet page and LinkedIn.\n\nConstraints: solo portrait, clean composition, natural retouching that keeps pores and fine lines, plain window glass with faint reflections only, no text, no logos, no watermark.'},
    {l:'Мужской вариант',
     p:'Edit the uploaded photo into a professional business portrait.\n\nChange: replace the background with the interior of a high-floor office in Moscow City at blue hour, seen through a floor-to-ceiling window: the Moscow River, the illuminated skyscrapers of the business district and the city lights far below, softly out of focus. Refine the attire to a tailored navy or charcoal suit jacket over a plain shirt, top button open, no tie.\n\nPreserve: the exact face, facial features, skin tone, hairstyle, facial hair, expression, identity, head angle and eye direction of the man in the photo.\n\nImportant details: soft key light from the front-left as if from a large window, gentle warm rim light from the city glow on the hair and shoulder, shallow depth of field, natural skin texture, calm confident expression, shoulders slightly off-axis, medium close-up from the chest up, 85mm portrait feel.\n\nUse case: corporate profile photo for an intranet page and LinkedIn.\n\nConstraints: solo portrait, clean composition, natural retouching that keeps pores and fine lines, plain window glass with faint reflections only, no text, no logos, no watermark.'}]},
-  {n:'Портрет с характером',m:'Qwen · Leonardo',s:'вертикаль 4:5, качество высокое',need:'своё фото, лицо крупно и ровно освещено',
+  {n:'Портрет с характером',m:'Qwen',s:'вертикаль 4:5, качество высокое',need:'своё фото, лицо крупно и ровно освещено',
    variants:[
    {l:'Женский · золотой час в поле',
     p:'Edit the uploaded photo into a warm summer editorial portrait.\n\nChange: place the woman in a wide summer meadow at golden hour, waist-high grasses and wildflowers around her: cornflowers, chamomile, red poppies. Dress her in a flowing midi dress with a small floral print, light fabric moving in a gentle breeze. She holds a loose bouquet of the same wildflowers with both hands at chest level and looks at the camera with a soft natural smile.\n\nPreserve: the exact face, facial features, skin tone, hairstyle, expression, identity, head angle and eye direction of the woman in the photo.\n\nImportant details: low sun behind her and slightly to the right, warm backlight glowing through the hair and the edges of the flowers, soft lens flare, shallow depth of field with the meadow melting into golden bokeh, a few loose strands of hair lifted by the wind, medium shot from the waist up, 85mm portrait feel, natural skin texture.\n\nUse case: personal portrait for a chat avatar and social media.\n\nConstraints: solo portrait, one bouquet, no text, no logos, no watermark, natural retouching that keeps pores and fine lines.'},
    {l:'Мужской · акула из Москвы-реки',
     p:'Edit the uploaded photo into a dramatic and slightly absurd trophy-catch photo.\n\nChange: place the man on the wet granite embankment of the Moskva River in Moscow at blue hour. He holds up a huge freshly caught shark, about two metres long, with both arms, the shark glistening and dripping, its tail almost touching the ground. Dress him in a dark waterproof fishing jacket with the sleeves pushed up and a knitted hat; a proud, slightly exhausted grin on his face. Behind him, across the river, the illuminated towers of Moscow City, softly out of focus, and a wet fishing rod leaning on the parapet.\n\nPreserve: the exact face, facial features, skin tone, hairstyle, facial hair, identity and head angle of the man in the photo.\n\nImportant details: overcast blue-hour sky with a warm street-lamp key light from the left, water splashes on the granite, wet fabric texture, low-angle heroic shot from slightly below the waist, medium-wide framing, 35mm feel, cinematic colour grade with teal shadows and warm highlights, photorealistic.\n\nUse case: fun personal photo for a chat avatar and a team channel.\n\nConstraints: solo, exactly one shark, anatomically plausible shark, no blood, no text, no logos, no watermark.'}]}]},
  {cat:'Для настроения · по своему фото',items:[
-  {n:'Акварель оживает · для девушек',m:'Qwen · Leonardo',s:'вертикаль 9:16',need:'своё фото',
+  {n:'Акварель оживает · для девушек',m:'Qwen',s:'вертикаль 9:16',need:'своё фото',
    p:'By uploaded image, Ultra-photorealistic surreal 3D illusion inside a real artist’s studio, frontal composition, vertical 9:16. A large vertical sheet of textured watercolor paper is mounted perfectly front-facing on a worn wooden easel.\n\nOn the paper is a beautiful watercolor portrait of a young woman wearing a chic black beret, a black-and-white striped Breton shirt and miniature NASA space-shuttle earrings. The lower half of her body remains completely flat and visibly painted onto the paper with expressive watercolor pigments, wet brush strokes, blooming colors, splashes and long paint drips.\n\nAt her waist, the watercolor gradually transforms into physical reality. From the waist upward she becomes an ultra-photorealistic real woman physically emerging OUT OF THE FLAT PAPER into the viewer’s space. The transition between watercolor and real human body is clearly visible and seamless.\n\nShe leans far forward out of the painting with strong three-dimensional depth. One arm reaches dramatically toward the camera, holding a glossy bright-red ceramic coffee cup filled with fresh black coffee. The cup is extremely close to the lens, creating exaggerated forced perspective. Visible coffee surface, delicate steam rising from the cup, realistic ceramic reflections.\n\nShe raises the red coffee cup toward the viewer in a playful “cheers” gesture, smiling warmly and making direct eye contact with the camera. Her second arm also extends naturally outside the canvas, reinforcing the illusion that she is escaping from the painting.\n\nExtreme 3D pop-out effect: her hands and red coffee cup clearly cross beyond the physical plane and edges of the watercolor paper, casting realistic shadows back onto the paper. Strong depth separation between the flat painted lower body and the physical upper body.\n\nIn the bottom-right corner of the frame, only the artist’s realistic hand is visible holding a thin watercolor brush toward the unfinished painted section, as if the artist has just caused her to come alive. Watercolor palette with wet pigments visible along the bottom edge.\n\nBright natural morning sunlight from a large studio window, light neutral colors, realistic skin tones, warm wooden studio details, softly blurred background, authentic paper fibers, wet watercolor texture, pigment granulation and paint stains.\n\nStraight-on frontal camera, eye-level perspective, 28mm lens, shallow natural depth of field, strong forced perspective on the red coffee cup, cinematic live-action photography, natural lighting, realistic shadows, subtle film grain, HDR, 8K, zero CGI appearance, no illustration look on the realistic half, no text, no watermark, vertical 9:16.'},
-  {n:'Акварель и тушь · для мужчин',m:'Qwen · Leonardo',s:'вертикаль 9:16',need:'своё фото',
+  {n:'Акварель и тушь · для мужчин',m:'Qwen',s:'вертикаль 9:16',need:'своё фото',
    p:'A moody watercolor and ink illustration of a solitary man (image uploaded), sitting on external stone steps reading a folded newspaper, three-quarter view, glasses catching a sliver of light, loose expressive brushstrokes and gestural ink lines, limited palette of warm sepia browns, deep indigo blacks and cool neutrals, strong diagonal shafts of sunlight creating long dramatic shadows and geometric patterns across the stairs, high contrast between crisp highlights and soft wet-on-wet washes, visible paper texture, splashy drybrush and splatter accents, minimalist negative space around subject, subtle details: rolled trousers, blazer, leather shoes, relaxed contemplative pose, airy composition with architectural leading lines, painterly, elegant, timeless, atmospheric. Preserve the exact face and identity from the uploaded photo. Aspect ratio 9:16.'}]}
 ];
 var IMAGE_LINK={u:'https://promptgather.io/prompts/gpt-image-2',n:'Библиотека промптов GPT Image 2',
- w:'Тысячи готовых промптов с кнопкой «скопировать»: портреты, постеры, макеты, продуктовые фото. Написаны для GPT Image, но Qwen и Leonardo понимают их так же. Берёте готовый, меняете два слова под себя.'};
+ w:'Тысячи готовых промптов с кнопкой «скопировать»: портреты, постеры, макеты, продуктовые фото. Написаны для GPT Image, но Qwen понимает их так же. Берёте готовый, меняете два слова под себя.'};
 
-/* ============================ МУЗЫКА: АНТОШКА ============================ */
-/* Текст песни в поле Lyrics с тегами секций - так Suno не тянет трек до максимума
-   и отличает куплет от припева. Style-поля на английском: Suno читает их как команды. */
-var ANTOSHKA_LYRICS='[Intro]\n\n[Chorus]\nАнтошка, Антошка!\nПойдём копать картошку!\nАнтошка, Антошка!\nПойдём копать картошку!\n\n[Verse 1]\nТили-тили, трали-вали,\nЭто мы не проходили,\nЭто нам не задавали.\nТарам-пам-пам!\nТарам-пам-пам!\n\n[Chorus]\nАнтошка, Антошка!\nСыграй нам на гармошке!\nАнтошка, Антошка!\nСыграй нам на гармошке!\n\n[Verse 2]\nТили-тили, трали-вали,\nЭто мы не проходили,\nЭто нам не задавали.\nТарам-пам-пам!\nТарам-пам-пам!\n\n[Chorus]\nАнтошка, Антошка!\nГотовь к обеду ложку!\nАнтошка, Антошка!\nГотовь к обеду ложку!\n\n[Bridge]\nТили-тили, трали-вали,\nЭто, братцы, мне по силе,\nОткажусь теперь едва ли!\nТарам-пам-пам!\nТарам-пам-пам!\n\n[Outro]\n\n[End]';
+/* ============================ МУЗЫКА: ТЮТЧЕВ ============================ */
+/* Текст в поле Lyrics с тегами секций - так Suno не тянет трек до максимума и отличает
+   куплет от бриджа. «Осенний вечер» Тютчева, 1830 год: общественное достояние, права не мешают.
+   Style-поля на английском: Suno читает их как команды. */
+var TYUTCHEV_LYRICS='[Intro]\n\n[Verse 1]\nЕсть в светлости осенних вечеров\nУмильная, таинственная прелесть!..\nЗловещий блеск и пестрота дерёв,\nБагряных листьев томный, легкий шелест,\n\n[Verse 2]\nТуманная и тихая лазурь\nНад грустно-сиротеющей землею\nИ, как предчувствие сходящих бурь,\nПорывистый, холодный ветр порою,\n\n[Bridge]\n\n[Verse 3]\nУщерб, изнеможенье — и на всем\nТа кроткая улыбка увяданья,\nЧто в существе разумном мы зовем\nБожественной стыдливостью страданья!\n\n[Outro]\n\n[End]';
 var MUSIC_GENRES=[
- {k:'hiphop',n:'Хип-хоп',emo:'🎤',idea:'Антошка читает рэп про то, что копать картошку не входило в его должностные обязанности.',
-  style:'Boom bap hip-hop, 92 BPM, dusty piano sample and heavy kick, cheeky male rap verses with sung group chorus, vinyl crackle lo-fi production, Russian language, clear pronunciation, playful',
-  exclude:'autotune, trap hi-hats, EDM drop',
-  tags:'[Verse 1: conversational rap, sparse beat] · [Chorus: sung, group vocals, full beat] · [Bridge: half-time, bass only]'},
- {k:'opera',n:'Опера',emo:'🎭',idea:'Трагедия в трёх действиях: герой отказывается копать картошку, хор его осуждает, в финале он просит ложку.',
-  style:'Dramatic opera aria, slow 3/4, full symphony orchestra and harp, powerful tenor lead with mixed choir on the chorus, grand concert hall reverb, Russian language, clear pronunciation, theatrical',
-  exclude:'drums, synths, electric guitar',
-  tags:'[Verse 1: solo tenor, strings only] · [Chorus: full choir and brass, crescendo] · [Bridge: soprano counter-melody, harp]'},
- {k:'rave',n:'Рейв',emo:'🔊',idea:'Три часа ночи, склад под Москвой, тысяча человек хором просят Антошку сыграть на гармошке.',
-  style:'90s hardcore rave, 150 BPM, hoover synth stabs and pounding four-on-the-floor kick, chopped pitched-up vocal hooks with shouted chorus, warehouse party production, Russian language, clear pronunciation, euphoric',
-  exclude:'acoustic guitar, ballad, slow tempo',
-  tags:'[Intro: build-up, rising synth] · [Chorus: drop, full kick, shouted vocals] · [Bridge: breakdown, filtered, then build-up]'}
+ {k:'jazz',n:'Современный джаз',emo:'🎷',idea:'Ночной клуб, контрабас и щёточки по малому барабану. Тютчев звучит как стандарт из Real Book.',
+  style:'Modern jazz ballad, 72 BPM, brushed drums, upright bass, warm Rhodes piano and muted trumpet, intimate smoky female vocal, late-night club recording, Russian language, clear pronunciation, melancholic and tender',
+  exclude:'autotune, EDM, distorted guitar',
+  tags:'[Verse 1: soft vocal, piano and bass only] · [Verse 2: brushed drums enter, trumpet fills] · [Bridge: trumpet solo] · [Verse 3: full band, vocal builds, soft ending]'},
+ {k:'rnb',n:'R&B',emo:'💜',idea:'Осенний вечер как слоу-джем: мягкий бит, бархатный вокал и много воздуха между строк.',
+  style:'Contemporary R&B slow jam, 68 BPM, silky layered male vocals with falsetto ad-libs, deep sub bass, crisp trap-influenced hi-hats, lush synth pads, polished modern production, Russian language, clear pronunciation, sensual and dreamy',
+  exclude:'rock, acoustic guitar, shouting',
+  tags:'[Verse 1: soft vocal, pads only] · [Verse 2: beat drops in, layered harmonies] · [Bridge: falsetto ad-libs, breakdown] · [Verse 3: full arrangement, vocal runs]'},
+ {k:'blues',n:'Блюз',emo:'🎸',idea:'Дельта Миссисипи встречает русскую осень: слайд-гитара, хриплый голос и «кроткая улыбка увяданья» в двенадцати тактах.',
+  style:'Slow delta blues, 60 BPM, 12-bar progression, gritty slide guitar, harmonica, upright bass, raspy male vocal, live juke-joint recording, Russian language, clear pronunciation, weary and soulful',
+  exclude:'synths, drum machine, autotune',
+  tags:'[Verse 1: solo slide guitar and vocal] · [Verse 2: harmonica joins, band enters] · [Bridge: guitar solo] · [Verse 3: full band, call and response]'},
+ {k:'bossa',n:'Босса-нова',emo:'🌴',idea:'Ипанема в октябре: нейлоновая гитара, шёпот вместо пения и багряные листья вместо пальм.',
+  style:'Bossa nova, 120 BPM, nylon-string guitar, soft brushed percussion, gentle flute, whispered close-mic female vocal, warm 60s Rio studio sound, Russian language, clear pronunciation, breezy and nostalgic',
+  exclude:'electric guitar, heavy drums, rap',
+  tags:'[Verse 1: guitar and voice only] · [Verse 2: percussion and flute enter] · [Bridge: flute solo] · [Verse 3: full ensemble, fade out]'},
+ {k:'synth',n:'Синтвейв',emo:'🌆',idea:'Тютчев на VHS: неоновый закат, аналоговые синтезаторы и вокал с реверберацией до горизонта.',
+  style:'Synthwave, 100 BPM, analog synth arpeggios, gated reverb drums, retro 80s bass, dreamy male vocal with wide reverb, neon night-drive production, Russian language, clear pronunciation, cinematic and bittersweet',
+  exclude:'acoustic instruments, rap, live drums',
+  tags:'[Verse 1: arpeggio and vocal, no drums] · [Verse 2: gated drums enter] · [Bridge: synth solo, build-up] · [Verse 3: full mix, big finale]'}
 ];
 
 /* ================================= БЛОКИ ================================= */
@@ -550,7 +563,7 @@ var BLOCKS=[
    '<p>Промпты в тетради подставляют ваши данные автоматически. Заполните профиль - и дальше просто нажимайте '+
    '«Скопировать», текст уже будет готов под вас.</p>'},
  {t:'profile',id:'profile',pts:20},
- {t:'html',h:'<h3>Три сервиса, без которых сегодня никак</h3>'+
+ {t:'html',h:'<h3>Два сервиса, без которых сегодня никак</h3>'+
    '<p>Открывайте по очереди, регистрируйтесь и возвращайтесь сюда. Зарегистрировались - поставили галочку, '+
    'получили баллы. Рядом с каждым сервисом написано, о чём его спросить первым делом: '+
    'первый вопрос всегда самый неловкий, так что он уже придуман за вас.</p>'+
@@ -559,7 +572,7 @@ var BLOCKS=[
  {t:'services',id:'reg',pts:100},
  {t:'html',h:'<div class="note green"><p><b>Что делать прямо сейчас, если что-то не открылось.</b> Работайте в паре '+
    'с соседом: один экран на двоих на первый час - нормальная практика. Все задания дальше можно пройти '+
-   'в любой из трёх сетей, Qwen просто удобнее остальных.</p></div>'},
+   'и в Qwen, и в Arena, Qwen просто удобнее.</p></div>'},
  {t:'catalog'}
 ]},
 
@@ -609,10 +622,7 @@ var BLOCKS=[
    'от тысячи человек - штраф от 3 миллионов рублей, свыше ста тысяч человек - до 15 миллионов. '+
    'Повторное нарушение - до трёх процентов годовой выручки. Отвечает компания, а не нейросеть и не сотрудник.</p></div>'+
    '<p>Хорошая новость: чтобы в это не попасть, достаточно одного навыка. Различать три ситуации - '+
-   'можно отправлять как есть, нельзя ни в каком виде, можно после <dfn>обезличивания</dfn>. Этим и займёмся.</p>'+
-   '<div class="note"><p><b>Перевод для тех, кто работает в Copilot.</b> Корпоративный контур защищает от внешних. '+
-   'От внутреннего «увидел не тот» он не защищает: если в промпт попали зарплаты коллег или диагноз пациента, они '+
-   'остаются в истории, которую видит администратор. Правило одно на все инструменты: сначала обезличить, потом отправлять.</p></div>'},
+   'можно отправлять как есть, нельзя ни в каком виде, можно после <dfn>обезличивания</dfn>. Этим и займёмся.</p>'},
  {t:'triage',id:'svetofor',pts:90,
   intro:'Тринадцать запросов, которые сегодня мог бы написать кто-то в этом зале. Для каждого решите, что с ним делать. Ошибиться здесь не стыдно - именно на этом и учатся.',
   cards:[
@@ -680,7 +690,7 @@ var BLOCKS=[
    e:'Штраф выписывают компании: оператором персональных данных в реестре Роскомнадзора значится организация. Сотруднику достаётся отдельный разговор - но уже внутри.'},
   {q:'Что сделать с PDF от подрядчика перед отправкой в нейросеть?',
    o:['Скопировать текст в Блокнот и отправить его','Отправить файл как есть, нейросеть сама разберётся','Распечатать и сфотографировать'],a:0,
-   e:'Блокнот срезает скрытые слои и форматирование - вместе с закладками вроде той, что вы только что нашли.'}
+   e:'Блокнот срезает скрытые слои и форматирование - вместе с промпт-инъекциями вроде той, что вы только что нашли.'}
  ]},
  {t:'html',h:'<h3>Памятка, которая остаётся у вас</h3>'+
    '<div class="tw"><table class="t"><thead><tr><th>Можно</th><th>Категорически нельзя</th></tr></thead><tbody>'+
@@ -716,12 +726,13 @@ var BLOCKS=[
    'и один точный критерий приёмки дают больше, чем красиво написанный промпт без данных.</p></div>'},
  {t:'builder',id:'builder',pts:50},
  {t:'improve',id:'improve',pts:40,
-  weak:'Напиши письмо врачу',
-  e:'Слабый промпт даёт письмо ни о чём: непонятно, какому врачу, зачем и что он должен сделать после прочтения. А в фарме такое письмо ещё и рискует нарушить правила промоции. Сильный промпт даёт готовый текст с нужным тоном и без лишнего.'},
+  situ:'До 30 сентября все сотрудники представительства должны пройти обязательный курс по фармаконадзору. Прошла половина. Вам нужно письмо остальным - такое, после которого люди запишутся, а не отложат на потом.',
+  weak:'Напиши письмо сотрудникам про обучение',
+  e:'Слабый промпт даёт письмо ни о чём: нейросеть не знает, кому оно, про какой курс, к какому сроку и что человек должен сделать, дочитав до конца. Сильный промпт даёт готовый текст с нужным тоном, датой и одним понятным действием.'},
  {t:'prompt',id:'principles',pts:25,
   title:'Пять принципов промптов под вашу должность',
   what:'Нейросеть объяснит правила составления запросов на примерах именно вашей работы, а не абстрактных. Отправьте в Qwen, а потом тот же промпт - в Copilot. Сравните: это и есть «перевод».',
-  text:'Ты - преподаватель по работе с генеративными нейросетями для офисных специалистов. Объясни мне пять главных принципов, по которым строится хороший промпт.\n\nКонтекст:\nМоя должность: {{должность}}\nПодразделение: {{подразделение}}\nКомпания: фармацевтическая, российское представительство международной компании\nЧем я занимаюсь: {{о себе}}\nМой уровень: пользуюсь нейросетями регулярно, но в основном «напиши текст»\n\nТребования к ответу:\n— объясняй простым языком, без технических терминов;\n— каждый принцип привязывай к моей должности и к реальным задачам моего подразделения;\n— для каждого принципа дай: короткое название, объяснение, типичную ошибку, пример плохого промпта «до», улучшенный вариант «после» и одну фразу о том, почему «после» лучше;\n— примеры бери рабочие: письма, отчёты, презентации, таблицы, регламенты, встречи;\n— помни про ограничения фармы: никаких персональных данных пациентов и врачей в примерах, никакой промоции препаратов;\n— в конце дай чек-лист из семи пунктов для самопроверки промпта.\n\nФормат: структурированный список без длинного вступления. Сначала принципы, потом чек-лист.',
+  text:'Ты - преподаватель по работе с генеративными нейросетями для работников офиса. Объясни мне пять главных принципов, по которым строится хороший промпт.\n\nКонтекст:\nМоя должность: {{должность}}\nПодразделение: {{подразделение}}\nКомпания: фармацевтическая, российское представительство международной компании\nЧем я занимаюсь: {{о себе}}\nМой уровень: пользуюсь нейросетями регулярно, но в основном «напиши текст»\n\nТребования к ответу:\n— объясняй простым языком, без технических терминов;\n— каждый принцип привязывай к моей должности и к реальным задачам моего подразделения;\n— для каждого принципа дай: короткое название, объяснение, типичную ошибку, пример плохого промпта «до», улучшенный вариант «после» и одну фразу о том, почему «после» лучше;\n— примеры бери рабочие: письма, отчёты, презентации, таблицы, регламенты, встречи;\n— помни про ограничения фармы: никаких персональных данных пациентов и врачей в примерах, никакой промоции препаратов;\n— в конце дай чек-лист из семи пунктов для самопроверки промпта.\n\nФормат: структурированный список без длинного вступления. Сначала принципы, потом чек-лист.',
   ask:'Какой принцип оказался для вас новым? Вставьте его формулировку из ответа.',min:60},
  {t:'tasks10',id:'tasks10',pts:30},
  {t:'prompt',id:'reasoning',pts:15,
@@ -794,7 +805,7 @@ var BLOCKS=[
 /* ------------------------------- БЛОК 5 -------------------------------- */
 {id:'images',num:'5',nav:'Картинки и видео',time:'16:15–16:55',pts:160,illu:'b5-media',
  title:'Картинки, музыка и видео',
- lead:'По опросу это ваша самая сильная зона: картинки пробовали почти все. Значит, здесь будет быстро, весело и с песней. Собираем кадр, оживляем его в видео, делаем четыре портрета по своему фото и отправляем Антошку в оперу.',
+ lead:'По опросу это ваша самая сильная зона: картинки пробовали почти все. Значит, здесь будет быстро, весело и с песней. Собираем кадр, оживляем его в видео, делаем четыре портрета по своему фото и отдаём Тютчева джазовому трио.',
  tasks:[
  {t:'html',h:'<h3>Кадр собирается как конструктор</h3>'+
    '<p>Шесть частей, и сеть перестаёт промахиваться: <b>субъект</b> - кто или что, <b>действие</b> - что делает, '+
@@ -805,7 +816,7 @@ var BLOCKS=[
  {t:'frame',id:'frame',pts:30},
  {t:'animate',id:'animate',pts:30},
  {t:'imagelib',id:'imagelib',pts:40,need:2},
- {t:'music',id:'antoshka',pts:30},
+ {t:'music',id:'tyutchev',pts:30},
  {t:'prompt',id:'video',pts:30,
   title:'Оживить портрет',
   what:'Второй клип - из делового портрета, который вы сделали выше. Правила те же: одно действие, 4-10 секунд, лицо и фон не трогать. В Qwen загрузите портрет и переключитесь в режим видео.',
@@ -858,15 +869,15 @@ var BLOCKS=[
 
 /* ------------------------------- БЛОК 7 -------------------------------- */
 {id:'final',num:'7',nav:'Финал',time:'17:35–18:00',pts:50,illu:'b7-final',
- title:'Финал, план и диплом',
- lead:'Осталось закрепить, договориться с собой о первом шаге и забрать диплом. А потом - табло и победители.',
+ title:'Финал, план и сертификат',
+ lead:'Осталось закрепить, договориться с собой о первом шаге и забрать сертификат. А потом - табло и победители.',
  tasks:[
  {t:'quiz',id:'final10',pts:25,q:[
   {q:'Что делает языковая модель, когда пишет ответ?',
    o:['Ищет ответ в базе фактов','Предсказывает самое вероятное следующее слово','Копирует похожий текст из интернета'],a:1,
    e:'Отсюда и скорость, и галлюцинации. Базы фактов внутри нет.'},
-  {q:'Промпт «Напиши письмо врачу» плох, потому что…',
-   o:['слишком короткий','в нём нет роли, контекста, формата и ограничений','нейросеть не разбирается в медицине'],a:1,
+  {q:'Промпт «Напиши письмо сотрудникам про обучение» плох, потому что…',
+   o:['слишком короткий','в нём нет роли, контекста, формата и ограничений','нейросеть не разбирается в обучении'],a:1,
    e:'Дело не в длине. Добавьте пять частей формулы - и получите письмо, которое можно отправлять после одной правки.'},
   {q:'В промпте нужно описать случай конкретного пациента. Что делать?',
    o:['Написать ФИО и дату рождения, это же для отчёта','Заменить на «пациентка, 57 лет» и убрать всё, по чему её можно узнать','Написать только инициалы'],a:1,
@@ -905,8 +916,8 @@ var LEVELS=[
  {n:'Молекула',from:0},{n:'Доклиника',from:.25},{n:'Клинические исследования',short:'Клиника',from:.5},{n:'Регистрация',from:.75}];
 /* Коды ведущего. Иван называет слово вслух - кто успел ввести, получает бонус.
    Меняются здесь одной строкой, по 30 баллов за каждое. Порядок по блокам:
-   ТОКЕН - разминка, ГАЗЕТА - безопасность, ДАШБОРД - данные, АНТОШКА - музыка, ИНГЕЛЬХАЙМ - ассистент. */
-var CODES={'ТОКЕН':30,'ГАЗЕТА':30,'ДАШБОРД':30,'АНТОШКА':30,'ИНГЕЛЬХАЙМ':30};
+   ТОКЕН - разминка, ГАЗЕТА - безопасность, ДАШБОРД - данные, ТЮТЧЕВ - музыка, ИНГЕЛЬХАЙМ - ассистент. */
+var CODES={'ТОКЕН':30,'ГАЗЕТА':30,'ДАШБОРД':30,'ТЮТЧЕВ':30,'ИНГЕЛЬХАЙМ':30};
 /* Раскладки ЙЦУКЕН и QWERTY посимвольно. "LLM" на русской раскладке даёт "ддь",
    и человек в зале не поймёт, почему слово не берётся, - поэтому проверяем оба
    варианта. Заодно прощаем регистр, Ё вместо Е и лишние пробелы. */
@@ -1235,7 +1246,7 @@ RENDER.profile=function(el,task){
      '<datalist id="deptlist">'+DEPTS.map(function(r){return '<option value="'+r+'">'}).join('')+'</datalist></div>'+
    '</div>'+
    '<p class="muted" style="margin-top:8px"><small>Должность пишите как есть, своими словами - '+
-   'она уедет в диплом и в промпты ровно в том виде, в каком вы её впишете.</small></p>'+
+   'она уедет в сертификат и в промпты ровно в том виде, в каком вы её впишете.</small></p>'+
    '<div style="margin-top:12px"><label class="fl">Чем вы занимаетесь на самом деле</label>'+
    '<textarea id="pf_about" style="min-height:78px" placeholder="согласовываю договоры с агентствами и врачами, веду реестр обучений по комплаенсу, раз в квартал готовлю отчёт для головного офиса; половина времени уходит на переписку и презентации"></textarea>'+
    '<p class="muted" style="margin-top:6px"><small>Пара строк своими словами. Нейросеть по ним поймёт, какие задачи вам предлагать - '+
@@ -1250,7 +1261,7 @@ RENDER.profile=function(el,task){
   if(p.name)el.querySelector('#pf_ok').textContent='профиль сохранён';
   el.querySelector('#pf_go').onclick=function(){
     var n=el.querySelector('#pf_name').value.trim();
-    if(n.length<2){ toast('Впишите имя - оно попадёт в диплом'); return }
+    if(n.length<2){ toast('Впишите имя - оно попадёт в сертификат'); return }
     S.profile={name:n,role:el.querySelector('#pf_role').value.trim(),
       area:el.querySelector('#pf_area').value.trim(),
       about:el.querySelector('#pf_about').value.trim()};
@@ -1271,12 +1282,10 @@ function rerenderRoleTasks(){
 }
 
 /* ------------------------- регистрация в сервисах ------------------------- */
-var REG=['Qwen','Kimi','Arena'];
+var REG=['Qwen','Arena'];
 var FIRSTQ={
  'Qwen':'первый вопрос: «объясни одним предложением, чем SOP отличается от рабочей инструкции»',
- 'Kimi':'первый вопрос: вставьте любой длинный публичный документ и попросите «сделай оглавление и пять вопросов, на которые он отвечает»',
  'Arena':'задайте любой рабочий вопрос и выберите ответ, который вам больше нравится - имена моделей откроются после выбора',
- 'Leonardo AI':'сгенерируйте что угодно, просто чтобы увидеть, как это работает',
  'Suno':'нажмите Create, напишите «весёлая песня про понедельник в офисе» - и послушайте, что выйдет'
 };
 function key2(n){ return String(n).replace(/\W/g,'') }
@@ -1499,9 +1508,9 @@ RENDER.redact=function(el,task){
   };
 };
 
-/* ------------------------------- закладка ------------------------------- */
+/* --------------------------- промпт-инъекция --------------------------- */
 RENDER.hidden=function(el,task){
-  el.innerHTML='<h3>Найдите закладку</h3>'+
+  el.innerHTML='<h3>Найдите промпт-инъекцию</h3>'+
     '<p>'+(task.intro||'Одна строка в документе написана не для вас, а для нейросети. Нажмите на неё.')+'</p>'+
     '<div style="border:1px solid var(--line);border-radius:12px;overflow:hidden">'+
     task.doc.map(function(l,i){
@@ -1593,10 +1602,11 @@ var IMP=[
 ];
 RENDER.improve=function(el,task){
   el.innerHTML='<h3>Из слабого - в сильный</h3>'+
+   (task.situ?'<p><b>Ситуация.</b> '+esc(task.situ)+'</p>':'')+
    '<div class="situ">Слабый промпт: «'+esc(task.weak)+'»</div>'+
    '<p>'+task.e+'</p>'+
    '<p>Перепишите его так, чтобы в тексте были все пять частей формулы. Проверка ищет их автоматически.</p>'+
-   '<textarea data-a="imp_txt" style="min-height:150px" placeholder="Ты - медицинский советник фармацевтической компании. Врач-кардиолог после конференции…"></textarea>'+
+   '<textarea data-a="imp_txt" style="min-height:150px" placeholder="Ты - специалист по обучению персонала фармацевтической компании. В представительстве 240 сотрудников, курс по фармаконадзору до 30 сентября прошли 120…"></textarea>'+
    '<div class="btnrow"><button class="btn" id="igo">Проверить</button>'+
    '<button class="copy" id="icopy">Скопировать и проверить в Qwen</button></div>'+
    '<div id="ires"></div>';
@@ -1723,7 +1733,25 @@ RENDER.keycheck=function(el,task){
 };
 
 /* ----------------------------- мини-приложение ----------------------------- */
+/* Палитра Boehringer Ingelheim: она вшита во все промпты приложений, а paletteBox() показывает её
+   плашками и даёт скопировать отдельно - на случай, если участник собирает что-то своё. */
+var PALETTE_LIST=[
+ ['#08312A','основной тёмно-зелёный'],['#2F594F','тёмно-зелёный, второй'],['#6B8375','приглушённый зелёный'],
+ ['#B6CDBF','бледная зелень'],['#00E47C','сигнальный зелёный: только акценты и выделения, не для текста на белом'],
+ ['#CCFAE5','мятный'],['#FBF9AA','жёлтый'],['#D2F2F7','голубой'],['#F5CDB9','персиковый'],['#E0E1F6','лавандовый'],
+ ['#F6F5F3','фон'],['#191919','текст'],['#FFFFFF','белый']];
 var PALETTE='#08312A (основной тёмно-зелёный), #2F594F, #6B8375, #B6CDBF, #00E47C (только для акцентов и выделений, не для текста на белом), #CCFAE5, #FBF9AA, #D2F2F7, #F5CDB9, #E0E1F6, #F6F5F3 (фон), #191919 (текст), #FFFFFF';
+function paletteText(){ return 'Палитра Boehringer Ingelheim:\n'+PALETTE_LIST.map(function(p){return p[0]+' - '+p[1]}).join('\n') }
+function paletteBox(){
+  return '<div class="pal"><div class="palsw">'+PALETTE_LIST.map(function(p){
+    var dark=(p[0]==='#08312A'||p[0]==='#2F594F'||p[0]==='#6B8375'||p[0]==='#191919');
+    return '<span class="sw" title="'+esc(p[1])+'" style="background:'+p[0]+';color:'+(dark?'#fff':'#191919')+'">'+p[0]+'</span>' }).join('')+'</div>'+
+    '<div class="pbar"><span class="plabel">палитра Boehringer Ingelheim - она уже внутри промпта, но можно скопировать отдельно</span>'+
+    '<button class="copy palcopy">Скопировать палитру</button></div></div>';
+}
+function bindPalette(root){
+  root.querySelectorAll('.palcopy').forEach(function(b){ b.onclick=function(){ copyText(paletteText(),b) } });
+}
 var SAMPLE_HEAD='Дата;Месяц;Регион;Город;Канал;Клиент;Категория;Препарат;Упаковок;Цена за упаковку, ₽;Скидка, %;Сумма, ₽;Возвраты, упак.;Менеджер;Телефон менеджера;E-mail менеджера\n01.01.2025;01.2025;Москва;Москва;Дистрибьютор;Фарма-Логистик;Респираторные;Респиролан;1327;1890;21,6;1966296;0;Менеджер 1;+7 900 000-00-01;менеджер1@example.ru';
 function appPrompt(mode,head){
   head=(head||'').trim();
@@ -1833,8 +1861,9 @@ RENDER.miniapp=function(el,task){
   function draw(){
     box.innerHTML='<div class="prompt">'+promptHTML(cur())+'</div>'+
       '<div class="pbar"><span class="plabel">скопируйте и вставьте в Qwen</span>'+
-      '<button class="copy" id="mcopy">Скопировать промпт</button></div>';
+      '<button class="copy" id="mcopy">Скопировать промпт</button></div>'+paletteBox();
     box.querySelector('#mcopy').onclick=function(){ copyText(fill(cur()),this) };
+    bindPalette(box);
     el.querySelector('#mhok').textContent=(get('mini_head','')||'').trim()
       ? 'шапка подставлена в промпт' : 'промпт соберётся и без шапки, но с ней точнее';
   }
@@ -1963,8 +1992,9 @@ RENDER.appideas=function(el,task){
     box.innerHTML='<div class="prompt">'+promptHTML(txt)+'</div>'+
       '<div class="pbar"><span class="plabel">'+
       ((get('app_pick','')||'').trim()?'описание подставлено':'вставьте описание выше - оно попадёт сюда')+
-      '</span><button class="copy" id="bdcopy">Скопировать промпт</button></div>';
+      '</span><button class="copy" id="bdcopy">Скопировать промпт</button></div>'+paletteBox();
     box.querySelector('#bdcopy').onclick=function(){ copyText(fill(buildPrompt(get('app_pick',''))),this) };
+    bindPalette(box);
   }
   function drawQC(){
     var box=el.querySelector('#qcbox');
@@ -2060,7 +2090,8 @@ RENDER.game=function(el,task){
   function drawT(){
     var g=GAME_THEMES.filter(function(x){return x.k===cur})[0]||GAME_THEMES[0];
     el.querySelector('#gtbox').innerHTML='<div class="qcard" style="margin-top:12px"><div class="q"><b>'+g.emo+' '+esc(g.n)+'</b><br>'+
-      '<small class="muted">'+esc(g.d)+'</small></div>'+promptBox(gamePrompt(g),'промпт для Qwen в режиме Web Dev')+'</div>';
+      '<small class="muted">'+esc(g.d)+'</small></div>'+promptBox(gamePrompt(g),'промпт для Qwen в режиме Web Dev')+paletteBox()+'</div>';
+    bindPalette(el.querySelector('#gtbox'));
     bindCopy(el.querySelector('#gtbox'));
   }
   el.querySelectorAll('#gtch .chip').forEach(function(c){
@@ -2234,7 +2265,7 @@ RENDER.imagelib=function(el,task){
    'Второй - с характером: поле в золотой час с букетом или двухметровая акула из Москвы-реки, выбирайте по настроению. '+
    'Третий и четвёртый - акварельные, тоже по своему фото. Отметьте любые '+need+' из четырёх, которые попробовали, - это и есть баллы за задание.</p>'+
    '<div class="note"><p><b>Где делать.</b> В Qwen: прикрепите фото скрепкой, вставьте промпт, переключитесь в режим картинок. '+
-   'В Leonardo: режим Image Guidance, загрузите фото как референс, промпт - в поле описания. '+
+   'Дома то же самое работает в Leonardo: режим Image Guidance, фото как референс, промпт - в поле описания. '+
    'Если в первый раз лицо «уплыло» - повторите с фразой «preserve the exact face from the uploaded photo» в начале.</p></div>'+
    IMAGE_PROMPTS.map(function(c){
      return '<h4 style="margin-top:22px;color:var(--gold-dk)">'+esc(c.cat)+'</h4>'+
@@ -2263,9 +2294,9 @@ RENDER.imagelib=function(el,task){
 /* -------------------------------- музыка -------------------------------- */
 RENDER.music=function(el,task){
   var cur=get('music_genre','hiphop');
-  el.innerHTML='<h3>Антошка в Suno: хип-хоп, опера или рейв</h3>'+
+  el.innerHTML='<h3>Тютчев в Suno: джаз, R&B, блюз и не только</h3>'+
    '<p>Самое весёлое задание дня. Suno пишет песню по описанию: вы даёте стиль и текст, через две минуты получаете трек с вокалом. '+
-   'Текст у нас уже есть - «Антошка». Осталось выбрать, кем он сегодня будет.</p>'+
+   'Текст у нас уже есть - «Осенний вечер» Тютчева, 1830 год, авторские права давно не мешают. Осталось выбрать, как он прозвучит сегодня.</p>'+
    '<div class="note"><p><b>Как это делается.</b> В Suno нажмите <b>Create</b>, включите <b>Custom</b>. Появятся два поля: '+
    '<b>Style of Music</b> - туда идёт стиль, и <b>Lyrics</b> - туда текст с тегами в квадратных скобках. '+
    'Теги Suno не поёт, он читает их как команды: где припев, где куплет, где закончить. '+
@@ -2273,15 +2304,15 @@ RENDER.music=function(el,task){
    '<div class="chips" id="gch">'+MUSIC_GENRES.map(function(g){
      return '<button class="chip'+(g.k===cur?' on g':'')+'" data-g="'+g.k+'">'+g.emo+' '+esc(g.n)+'</button>' }).join('')+'</div>'+
    '<div id="gbox"></div>'+
-   '<h4 style="margin-top:22px">Поле Lyrics - одно на все три жанра</h4>'+
-   promptBox(ANTOSHKA_LYRICS,'вставьте в поле Lyrics')+
+   '<h4 style="margin-top:22px">Поле Lyrics - одно на все жанры</h4>'+
+   promptBox(TYUTCHEV_LYRICS,'вставьте в поле Lyrics')+
    '<h4 style="margin-top:22px">Что получилось</h4>'+
    '<div class="fgrid">'+MUSIC_GENRES.map(function(g){
      return '<label class="chk"><input type="checkbox" data-mg="'+g.k+'"><span>'+g.emo+' '+esc(g.n)+' - сгенерировал</span></label>' }).join('')+'</div>'+
    '<div class="doneflag" id="mgflag" style="margin-top:10px"></div>'+
    '<div style="margin-top:14px"><label class="fl">Ссылка на трек или пара слов о том, что вышло (по желанию)</label>'+
-   '<input type="text" data-a="music_note" placeholder="https://suno.com/song/... или «опера получилась страшная, но смешная»"></div>'+
-   '<p class="muted" style="margin-top:10px"><small>Любой один жанр - '+task.pts+' баллов. Все три - ещё +20 бонусом. '+
+   '<input type="text" data-a="music_note" placeholder="https://suno.com/song/... или «блюз получился тоскливый, но красивый»"></div>'+
+   '<p class="muted" style="margin-top:10px"><small>Любой один жанр - '+task.pts+' баллов. Три жанра из пяти - ещё +20 бонусом. '+
    'Suno не открылся? Работайте в паре: один аккаунт, два стиля. Или послушайте, что получилось у соседа, и отметьте его жанр как свой - '+
    'сегодня это не считается списыванием.</small></p>';
   bindCopy(el); bindAns(el);
@@ -2300,9 +2331,9 @@ RENDER.music=function(el,task){
   });
   function count(){
     var done=MUSIC_GENRES.filter(function(g){return get('mg_'+g.k,0)}).length;
-    el.querySelector('#mgflag').textContent=done?('готово жанров: '+done+' из 3'):'';
+    el.querySelector('#mgflag').textContent=done?('готово жанров: '+done+' из '+MUSIC_GENRES.length):'';
     if(done>=1)award(task.id,task.pts);
-    if(done===3)addBonus('antoshka3',20,'Все три Антошки. Бонус <b>+20</b>');
+    if(done>=3)addBonus('tyutchev3',20,'Три жанра на один текст. Бонус <b>+20</b>');
   }
   el.querySelectorAll('input[data-mg]').forEach(function(c){
     c.checked=!!get('mg_'+c.dataset.mg,0);
@@ -2524,8 +2555,8 @@ RENDER.result=function(el,task){
   };
 };
 
-/* ================================ ДИПЛОМ ================================ */
-/* Диплом - в стиле Boehringer Ingelheim: белый лист, тёмно-зелёный, сигнальный зелёный
+/* ============================== СЕРТИФИКАТ ============================== */
+/* Сертификат - в стиле Boehringer Ingelheim: белый лист, тёмно-зелёный, сигнальный зелёный
    только линией и точками, пастельные плашки. Тетрадь при этом остаётся в цветах Best Practice. */
 function certId(){
   var s=(S.profile&&S.profile.name||'')+'|'+(S.started||'')+'|'+base();
@@ -2565,7 +2596,7 @@ function drawCert(){
   }
 
   /* заголовок */
-  ctext(c,'ДИПЛОМ',M+10,470,'500 118px '+UI,BI.dark,'left');
+  ctext(c,'СЕРТИФИКАТ',M+10,470,'500 104px '+UI,BI.dark,'left');
   c.fillStyle=BI.acc; c.fillRect(M+14,492,220,8);
   ctext(c,'об участии в практикуме по генеративным нейросетям',M+12,538,'500 26px '+UI,BI.mid,'left');
 
@@ -2600,9 +2631,9 @@ function drawCert(){
     var ih=by+bh-TY, iw=Math.min(RW,ih*illu.naturalWidth/illu.naturalHeight);
     c.save(); rrect(c,W-M-iw,TY,iw,ih,0); c.clip(); c.drawImage(illu,W-M-iw,TY,iw,ih); c.restore();
   } else {
-    var FACTS=[['Безопасность данных','светофор, обезличивание, закладки'],
+    var FACTS=[['Безопасность данных','светофор, обезличивание, промпт-инъекции'],
                ['Промпты и данные','формула из пяти частей, свой дашборд'],
-               ['Проекты и медиа','ассистент, игра, портрет, Антошка']];
+               ['Проекты и медиа','ассистент, игра, портрет, Тютчев']];
     var COLS=[BI.lav,BI.blue,BI.yellow];
     FACTS.forEach(function(f,i){
       var fy=TY+i*122;
@@ -2629,12 +2660,12 @@ function drawCert(){
   if(bp&&bp.complete&&bp.naturalWidth){ c.drawImage(bp,CX-34,BY+66,68,68) }
 }
 RENDER.cert=function(el){
-  el.innerHTML='<h3>Ваш диплом</h3>'+
-   '<p>Диплом собирается из вашего профиля и набранных баллов. Можно пересобрать в любой момент - '+
-   'если добьёте задания, цифра изменится. Оформлен в цветах Boehringer Ingelheim, чтобы не стыдно было повесить в Teams.</p>'+
+  el.innerHTML='<h3>Ваш сертификат</h3>'+
+   '<p>Сертификат собирается из вашего профиля и набранных баллов. Можно пересобрать в любой момент - '+
+   'если добьёте задания, цифра изменится.</p>'+
    '<img id="bilogo" src="'+LOGO_BI+'" alt="" style="display:none">'+
    '<img id="certillu" src="assets/illustrations/diploma.webp" alt="" style="display:none" onerror="this.remove()">'+
-   '<div class="btnrow"><button class="btn gold" id="cgen">Собрать диплом</button>'+
+   '<div class="btnrow"><button class="btn gold" id="cgen">Собрать сертификат</button>'+
    '<button class="btn ghost" id="cpng" style="display:none">Скачать картинкой</button>'+
    '<button class="btn ghost" id="cprint" style="display:none">Распечатать или в PDF</button></div>'+
    '<div id="certwrap" style="margin-top:20px"><canvas id="cert"></canvas></div>';
@@ -2645,7 +2676,7 @@ RENDER.cert=function(el){
     function go(){ drawCert(); wrap.classList.add('on');
       el.querySelector('#cpng').style.display='';
       el.querySelector('#cprint').style.display='';
-      toast('Диплом готов'); if(first){ SFX.fanfare(); confetti() } }
+      toast('Сертификат готов'); if(first){ SFX.fanfare(); confetti() } }
     var done=false, fin=function(){ if(!done){ done=true; go() } };
     try{
       if(document.fonts&&document.fonts.load){
@@ -2659,17 +2690,17 @@ RENDER.cert=function(el){
     var cv=document.getElementById('cert');
     try{ cv.toBlob(function(b){
       var a=document.createElement('a'); a.href=URL.createObjectURL(b);
-      a.download='Диплом_'+((S.profile.name||'участник').replace(/\s+/g,'_'))+'.png'; a.click();
+      a.download='Сертификат_'+((S.profile.name||'участник').replace(/\s+/g,'_'))+'.png'; a.click();
     }) }catch(e){
       var a=document.createElement('a'); a.href=cv.toDataURL('image/png');
-      a.download='Диплом.png'; a.click();
+      a.download='Сертификат.png'; a.click();
     }
   };
   el.querySelector('#cprint').onclick=function(){
     var d=document.getElementById('cert').toDataURL('image/png');
     var w=window.open('','_blank');
     if(!w){ toast('Браузер заблокировал окно печати'); return }
-    w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Диплом</title>'+
+    w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Сертификат</title>'+
       '<style>@page{size:A4 landscape;margin:0}body{margin:0}img{width:100%;display:block}</style></head>'+
       '<body><img src="'+d+'" onload="window.print()"></body></html>');
     w.document.close();
@@ -2802,7 +2833,7 @@ function exportBook(){
   out.push('<h2>Мои ответы</h2>');
   var LBL={'a_principles':'Пять принципов промптов','imp_txt':'Мой сильный промпт','redact_txt':'Безопасный вариант письма',
    'kc_find_sales':'Находки в таблице продаж','kc_find_media':'Находки в медиа-файле','mini_txt':'Мой дашборд','game_txt':'Моя игра в Qwen',
-   'music_note':'Антошка в Suno','a_video':'Видео из портрета','asst_txt':'Ответ ассистента по здоровью','dept_txt':'Ассистент, который я соберу',
+   'music_note':'Тютчев в Suno','a_video':'Видео из портрета','asst_txt':'Ответ ассистента по здоровью','dept_txt':'Ассистент, который я соберу',
    'a_reasoning':'Обычный режим против рассуждений',
    'mini_head':'Шапка моей таблицы','app_pick':'Приложение, которое я выбрал собрать',
    'app_txt':'Что получилось из моего приложения'};
@@ -2819,12 +2850,15 @@ function exportBook(){
       else out.push('<pre>'+esc(x.p)+'</pre>');
     });
   });
-  out.push('<h3>Антошка в Suno</h3>');
+  out.push('<h3>Тютчев в Suno</h3>');
   MUSIC_GENRES.forEach(function(g){ out.push('<h4>'+esc(g.n)+'</h4><p><small>Style of Music</small></p><pre>'+esc(g.style)+'</pre>'+
     '<p><small>Exclude: '+esc(g.exclude)+'</small></p>') });
-  out.push('<p><small>Lyrics</small></p><pre>'+esc(ANTOSHKA_LYRICS)+'</pre>');
+  out.push('<p><small>Lyrics</small></p><pre>'+esc(TYUTCHEV_LYRICS)+'</pre>');
   out.push('<h3>Системный промпт: ассистент по здоровью в офисе</h3><pre>'+esc(fill(SYS_BASE))+'</pre>');
   ASST_IDEAS.forEach(function(a){ out.push('<h3>Системный промпт: '+esc(a.n)+'</h3><p><small>В проект: '+esc(a.files.join('; '))+'</small></p><pre>'+esc(fill(a.sys))+'</pre>') });
+  out.push('<h3>Палитра Boehringer Ingelheim</h3><p><small>Для дашборда, своего приложения и игры - те же цвета, что в промптах.</small></p>'+
+    '<table><tr><th>Цвет</th><th>Где использовать</th></tr>'+PALETTE_LIST.map(function(p){
+      return '<tr><td><span style="display:inline-block;width:14px;height:14px;border:1px solid #ccc;vertical-align:middle;margin-right:6px;background:'+p[0]+'"></span><b>'+p[0]+'</b></td><td>'+esc(p[1])+'</td></tr>' }).join('')+'</table>');
   out.push('<h3>Промпт игры в Qwen</h3><pre>'+esc(gamePrompt(GAME_THEMES.filter(function(g){return g.k===get('game_theme','molecule')})[0]||GAME_THEMES[0]))+'</pre>');
   out.push('<h2>Куда идти за чем</h2>');
   CATALOG.forEach(function(g){
